@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        div {
+        background-color: cornsilk;
+        }
+    </style>
+        
+    <h3><a href="https://www.youtube.com/watch?v=eAfyFTzZDMM" target="_blank">Beautiful</a></h3>
+    <h4>Christina Aguilera</h4>
+    
+    <p>Don't look at me</p>
+    <p>
+        <div>Everyday is so wonderful</div>
+        <div>Then suddenly</div>
+        <div>It's hard to breathe</div>
+        <div>Now and then I get insecure</div>
+        <div>From all the pain</div>
+        <div>I'm so ashamed</div>
+    </p>
+
+
+
+    <template id="chorus">
+        <style>
+        div {
+            background-color: paleturquoise;
+        }
+        </style>
+        <template id="beautiful">
+            <style>
+            div {
+                background-color: burlywood;
+            }
+            </style>
+            <div>
+            <slot name="subjectIs"></slot> beautiful
+            </div>
+        </template>
+        <div be-inclusive='{"of": "beautiful"}'>
+            <span slot="subjectIs">
+                <slot name="subjectIs1"></slot>
+            </span>
+        </div>
+        <div>No matter what they say</div>
+        <div prop-pronoun>Words
+            <slot name="verb1"></slot> bring
+            <slot name="pronoun1"></slot> down</div>
+        <div>Oh no</div>
+        <div be-inclusive='{"of": "beautiful"}'>
+            <span slot="subjectIs">
+                <slot name="subjectIs2"></slot>
+            </span>
+        </div>
+        <div>In every single way</div>
+        <div>Yes words
+            <slot name="verb2"></slot> bring
+            <slot name="pronoun2"></slot> down
+        </div>
+        <div>Oh no</div>
+        <template id="down">
+            <div>So don't you bring me down today</div>
+        </template>
+        <div be-inclusive='{"of": "down"}'></div>
+        <be-inclusive></be-inclusive>
+    </template>
+
+    <div be-inclusive='{"of": "chorus"}'>
+        <span slot="verb1">can't</span>
+        <span slot="verb2">can't</span>
+        <span slot="pronoun1">me</span>
+        <span slot="pronoun2">me</span>
+        <span slot="subjectIs1">I am</span>
+        <span slot="subjectIs2">I am</span>
+    </div>
+
+    <script type=importmap>
+        {
+            "imports": {
+                "trans-render/": "../node_modules/trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/",
+                "xtal-decor/": "../node_modules/xtal-decor/",
+                "on-to-me/": "../node_modules/on-to-me/",
+                "be-observant/": "../node_modules/be-observant/"
+            }
+        }
+    </script>
+    <script type=module>
+        import '../be-inclusive.js';
+        
+    </script>
+</body>
+</html>

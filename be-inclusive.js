@@ -1,12 +1,16 @@
 import { XtalDecor } from 'xtal-decor/xtal-decor.js';
 import { CE } from 'trans-render/lib/CE.js';
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
+import { register } from 'be-hive/register.js';
+const tagName = 'be-inclusive';
+const upgrade = '*';
+const ifWantsToBe = 'inclusive';
 const ce = new CE({
     config: {
-        tagName: 'be-inclusive',
+        tagName,
         propDefaults: {
-            upgrade: '*',
-            ifWantsToBe: 'inclusive',
+            upgrade,
+            ifWantsToBe,
             forceVisible: true,
             virtualProps: ['eventHandlers', 'of']
         }
@@ -39,4 +43,4 @@ const ce = new CE({
     },
     superclass: XtalDecor
 });
-document.head.appendChild(document.createElement('be-inclusive'));
+register(ifWantsToBe, upgrade, tagName);

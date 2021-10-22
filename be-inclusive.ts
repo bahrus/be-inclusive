@@ -2,15 +2,21 @@ import {XtalDecor, XtalDecorCore} from 'xtal-decor/xtal-decor.js';
 import { XtalDecorProps } from 'xtal-decor/types';
 import {CE} from 'trans-render/lib/CE.js';
 import { IObserve } from 'be-observant/types';
-import {getElementToObserve, addListener} from 'be-observant/be-observant.js';
+import {getElementToObserve} from 'be-observant/getElementToObserve.js';
+import {addListener} from 'be-observant/addListener.js';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
+import {register} from 'be-hive/register.js';
+
+const tagName = 'be-inclusive';
+const upgrade = '*';
+const ifWantsToBe = 'inclusive';
 
 const ce = new CE<XtalDecorCore<Element>>({
     config:{
-        tagName: 'be-inclusive',
+        tagName,
         propDefaults:{
-            upgrade: '*',
-            ifWantsToBe: 'inclusive',
+            upgrade,
+            ifWantsToBe,
             forceVisible: true,
             virtualProps: ['eventHandlers', 'of']
         }
@@ -43,4 +49,4 @@ const ce = new CE<XtalDecorCore<Element>>({
     },
     superclass: XtalDecor
 });
-document.head.appendChild(document.createElement('be-inclusive'));
+register(ifWantsToBe, upgrade, tagName);

@@ -3,7 +3,6 @@ import { XtalDecorProps } from 'xtal-decor/types';
 import {CE} from 'trans-render/lib/CE.js';
 import { IObserve } from 'be-observant/types';
 import {getElementToObserve} from 'be-observant/getElementToObserve.js';
-import {addListener} from 'be-observant/addListener.js';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {register} from 'be-hive/register.js';
 

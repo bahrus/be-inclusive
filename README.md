@@ -2,7 +2,7 @@
 
 be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy). 
 
-
+[TODO] switch to be-decorated
 
 <details>
 <summary>Sample Markup</summary>

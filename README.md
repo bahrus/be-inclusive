@@ -2,13 +2,10 @@
 
 be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy). 
 
-[TODO] switch to be-decorated
-
 <details>
 <summary>Sample Markup</summary>
 
 ```html
-
     <style>
         div {
         background-color: cornsilk;
@@ -30,57 +27,57 @@ be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https:/
 
 
 
-    <template id="chorus">
+    <template id=chorus>
         <style>
         div {
             background-color: paleturquoise;
         }
         </style>
-        <template id="beautiful">
+        <template id=beautiful>
             <style>
             div {
                 background-color: burlywood;
             }
             </style>
             <div>
-            <slot name="subjectIs"></slot> beautiful
+            <slot name=subjectIs></slot> beautiful
             </div>
         </template>
-        <div be-inclusive='{"of": "beautiful"}'>
-            <span slot="subjectIs">
-                <slot name="subjectIs1"></slot>
+        <div be-inclusive=beautiful>
+            <span slot=subjectIs>
+                <slot name=subjectIs1></slot>
             </span>
         </div>
         <div>No matter what they say</div>
         <div prop-pronoun>Words
-            <slot name="verb1"></slot> bring
-            <slot name="pronoun1"></slot> down</div>
+            <slot name=verb1></slot> bring
+            <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <div be-inclusive='{"of": "beautiful"}'>
-            <span slot="subjectIs">
-                <slot name="subjectIs2"></slot>
+        <div be-inclusive=beautiful>
+            <span slot=subjectIs>
+                <slot name=subjectIs2></slot>
             </span>
         </div>
         <div>In every single way</div>
         <div>Yes words
-            <slot name="verb2"></slot> bring
-            <slot name="pronoun2"></slot> down
+            <slot name=verb2></slot> bring
+            <slot name=pronoun2></slot> down
         </div>
         <div>Oh no</div>
-        <template id="down">
+        <template id=down>
             <div>So don't you bring me down today</div>
         </template>
-        <div be-inclusive='{"of": "down"}'></div>
+        <div be-inclusive=down></div>
         <be-inclusive></be-inclusive>
     </template>
 
-    <div be-inclusive='{"of": "chorus"}'>
-        <span slot="verb1">can't</span>
-        <span slot="verb2">can't</span>
-        <span slot="pronoun1">me</span>
-        <span slot="pronoun2">me</span>
-        <span slot="subjectIs1">I am</span>
-        <span slot="subjectIs2">I am</span>
+    <div be-inclusive=chorus>
+        <span slot=verb1>can't</span>
+        <span slot=verb2>can't</span>
+        <span slot=pronoun1>me</span>
+        <span slot=pronoun2>me</span>
+        <span slot=subjectIs1>I am</span>
+        <span slot=subjectIs2>I am</span>
     </div>
 
     <p>
@@ -93,32 +90,32 @@ be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https:/
         <div>Ain't that the way it is</div>
     </p>
     <p>
-        <div be-inclusive='{"of": "chorus"}'>
-            <span slot="verb1">can't</span>
-            <span slot="verb2">can't</span>
-            <span slot="pronoun1">you</span>
-            <span slot="pronoun2">you</span>
-            <span slot="subjectIs1">You are</span>
-            <span slot="subjectIs2">You are</span>
+        <div be-inclusive=chorus>
+            <span slot=verb1>can't</span>
+            <span slot=verb2>can't</span>
+            <span slot=pronoun1>you</span>
+            <span slot=pronoun2>you</span>
+            <span slot=subjectIs1>You are</span>
+            <span slot=subjectIs2>You are</span>
         </div>
     </p>
     <br>
-    <template id="no-matter">
+    <template id=no-matter>
         <style>
         :host {
             background-color: blanchedalmond;
         }
         </style>
-        No matter what we <slot name="verb1"></slot> (no matter what we <slot name="verb2"></slot>)
+        No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
     </template>
-    <div be-inclusive='{"of": "no-matter"}'>
-        <span slot="verb1">do</span>
-        <span slot="verb2">do</span>
+    <div be-inclusive=no-matter>
+        <span slot=verb1>do</span>
+        <span slot=verb2>do</span>
     </div>
     <br>
-    <div be-inclusive='{"of": "no-matter"}'>
-        <span slot="verb1">say</span>
-        <span slot="verb2">say</span>
+    <div be-inclusive=no-matter>
+        <span slot=verb1>say</span>
+        <span slot=verb2>say</span>
     </div>
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
@@ -129,13 +126,13 @@ be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https:/
         <div>On the other side</div>
     </p>
     <p>
-        <div be-inclusive='{"of": "chorus"}'>
-            <span slot="verb1">won't</span>
-            <span slot="verb2">can't</span>
-            <span slot="pronoun1">us</span>
-            <span slot="pronoun2">us</span>
-            <span slot="subjectIs1">We are</span>
-            <span slot="subjectIs2">We are</span>
+        <div be-inclusive=chorus>
+            <span slot=verb1>won't</span>
+            <span slot=verb2>can't</span>
+            <span slot=pronoun1>us</span>
+            <span slot=pronoun2>us</span>
+            <span slot=subjectIs1>We are</span>
+            <span slot=subjectIs2>We are</span>
         </div>
     </p>
     <p>
@@ -144,8 +141,6 @@ be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https:/
         <div>Don't you bring me down, ooh</div>
         <div>Today</div>
     </p>
-
-
     
 ```
 <details>

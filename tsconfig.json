@@ -9,7 +9,7 @@
 		"watch": true
 	},
 	"files": [
-		"be-inclusive2.ts"
+		"be-inclusive.ts"
 	],
 	"exclude":[
 		"build",

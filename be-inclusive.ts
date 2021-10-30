@@ -1,51 +1,45 @@
-import {XtalDecor, XtalDecorCore} from 'xtal-decor/xtal-decor.js';
-import { XtalDecorProps } from 'xtal-decor/types';
-import {CE} from 'trans-render/lib/CE.js';
-import { IObserve } from 'be-observant/types';
-import {getElementToObserve} from 'be-observant/getElementToObserve.js';
+import {define, BeDecoratedProps} from 'be-decorated/be-decorated.js';
+import {BeInclusiveActions, BeInclusiveProps} from './types';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {register} from 'be-hive/register.js';
 
-const tagName = 'be-inclusive';
-const upgrade = '*';
-const ifWantsToBe = 'inclusive';
+export class BeInclusiveController implements BeInclusiveActions{
+    onOf({proxy, of}: this){
+        const templ = upShadowSearch(proxy, of) as HTMLTemplateElement;
+        if(templ === null || !(templ instanceof HTMLTemplateElement)){
+            console.error({of, self, msg:"Could not locate template."});
+            return;
+        }
+        if(proxy.shadowRoot === null){
+            proxy.attachShadow({mode: 'open'});
+        }
+        proxy.shadowRoot!.appendChild(templ.content.cloneNode(true));
+    }
+}
 
-const ce = new CE<XtalDecorCore<Element>>({
+export interface BeInclusiveController extends BeInclusiveProps{}
+
+const tagName = 'be-inclusive';
+const ifWantsToBe = 'inclusive';
+const upgrade = '*';
+
+define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>, BeInclusiveActions>({
     config:{
         tagName,
         propDefaults:{
+            virtualProps: ['of'],
             upgrade,
-            ifWantsToBe,
-            forceVisible: true,
-            virtualProps: ['eventHandlers', 'of']
-        }
-    },
-    complexPropDefaults: {
-        actions:[
-            ({of, self}) => {
-                //console.log({of});
-                if(of !== undefined){
-                    const templ = upShadowSearch(self, of) as HTMLTemplateElement;
-                    if(templ === null || !(templ instanceof HTMLTemplateElement)){
-                        console.error({of, self, msg:"Could not locate template."});
-                        return;
-                    }
-                    if(self.shadowRoot === null){
-                        self.attachShadow({mode: 'open'});
-                    }
-                    self.shadowRoot.appendChild(templ.content.cloneNode(true));
-                }
-            }
-        ],
-        on:{},
-        init:() => {},
-        finale: (self: Element, target: Element) => {
-            const eventHandlers = (<any>self).eventHandlers;
-            for(const eh of eventHandlers){
-                eh.elementToObserve.removeEventListener(eh.onz, eh.fn);
+            ifWantsToBe
+        },
+        actions:{
+            onOf:{
+                ifAllOf:['of']
             }
         }
     },
-    superclass: XtalDecor
+    complexPropDefaults:{
+        controller: BeInclusiveController
+    }
 });
+
 register(ifWantsToBe, upgrade, tagName);

@@ -23,7 +23,8 @@ define({
         propDefaults: {
             virtualProps: ['of'],
             upgrade,
-            ifWantsToBe
+            ifWantsToBe,
+            primaryProp: 'of'
         },
         actions: {
             onOf: {

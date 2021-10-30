@@ -29,7 +29,8 @@ define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>
         propDefaults:{
             virtualProps: ['of'],
             upgrade,
-            ifWantsToBe
+            ifWantsToBe,
+            primaryProp: 'of'
         },
         actions:{
             onOf:{

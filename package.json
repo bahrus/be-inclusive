@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "be-observant": "0.0.45",
+    "be-decorated": "0.0.35",
+    "be-observant": "0.0.48",
     "trans-render": "0.0.427",
     "be-hive": "0.0.8"
   },

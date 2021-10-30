@@ -13,7 +13,7 @@ export class BeInclusiveController implements BeInclusiveActions{
         if(proxy.shadowRoot === null){
             proxy.attachShadow({mode: 'open'});
         }
-        proxy.shadowRoot.appendChild(templ.content.cloneNode(true));
+        proxy.shadowRoot!.appendChild(templ.content.cloneNode(true));
     }
 }
 

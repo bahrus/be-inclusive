@@ -4,16 +4,22 @@ import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {register} from 'be-hive/register.js';
 
 export class BeInclusiveController implements BeInclusiveActions{
-    onOf({proxy, of}: this){
+    onOf({proxy, of, shadow}: this){
         const templ = upShadowSearch(proxy, of) as HTMLTemplateElement;
         if(templ === null || !(templ instanceof HTMLTemplateElement)){
             console.error({of, self, msg:"Could not locate template."});
             return;
         }
-        if(proxy.shadowRoot === null){
-            proxy.attachShadow({mode: 'open'});
+        const clone = templ.content.cloneNode(true) as DocumentFragment;
+        if(shadow !== undefined){
+            if(proxy.shadowRoot === null){
+                proxy.attachShadow({mode: shadow});
+            }
+            proxy.shadowRoot!.appendChild(clone);
+        }else{
+            proxy.appendChild(clone);
         }
-        proxy.shadowRoot!.appendChild(templ.content.cloneNode(true));
+        
     }
 }
 
@@ -27,10 +33,10 @@ define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>
     config:{
         tagName,
         propDefaults:{
-            virtualProps: ['of'],
+            virtualProps: ['of', 'shadow'],
             upgrade,
             ifWantsToBe,
-            primaryProp: 'of'
+            primaryProp: 'of',
         },
         actions:{
             onOf:{

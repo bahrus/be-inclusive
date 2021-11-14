@@ -2,16 +2,22 @@ import { define } from 'be-decorated/be-decorated.js';
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
 import { register } from 'be-hive/register.js';
 export class BeInclusiveController {
-    onOf({ proxy, of }) {
+    onOf({ proxy, of, shadow }) {
         const templ = upShadowSearch(proxy, of);
         if (templ === null || !(templ instanceof HTMLTemplateElement)) {
             console.error({ of, self, msg: "Could not locate template." });
             return;
         }
-        if (proxy.shadowRoot === null) {
-            proxy.attachShadow({ mode: 'open' });
+        const clone = templ.content.cloneNode(true);
+        if (shadow !== undefined) {
+            if (proxy.shadowRoot === null) {
+                proxy.attachShadow({ mode: shadow });
+            }
+            proxy.shadowRoot.appendChild(clone);
         }
-        proxy.shadowRoot.appendChild(templ.content.cloneNode(true));
+        else {
+            proxy.appendChild(clone);
+        }
     }
 }
 const tagName = 'be-inclusive';
@@ -21,10 +27,10 @@ define({
     config: {
         tagName,
         propDefaults: {
-            virtualProps: ['of'],
+            virtualProps: ['of', 'shadow'],
             upgrade,
             ifWantsToBe,
-            primaryProp: 'of'
+            primaryProp: 'of',
         },
         actions: {
             onOf: {

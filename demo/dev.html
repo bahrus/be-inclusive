@@ -27,23 +27,26 @@
     </p>
 
 
-
+    <template id=beautiful>
+        <style>
+        div {
+            background-color: burlywood;
+        }
+        </style>
+        <div>
+        <slot name=subjectIs></slot> beautiful
+        </div>
+    </template>
+    <template id=down>
+        <div>So don't you bring me down today</div>
+    </template>
     <template id=chorus>
         <style>
         div {
             background-color: paleturquoise;
         }
         </style>
-        <template id=beautiful>
-            <style>
-            div {
-                background-color: burlywood;
-            }
-            </style>
-            <div>
-            <slot name=subjectIs></slot> beautiful
-            </div>
-        </template>
+
         <div be-inclusive='{
             "of": "beautiful",
             "shadow": "open"
@@ -71,9 +74,7 @@
             <slot name=pronoun2></slot> down
         </div>
         <div>Oh no</div>
-        <template id=down>
-            <div>So don't you bring me down today</div>
-        </template>
+
         <div be-inclusive=down></div>
         <be-inclusive></be-inclusive>
     </template>

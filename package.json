@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "be-decorated": "0.0.36",
-    "be-observant": "0.0.48",
-    "trans-render": "0.0.427",
-    "be-hive": "0.0.8"
+    "be-decorated": "0.0.42",
+    "be-observant": "0.0.59",
+    "trans-render": "0.0.431",
+    "be-hive": "0.0.9"
   },
   "devDependencies": {
     "xtal-test": "0.0.51",

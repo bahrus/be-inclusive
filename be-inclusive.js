@@ -7,6 +7,7 @@ import { transform as xf } from 'trans-render/lib/transform.js';
 export class BeInclusiveController {
     #beString;
     #isString;
+    #lastModel;
     intro(proxy, target, bdp) {
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
@@ -43,6 +44,7 @@ export class BeInclusiveController {
                 };
                 ctx.host = model;
                 proxy.ctx = ctx;
+                this.#lastModel = model;
             }
             xf(clone, ctx);
         }
@@ -55,6 +57,12 @@ export class BeInclusiveController {
         else {
             proxy.appendChild(clone);
         }
+    }
+    onModel({ proxy, model, ctx }) {
+        if (model === this.#lastModel)
+            return;
+        ctx.host = model;
+        xf(proxy.shadowRoot || proxy, ctx);
     }
     #beRecursivelyInclusive({ proxy }, clone) {
         const inclusiveChildren = Array.from(clone.querySelectorAll(`[${this.#beString}]`));
@@ -99,6 +107,9 @@ define({
         actions: {
             onOf: {
                 ifAllOf: ['of']
+            },
+            onModel: {
+                ifAllOf: ['model']
             }
         }
     },

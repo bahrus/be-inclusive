@@ -10,6 +10,7 @@ import {transform as xf, processTargets} from 'trans-render/lib/transform.js';
 export class BeInclusiveController implements BeInclusiveActions{
     #beString!: string;
     #isString!: string;
+    #lastModel: any;
     intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
@@ -46,6 +47,7 @@ export class BeInclusiveController implements BeInclusiveActions{
                 };
                 ctx.host = model;
                 proxy.ctx = ctx;
+                this.#lastModel = model;
             }
             xf(clone, ctx);
         }
@@ -59,6 +61,12 @@ export class BeInclusiveController implements BeInclusiveActions{
             proxy.appendChild(clone);
         }
         
+    }
+
+    onModel({proxy, model, ctx}: this){
+        if(model === this.#lastModel) return;
+        ctx.host = model;
+        xf(proxy.shadowRoot || proxy, ctx);
     }
 
     #beRecursivelyInclusive({proxy}: this, clone: DocumentFragment){
@@ -107,6 +115,9 @@ define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>
         actions:{
             onOf:{
                 ifAllOf:['of']
+            },
+            onModel:{
+                ifAllOf:['model']
             }
         }
     },

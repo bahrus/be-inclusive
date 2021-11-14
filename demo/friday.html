@@ -8,7 +8,16 @@
 </head>
 <body>
     <a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
-    <button id="changeDays">Wi not trei a holiday in Sweeden this yer</button>
+    <button id="changeDays" onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
+    <script>
+        function updateModel(){
+            const model = {
+                day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
+                day6: 'lördag', day7: 'söndag',
+            }
+            target.setAttribute('be-inclusive', JSON.stringify({model}));
+        }
+    </script>
     <template id="Friday">
         <div>It's <span class=day5></span> I'm in love</div>
     </template>
@@ -79,7 +88,7 @@
         }
     </style>
     </template>
-    <div be-inclusive='{
+    <div id=target be-inclusive='{
         "of": "love",
         "model": {
             "day1": "Monday",

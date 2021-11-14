@@ -2,6 +2,13 @@
 
 be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy). 
 
+## Default settings
+
+By default, the inclusion is done with ShadowDOM enabled.  This allows us to utilize the built-in slotting support.  
+
+So, for example, song lyrics can be "deconstructed" and repetivive sections (like the chorus shared), without a single line of JavaScript (once the be-inclusive library is loaded).
+
+
 <details>
 <summary>Sample Markup</summary>
 
@@ -144,3 +151,8 @@ be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https:/
     
 ```
 <details>
+
+## Without Shadow DOM
+
+
+

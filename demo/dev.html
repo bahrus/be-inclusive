@@ -44,7 +44,10 @@
             <slot name=subjectIs></slot> beautiful
             </div>
         </template>
-        <div be-inclusive=beautiful>
+        <div be-inclusive='{
+            "of": "beautiful",
+            "shadow": "open"
+        }'>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
@@ -54,7 +57,10 @@
             <slot name=verb1></slot> bring
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <div be-inclusive=beautiful>
+        <div be-inclusive='{
+            "of": "beautiful",
+            "shadow": "open"
+        }'>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
@@ -72,7 +78,10 @@
         <be-inclusive></be-inclusive>
     </template>
 
-    <div be-inclusive=chorus>
+    <div be-inclusive='{
+        "of": "chorus",
+        "shadow": "open"
+    }'>
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>me</span>
@@ -91,7 +100,10 @@
         <div>Ain't that the way it is</div>
     </p>
     <p>
-        <div be-inclusive=chorus>
+        <div be-inclusive='{
+            "of": "chorus",
+            "shadow": "open"
+        }'>
             <span slot=verb1>can't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>you</span>
@@ -109,12 +121,18 @@
         </style>
         No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
     </template>
-    <div be-inclusive=no-matter>
+    <div be-inclusive='{
+        "of": "no-matter",
+        "shadow": "open"
+    }'>
         <span slot=verb1>do</span>
         <span slot=verb2>do</span>
     </div>
     <br>
-    <div be-inclusive=no-matter>
+    <div be-inclusive='{
+        "of": "no-matter",
+        "shadow": "open"
+    }'>
         <span slot=verb1>say</span>
         <span slot=verb2>say</span>
     </div>
@@ -127,7 +145,10 @@
         <div>On the other side</div>
     </p>
     <p>
-        <div be-inclusive=chorus>
+        <div be-inclusive='{
+            "of": "chorus",
+            "shadow": "open"
+        }'>
             <span slot=verb1>won't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>us</span>

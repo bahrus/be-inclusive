@@ -17,7 +17,7 @@ export class BeInclusiveController implements BeInclusiveActions{
             return;
         }
         const clone = templ.content.cloneNode(true) as DocumentFragment;
-        this.doInclRecursive(this, clone);
+        this.#beRecursivelyInclusive(this, clone);
         if(shadow !== undefined){
             if(proxy.shadowRoot === null){
                 proxy.attachShadow({mode: shadow});
@@ -29,7 +29,7 @@ export class BeInclusiveController implements BeInclusiveActions{
         
     }
 
-    doInclRecursive({proxy}: this, clone: DocumentFragment){
+    #beRecursivelyInclusive({proxy}: this, clone: DocumentFragment){
         const inclusiveChildren = Array.from(clone.querySelectorAll(this.#beString));
         for(const inclusiveChild of inclusiveChildren){
             const attr = inclusiveChild.getAttribute(this.#beString)!.trim();
@@ -43,7 +43,7 @@ export class BeInclusiveController implements BeInclusiveActions{
                 return;
             }
             const clone = templ.content.cloneNode(true) as DocumentFragment;
-            this.doInclRecursive(this, clone);
+            this.#beRecursivelyInclusive(this, clone);
             if(shadow !== undefined){
                 if(proxy.shadowRoot === null){
                     proxy.attachShadow({mode: shadow});

@@ -30,7 +30,7 @@ export class BeInclusiveController implements BeInclusiveActions{
     }
 
     #beRecursivelyInclusive({proxy}: this, clone: DocumentFragment){
-        const inclusiveChildren = Array.from(clone.querySelectorAll(this.#beString));
+        const inclusiveChildren = Array.from(clone.querySelectorAll(`[${this.#beString}]`));
         for(const inclusiveChild of inclusiveChildren){
             const attr = inclusiveChild.getAttribute(this.#beString)!.trim();
             inclusiveChild.removeAttribute(this.#beString);
@@ -45,12 +45,12 @@ export class BeInclusiveController implements BeInclusiveActions{
             const clone = templ.content.cloneNode(true) as DocumentFragment;
             this.#beRecursivelyInclusive(this, clone);
             if(shadow !== undefined){
-                if(proxy.shadowRoot === null){
-                    proxy.attachShadow({mode: shadow});
+                if(inclusiveChild.shadowRoot === null){
+                    inclusiveChild.attachShadow({mode: shadow});
                 }
-                proxy.shadowRoot!.appendChild(clone);
+                inclusiveChild.shadowRoot!.appendChild(clone);
             }else{
-                proxy.appendChild(clone);
+                inclusiveChild.appendChild(clone);
             }
         }
     }
@@ -70,6 +70,7 @@ define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>
             upgrade,
             ifWantsToBe,
             primaryProp: 'of',
+            intro: 'intro'
         },
         actions:{
             onOf:{

@@ -2,13 +2,20 @@ import { define } from 'be-decorated/be-decorated.js';
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
 import { register } from 'be-hive/register.js';
 export class BeInclusiveController {
+    #beString;
+    #isString;
+    intro(proxy, target, bdp) {
+        this.#beString = `be-${bdp.ifWantsToBe}`;
+        this.#isString = `is-${bdp.ifWantsToBe}`;
+    }
     onOf({ proxy, of, shadow }) {
         const templ = upShadowSearch(proxy, of);
         if (templ === null || !(templ instanceof HTMLTemplateElement)) {
-            console.error({ of, self, msg: "Could not locate template." });
+            console.error({ of, proxy, msg: "Could not locate template." });
             return;
         }
         const clone = templ.content.cloneNode(true);
+        this.doInclRecursive(this, clone);
         if (shadow !== undefined) {
             if (proxy.shadowRoot === null) {
                 proxy.attachShadow({ mode: shadow });
@@ -17,6 +24,32 @@ export class BeInclusiveController {
         }
         else {
             proxy.appendChild(clone);
+        }
+    }
+    doInclRecursive({ proxy }, clone) {
+        const inclusiveChildren = Array.from(clone.querySelectorAll(this.#beString));
+        for (const inclusiveChild of inclusiveChildren) {
+            const attr = inclusiveChild.getAttribute(this.#beString).trim();
+            inclusiveChild.removeAttribute(this.#beString);
+            inclusiveChild.setAttribute(this.#isString, attr);
+            const props = attr[0] === '{' ? JSON.parse(attr) : { of: attr };
+            const { shadow, of } = props;
+            const templ = upShadowSearch(proxy, of);
+            if (templ === null || !(templ instanceof HTMLTemplateElement)) {
+                console.error({ of, proxy, msg: "Could not locate template." });
+                return;
+            }
+            const clone = templ.content.cloneNode(true);
+            this.doInclRecursive(this, clone);
+            if (shadow !== undefined) {
+                if (proxy.shadowRoot === null) {
+                    proxy.attachShadow({ mode: shadow });
+                }
+                proxy.shadowRoot.appendChild(clone);
+            }
+            else {
+                proxy.appendChild(clone);
+            }
         }
     }
 }

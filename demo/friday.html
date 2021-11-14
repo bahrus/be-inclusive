@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
+    <button id="changeDays">Wi not trei a holiday in Sweeden this yer</button>
+    <template id="Friday">
+        <div>It's <span class=day5></span> I'm in love</div>
+    </template>
+    <template id="Opening">
+        <div>I don't care if <span class=day1></span>'s blue</div>
+        <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+        <div><span class=day4></span> I don't care about you</div>
+        <div data-init="Friday"></div>
+    </template>
+
+    <template id="love">
+        <div data-init="Opening" class="stanza"></div>
+        <div class="stanza">
+            <div><span class=day1></span> you can fall apart</div>
+            <div><span class=day2></span> <span class=day3></span> break my heart</div>
+            <div>Oh, <span class=day4></span> doesn't even start</div>
+            <div data-init="Friday"></div>
+        </div>
+        <div class="stanza">
+            <div><span class=day6></span> wait</div>
+            <div>And <span class=day7></span> always comes too late</div>
+            <div>But <span class=day5></span> never hesitate</div>
+        </div>
+
+        <div class="stanza">
+            <div>I don't care if <span class=day1></span>'s black</div>
+            <div><span class=day2></span>, <span class=day3></span> heart attack</div>
+            <div><span class=day4></span> never looking back</div>
+            <div data-init="Friday"></div>
+        </div>
+        <div class="stanza">
+            <div><span class=day1></span> you can hold your head</div>
+            <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
+            <div>Or <span class=day4></span> watch the walls instead</div>
+            <div data-init="Friday"></div>
+        </div>
+        <div class="stanza">
+            <div><span class=day6></span> wait</div>
+            <div>And <span class=day7></span> always comes too late</div>
+            <div>But <span class=day5></span> never hesitate</div>
+        </div>
+        <div class="stanza">
+            <div>Dressed up to the eyes</div>
+            <div>It's a wonderful surprise</div>
+            <div>To see your shoes and your spirits rise</div>
+            <div>Throwing out your frown</div>
+            <div>And just smiling at the sound</div>
+            <div>And as sleek as a shriek</div>
+            <div>Spinning round and round</div>
+            <div>Always take a big bite</div>
+            <div>It's such a gorgeous sight</div>
+            <div>To see you in the middle of the night</div>
+            <div>You can never get enough</div>
+            <div>Enough of this stuff</div>
+            <div>It's <span class=day5></span></div>
+            <div>I'm in love</div>
+        </div>
+        <div data-init="Opening" class="stanza"></div>
+        <div class="stanza">
+            <div><span class=day1></span> you can fall apart</div>
+            <div><span class=day2></span>, <span class=day3></span> break my heart</div>
+            <div><span class=day4></span> doesn't even start</div>
+            <div data-init="Friday"></div>
+        </div>
+        <style>
+            .stanza{
+            padding-top: 20px;
+        }
+    </style>
+    </template>
+    <div be-inclusive='{
+        "of": "love"
+    }'></div>
+
+    <script type=importmap>
+        {
+            "imports": {
+                "trans-render/": "../node_modules/trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/",
+                "be-decorated/": "../node_modules/be-decorated/",
+                "on-to-me/": "../node_modules/on-to-me/",
+                "be-observant/": "../node_modules/be-observant/",
+                "be-hive/": "../node_modules/be-hive/"
+            }
+        }
+    </script>
+    <script type=module>
+        import '../be-inclusive.js';
+        
+    </script>
+</body>
+</html>

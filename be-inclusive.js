@@ -8,9 +8,11 @@ export class BeInclusiveController {
     #beString;
     #isString;
     #lastModel;
+    #target;
     intro(proxy, target, bdp) {
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
+        this.#target = target;
     }
     onOf({ proxy, of, shadow, transform, model, ctx, prepend }) {
         if (of === undefined)
@@ -75,7 +77,7 @@ export class BeInclusiveController {
             proxy.shadowRoot[verb](clone);
         }
         else {
-            proxy[verb](clone);
+            this.#target[verb](clone);
         }
     }
     onModel({ proxy, model, ctx }) {

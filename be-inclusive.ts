@@ -13,9 +13,11 @@ export class BeInclusiveController implements BeInclusiveActions{
     #beString!: string;
     #isString!: string;
     #lastModel: any;
+    #target!: Element;
     intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
+        this.#target = target;
     }
     onOf({proxy, of, shadow, transform, model, ctx, prepend}: this){
         if(of === undefined) return;
@@ -78,7 +80,7 @@ export class BeInclusiveController implements BeInclusiveActions{
             }
             proxy.shadowRoot![verb](clone);
         }else{
-            proxy[verb](clone);
+            this.#target[verb](clone);
         }
     }
 

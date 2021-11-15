@@ -12,7 +12,26 @@ export class BeInclusiveController {
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
     }
-    onOf({ proxy, of, shadow, transform, model, ctx }) {
+    onOf({ proxy, of, shadow, transform, model, ctx, prepend }) {
+        if (of === undefined)
+            return;
+        if (typeof of === 'string') {
+            this.doOneOf(proxy, of, shadow, transform, model, model, prepend, ctx);
+        }
+        else {
+            const { length } = of;
+            for (let i = 0; i < length; i++) {
+                const oneOf = of[i];
+                if (typeof oneOf === 'string') {
+                    this.doOneOf(proxy, oneOf, shadow, transform, model, model, prepend, ctx);
+                }
+                else {
+                    this.doOneOf(proxy, oneOf.of, oneOf.shadow, oneOf.transform, model, model, prepend, ctx);
+                }
+            }
+        }
+    }
+    doOneOf(proxy, of, shadow, transform, model, modelSrc, prepend, ctx) {
         const templ = upShadowSearch(proxy, of);
         if (templ === null || !(templ instanceof HTMLTemplateElement)) {
             console.error({ of, proxy, msg: "Could not locate template." });
@@ -48,14 +67,15 @@ export class BeInclusiveController {
             }
             xf(clone, ctx);
         }
+        const verb = prepend ? 'prepend' : 'appendChild';
         if (shadow !== undefined) {
             if (proxy.shadowRoot === null) {
                 proxy.attachShadow({ mode: shadow });
             }
-            proxy.shadowRoot.appendChild(clone);
+            proxy.shadowRoot[verb](clone);
         }
         else {
-            proxy.appendChild(clone);
+            proxy[verb](clone);
         }
     }
     onModel({ proxy, model, ctx }) {
@@ -72,7 +92,7 @@ export class BeInclusiveController {
             inclusiveChild.setAttribute(this.#isString, attr);
             const props = attr[0] === '{' ? JSON.parse(attr) : { of: attr };
             const { shadow, of } = props;
-            const templ = upShadowSearch(proxy, of);
+            const templ = upShadowSearch(proxy, of); //TODO:  support being an array of strings or virtual props
             if (templ === null || !(templ instanceof HTMLTemplateElement)) {
                 console.error({ of, proxy, msg: "Could not locate template." });
                 return;
@@ -98,7 +118,7 @@ define({
     config: {
         tagName,
         propDefaults: {
-            virtualProps: ['of', 'shadow', 'transform', 'model', 'modelSrc', 'ctx'],
+            virtualProps: ['of', 'shadow', 'transform', 'model', 'modelSrc', 'ctx', 'prepend'],
             upgrade,
             ifWantsToBe,
             primaryProp: 'of',

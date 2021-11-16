@@ -1,6 +1,6 @@
 # be-inclusive
 
-be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy). 
+be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy). It enables merging templates together.
 
 ## Example 1 -- slotted content with Shadow DOM
 

@@ -1,8 +1,27 @@
 {
   "name": "be-inclusive",
   "version": "0.0.2",
-  "description": "",
-  "main": "index.js",
+  "description": "be-inclusive enables merging templates together.",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements",
+    "template",
+    "templates",
+    "client-side-include",
+    "include"
+  ],
+  "main": "be-inclusive.js",
+  "module": "be-inclusive.js",
+  "exports": {
+    ".": "./be-inclusive.js",
+    "./be-inclusive.js": "./be-inclusive.js"
+  },
+  "files": [
+    "*.*"
+  ],
+  "types": "types.d.ts",
   "dependencies": {
     "be-decorated": "0.0.42",
     "be-observant": "0.0.59",

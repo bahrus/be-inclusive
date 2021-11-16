@@ -208,7 +208,7 @@ Please expand below to see how to include a template without using shadow DOM.  
 <summary>Applying DRY to punk lyrics</summary>
 
 ```html
-    <a href="https://www.youtube.com/watch?v=2-Lb-JhsaEk" target="_blank">Something's gone wrong again</a>
+    <a href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
     <template id="Title">Something's gone wrong again</template>
     <template id="Title2">Something goes wrong again</template>
     <template id="Again">And again</template>

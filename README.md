@@ -276,7 +276,7 @@ Please expand below to see how to include a template without using shadow DOM.  
 
 </details>
 
-## With Transform Support
+## Example 3 - With Transform Support
 
 We can use [trans-render](https://github.com/bahrus/trans-render) syntax in order to "stamp" the template before the template is added to the live DOM.  The same transform can be reapplied when the model changes.
 
@@ -390,7 +390,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
 
 </details>
 
-## Applying DRY to the song of the material universe
+## Example 4 - Applying DRY to the song of the material universe
 
 
 The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved by utilizing templates for this purpose.

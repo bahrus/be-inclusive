@@ -2,6 +2,25 @@
 
 be-inclusive enables merging templates together.  It is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy).
 
+Like other [be-decorated](https://github.com/bahrus/be-decorated) based web components, be-inclusive uses attributes to signify to include one template inside a DOM element:
+
+```html
+<template id="Friday">
+    <div>It's <span class=day5></span> I'm in love</div>
+</template>
+<template id="Opening">
+    <div>I don't care if <span class=day1></span>'s blue</div>
+    <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+    <div><span class=day4></span> I don't care about you</div>
+    <div be-inclusive=Friday></div>
+</template>
+```
+
+data-be-inclusive can also be used, in order to be strictly HTML5 compliant.
+
+Alternative attributes (be-inc?  be-string?) can be specified with the help of the [be-hive](https://github.com/bahrus/be-hive) web component, while avoiding conflicts with other libraries.
+
+
 ## Example 1 -- slotted content with Shadow DOM
 
 Song lyrics can be "deconstructed" and repetitive sections (like the chorus) shared, without a single line of JavaScript (once the be-inclusive library is loaded).
@@ -173,7 +192,7 @@ Please expand below to see the "code".
 ```
 </details>
 
-To aid with avoiding syntax errors, editing JSON inside HTML, a [vscode extension is available](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) to help with this.
+To aid with avoiding syntax errors, which can be challenging when editing JSON inside HTML, a [vscode extension is available](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) to help with this.  That extension is compatible with [web-based vscode solutions](https://github.dev/bahrus/be-inclusive).
 
 ## Without Shadow DOM
 
@@ -370,8 +389,6 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
 </details>
 
 ## Applying DRY to the song of the material universe
-
-With support for prepending and arrays of includes
 
 
 The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved by utilizing templates for this purpose.

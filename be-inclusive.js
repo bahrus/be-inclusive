@@ -40,7 +40,7 @@ export class BeInclusiveController {
             return;
         }
         const clone = templ.content.cloneNode(true);
-        this.#beRecursivelyInclusive(this, clone);
+        this.beRecursivelyInclusive(this, clone);
         if (transform !== undefined) {
             if (ctx === undefined) {
                 //firstTime = true;
@@ -86,7 +86,8 @@ export class BeInclusiveController {
         ctx.host = model;
         xf(proxy.shadowRoot || proxy, ctx);
     }
-    #beRecursivelyInclusive({ proxy }, clone) {
+    //TODO:  make private when skypack supports private methods
+    beRecursivelyInclusive({ proxy }, clone) {
         const inclusiveChildren = Array.from(clone.querySelectorAll(`[${this.#beString}]`));
         for (const inclusiveChild of inclusiveChildren) {
             const attr = inclusiveChild.getAttribute(this.#beString).trim();
@@ -100,7 +101,7 @@ export class BeInclusiveController {
                 return;
             }
             const clone = templ.content.cloneNode(true);
-            this.#beRecursivelyInclusive(this, clone);
+            this.beRecursivelyInclusive(this, clone);
             if (shadow !== undefined) {
                 if (inclusiveChild.shadowRoot === null) {
                     inclusiveChild.attachShadow({ mode: shadow });

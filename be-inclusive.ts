@@ -44,7 +44,7 @@ export class BeInclusiveController implements BeInclusiveActions{
             return;
         }
         const clone = templ.content.cloneNode(true) as DocumentFragment;
-        this.#beRecursivelyInclusive(this, clone);
+        this.beRecursivelyInclusive(this, clone);
         if(transform !== undefined){
             if(ctx === undefined){
                 //firstTime = true;
@@ -90,7 +90,8 @@ export class BeInclusiveController implements BeInclusiveActions{
         xf(proxy.shadowRoot || proxy, ctx);
     }
 
-    #beRecursivelyInclusive({proxy}: this, clone: DocumentFragment){
+    //TODO:  make private when skypack supports private methods
+    beRecursivelyInclusive({proxy}: this, clone: DocumentFragment){
         const inclusiveChildren = Array.from(clone.querySelectorAll(`[${this.#beString}]`));
         for(const inclusiveChild of inclusiveChildren){
             const attr = inclusiveChild.getAttribute(this.#beString)!.trim();
@@ -104,7 +105,7 @@ export class BeInclusiveController implements BeInclusiveActions{
                 return;
             }
             const clone = templ.content.cloneNode(true) as DocumentFragment;
-            this.#beRecursivelyInclusive(this, clone);
+            this.beRecursivelyInclusive(this, clone);
             if(shadow !== undefined){
                 if(inclusiveChild.shadowRoot === null){
                     inclusiveChild.attachShadow({mode: shadow});

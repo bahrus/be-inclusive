@@ -1,11 +1,12 @@
 # be-inclusive
 
-be-inclusive is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy). It enables merging templates together.
+be-inclusive enables merging templates together.  It is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy).
 
 ## Example 1 -- slotted content with Shadow DOM
 
 Song lyrics can be "deconstructed" and repetitive sections (like the chorus) shared, without a single line of JavaScript (once the be-inclusive library is loaded).
 
+Please expand below to see the "code".
 
 <details>
 <summary>Sample Markup</summary>
@@ -256,6 +257,8 @@ To aid with avoiding syntax errors, editing JSON inside HTML, a [vscode extensio
 
 ## With Transform Support
 
+We can use [trans-render](https://github.com/bahrus/trans-render) syntax in order to "stamp" the template before the template is added to the live DOM.
+
 <details>
     <summary>Tränslåtyng pøst pünk lyriks tø Sweedisλ</summary>
 
@@ -365,6 +368,35 @@ To aid with avoiding syntax errors, editing JSON inside HTML, a [vscode extensio
 ```
 
 </details>
+
+## Applying DRY to the song of the material universe
+
+With support for prepending and arrays of includes
+
+
+The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved by utilizing templates for this purpose.
+
+In order to support this, some features of been added to be-inclusive -- specifying arrays of includes, and prepending when needed.
+
+The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/baseline/demo/periodic_table.html).
+
+## Viewing Demos Locally
+
+1.  Install git.
+2.  Fork/clone this repo.
+3.  Install node.
+4.  Open command window to folder where you cloned this repo.
+5.  > npm install
+6.  > npm run serve
+7.  Open http://localhost:3030/demo/dev in a modern browser.
+
+
+
+
+
+
+
+
 
 
 

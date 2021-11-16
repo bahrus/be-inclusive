@@ -401,7 +401,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
 
 The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved by utilizing templates for this purpose.
 
-In order to support this, some features of been added to *be-inclusive* -- specifying arrays of includes, and prepending when needed.
+In order to support this, some features have been added to *be-inclusive* -- specifying arrays of includes, and prepending when needed.
 
 The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/baseline/demo/periodic_table.html).
 

@@ -1,8 +1,14 @@
 # be-inclusive
 
-be-inclusive enables merging templates together.  It is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy).
+*be-inclusive* enables merging templates together.  
 
-Like other [be-decorated](https://github.com/bahrus/be-decorated) based web components, be-inclusive uses attributes to signify to include one template inside a DOM element:
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/be-inclusive)
+
+<a href="https://nodei.co/npm/be-inclusive/"><img src="https://nodei.co/npm/be-inclusive.png"></a>
+
+It is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy).
+
+Like other [be-decorated](https://github.com/bahrus/be-decorated) based web components, be-inclusive uses attributes to signify including one template inside the target DOM element:
 
 ```html
 <template id="Friday">
@@ -16,7 +22,7 @@ Like other [be-decorated](https://github.com/bahrus/be-decorated) based web comp
 </template>
 ```
 
-data-be-inclusive can also be used, in order to be strictly HTML5 compliant.
+*data-be-inclusive* can also be used, in order to be strictly HTML5 compliant.
 
 Alternative attributes (be-inc?  be-string?) can be specified with the help of the [be-hive](https://github.com/bahrus/be-hive) web component, while avoiding conflicts with other libraries.
 
@@ -395,7 +401,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
 
 The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved by utilizing templates for this purpose.
 
-In order to support this, some features of been added to be-inclusive -- specifying arrays of includes, and prepending when needed.
+In order to support this, some features of been added to *be-inclusive* -- specifying arrays of includes, and prepending when needed.
 
 The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/baseline/demo/periodic_table.html).
 

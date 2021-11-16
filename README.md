@@ -276,7 +276,7 @@ To aid with avoiding syntax errors, which can be challenging when editing JSON i
 
 ## With Transform Support
 
-We can use [trans-render](https://github.com/bahrus/trans-render) syntax in order to "stamp" the template before the template is added to the live DOM.
+We can use [trans-render](https://github.com/bahrus/trans-render) syntax in order to "stamp" the template before the template is added to the live DOM.  The same transform can be reapplied when the model changes.
 
 <details>
     <summary>Tränslåtyng pøst pünk lyriks tø Sweedisλ</summary>

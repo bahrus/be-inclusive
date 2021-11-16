@@ -194,7 +194,9 @@ Please expand below to see the "code".
 
 To aid with avoiding syntax errors, which can be challenging when editing JSON inside HTML, a [vscode extension is available](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) to help with this.  That extension is compatible with [web-based vscode solutions](https://github.dev/bahrus/be-inclusive).
 
-## Without Shadow DOM
+## Example 2 - Without Shadow DOM
+
+Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON rquired).
 
 <details>
 <summary>Applying DRY to punk lyrics</summary>

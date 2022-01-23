@@ -8,6 +8,7 @@ import { SplitText } from 'trans-render/lib/SplitText.js';
 import {transform as xf, processTargets} from 'trans-render/lib/transform.js';
 import { RenderContext } from 'trans-render/lib/types';
 import { IObserve } from 'be-observant/types';
+import { unsubscribe } from 'trans-render/lib/subscribe.js';
 
 export class BeInclusiveController implements BeInclusiveActions{
     #beString!: string;
@@ -18,6 +19,9 @@ export class BeInclusiveController implements BeInclusiveActions{
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
         this.#target = target;
+    }
+    finale(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
+        unsubscribe(proxy);
     }
     onOf({proxy, of, shadow, transform, model, ctx, prepend}: this){
         if(of === undefined) return;

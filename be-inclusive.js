@@ -4,6 +4,7 @@ import { register } from 'be-hive/register.js';
 import { PE } from 'trans-render/lib/PE.js';
 import { SplitText } from 'trans-render/lib/SplitText.js';
 import { transform as xf } from 'trans-render/lib/transform.js';
+import { unsubscribe } from 'trans-render/lib/subscribe.js';
 export class BeInclusiveController {
     #beString;
     #isString;
@@ -13,6 +14,9 @@ export class BeInclusiveController {
         this.#beString = `be-${bdp.ifWantsToBe}`;
         this.#isString = `is-${bdp.ifWantsToBe}`;
         this.#target = target;
+    }
+    finale(proxy, target, bdp) {
+        unsubscribe(proxy);
     }
     onOf({ proxy, of, shadow, transform, model, ctx, prepend }) {
         if (of === undefined)

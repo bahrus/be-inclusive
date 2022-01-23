@@ -19,4 +19,5 @@ export interface BeInclusiveActions{
     onOf(self: this): void;
     onModel(self: this): void;
     intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps): void;
+    finale(proxy: Element & BeInclusiveVirtualProps, target: Element, beDecor: BeDecoratedProps): void;
 }

@@ -129,7 +129,8 @@ define({
             upgrade,
             ifWantsToBe,
             primaryProp: 'of',
-            intro: 'intro'
+            intro: 'intro',
+            finale: 'finale',
         },
         actions: {
             onOf: {

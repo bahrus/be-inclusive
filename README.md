@@ -202,7 +202,7 @@ To aid with avoiding syntax errors, which can be challenging when editing JSON i
 
 ## Example 2 - Without Shadow DOM
 
-Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON rquired).
+Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON required).
 
 <details>
 <summary>Applying DRY to punk lyrics</summary>

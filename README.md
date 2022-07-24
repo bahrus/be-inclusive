@@ -6,23 +6,31 @@
 
 <a href="https://nodei.co/npm/be-inclusive/"><img src="https://nodei.co/npm/be-inclusive.png"></a>
 
-It is an attribute-based decorator equivalent of [carbon-copy](https://github.com/bahrus/carbon-copy).
 
-Like other [be-decorated](https://github.com/bahrus/be-decorated) based web components, be-inclusive uses attributes to signify including one template inside the target DOM element:
+Like other [be-decorated](https://github.com/bahrus/be-decorated) based web components, be-inclusive uses attributes to enhance the functionality of the element it adorns:
 
 ```html
 <template id="Friday">
     <div>It's <span class=day5></span> I'm in love</div>
 </template>
-<template id="Opening">
-    <div>I don't care if <span class=day1></span>'s blue</div>
-    <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
-    <div><span class=day4></span> I don't care about you</div>
-    <div be-inclusive=Friday></div>
-</template>
+
+<div>I don't care if <span class=day1></span>'s blue</div>
+<div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+<div><span class=day4></span> I don't care about you</div>
+<div be-inclusive=Friday></div>
+
 ```
 
 *data-be-inclusive* can also be used, in order to be strictly HTML5 compliant.
+
+be-inclusive is a useful syntax for two fundamental in-browser scenarios:
+
+1.  In the live DOM tree
+2.  During template instantiation. [TODO]
+
+The syntax could also serve a useful purpose on the server-side or in a service worker, but this package provides no support for this.
+
+Like other "isomorphic" be-decorated decorators, be-inclusive includes a [DTR plugin](https://github.com/bahrus/trans-render#extending-dtr-horizontally--via-dynamically-imported-plugins) for template instantiation.  But if be-inclusive has not been loaded yet, Без проблем, instantiate the template without including the template references, so that rendering isn't blocked, and then let the support for enhancing live DOM tree that be-inclusive also provides accomplish the same thing (but with a little more rendering strain on the browser).
 
 Alternative attributes (be-inc?  be-string?) can be specified with the help of the [be-hive](https://github.com/bahrus/be-hive) web component, while avoiding conflicts with other libraries.
 

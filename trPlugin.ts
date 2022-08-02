@@ -15,7 +15,9 @@ export const trPlugin: TransformPluginSettings = {
         }else if(val){
             vp = {
                 of: val,
-                ctx: ctx!
+                ctx: ctx!,
+                transform: ctx!.transform,
+                model: ctx!.host,
             };
         }
         if(vp !== undefined){

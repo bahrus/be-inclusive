@@ -7,6 +7,7 @@ import { SplitText } from 'trans-render/lib/SplitText.js';
 
 import { RenderContext } from 'trans-render/lib/types';
 import { IObserve } from 'be-observant/types';
+import './trPlugin.js';
 
 export class Includer{
     #lastModel: any;
@@ -22,7 +23,8 @@ export class Includer{
                 plugins: {
                     ...self.props.transformPlugins,
                     beInclusive: true
-                }
+                },
+                shadowPeer: this.peer,
             }
         }
         const {of, shadow, transform, model, prepend, ctx} = self.props;
@@ -71,4 +73,6 @@ export class Includer{
         ctx.host = model;
         DTR.transform(proxy.shadowRoot || proxy, ctx);
     }
+
+    dispose(){}
 }

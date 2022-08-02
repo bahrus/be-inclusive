@@ -1,5 +1,6 @@
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
 import { DTR } from 'trans-render/lib/DTR.js';
+import './trPlugin.js';
 export class Includer {
     proxy;
     props;
@@ -19,7 +20,8 @@ export class Includer {
                 plugins: {
                     ...self.props.transformPlugins,
                     beInclusive: true
-                }
+                },
+                shadowPeer: this.peer,
             };
         }
         const { of, shadow, transform, model, prepend, ctx } = self.props;
@@ -69,4 +71,5 @@ export class Includer {
         ctx.host = model;
         DTR.transform(proxy.shadowRoot || proxy, ctx);
     }
+    dispose() { }
 }

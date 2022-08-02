@@ -10,10 +10,14 @@ export class BeInclusiveController implements BeInclusiveActions{
     
     //#target!: Element;
     #includer!: Includer;
+    
     intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
         // this.#beString = `be-${bdp.ifWantsToBe}`;
         // this.#isString = `is-${bdp.ifWantsToBe}`;
         // this.#target = target;
+    }
+    batonPass(proxy: Element & BeInclusiveVirtualProps, target: Element, beDecorProps: BeDecoratedProps<any, any>, baton: any): void {
+        this.#includer = baton;
     }
     ensure(self: this){
         if(self.#includer === undefined){

@@ -18,6 +18,9 @@ export const trPlugin = {
         if (vp !== undefined) {
             const includer = new Includer(target, vp, shadowPeer);
             await includer.onOf(includer);
+            target.removeAttribute('be-inclusive');
+            //includer.didInclude = true;
+            //passTheBaton('inclusive', target!, includer);
         }
     }
 };

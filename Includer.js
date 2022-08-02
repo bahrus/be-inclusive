@@ -6,6 +6,7 @@ export class Includer {
     props;
     peer;
     #lastModel;
+    didInclude = false;
     constructor(proxy, props, peer) {
         this.proxy = proxy;
         this.props = props;
@@ -15,6 +16,8 @@ export class Includer {
         }
     }
     async onOf(self) {
+        if (this.didInclude)
+            return;
         if (self.props.ctx === undefined) {
             self.props.ctx = {
                 plugins: {

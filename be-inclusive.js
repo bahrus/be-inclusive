@@ -10,6 +10,9 @@ export class BeInclusiveController {
         // this.#isString = `is-${bdp.ifWantsToBe}`;
         // this.#target = target;
     }
+    batonPass(proxy, target, beDecorProps, baton) {
+        this.#includer = baton;
+    }
     ensure(self) {
         if (self.#includer === undefined) {
             self.#includer = new Includer(self.proxy, self.proxy, self.proxy);

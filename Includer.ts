@@ -11,6 +11,7 @@ import './trPlugin.js';
 
 export class Includer{
     #lastModel: any;
+    didInclude = false;
     constructor(public proxy: Element, public props: BeInclusiveWithStateVirtualProps, public peer: Element){
         if(props === undefined){
             this.props = proxy as any as BeInclusiveWithStateVirtualProps;
@@ -18,6 +19,7 @@ export class Includer{
     }
 
     async onOf(self: this){
+        if(this.didInclude) return;
         if(self.props.ctx === undefined){
             self.props.ctx = {
                 plugins: {

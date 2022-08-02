@@ -8,10 +8,11 @@ import { Includer } from './Includer.js';
 
 export class BeInclusiveController implements BeInclusiveActions{
     
-    //#target!: Element;
+    #target!: Element;
     #includer!: Includer;
     
     intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
+        this.#target = target;
         // this.#beString = `be-${bdp.ifWantsToBe}`;
         // this.#isString = `is-${bdp.ifWantsToBe}`;
         // this.#target = target;
@@ -21,7 +22,7 @@ export class BeInclusiveController implements BeInclusiveActions{
     }
     ensure(self: this){
         if(self.#includer === undefined){
-            self.#includer = new Includer(self.proxy, self.proxy, self.proxy);
+            self.#includer = new Includer(self.proxy, self.#target, self.proxy, self.proxy);
         }
     }
     finale(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){

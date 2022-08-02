@@ -12,7 +12,7 @@ import './trPlugin.js';
 export class Includer{
     #lastModel: any;
     didInclude = false;
-    constructor(public proxy: Element, public props: BeInclusiveWithStateVirtualProps, public peer: Element){
+    constructor(public proxy: Element, public target: Element, public props: BeInclusiveWithStateVirtualProps, public peer: Element){
         if(props === undefined){
             this.props = proxy as any as BeInclusiveWithStateVirtualProps;
         }
@@ -32,42 +32,42 @@ export class Includer{
         const {of, shadow, transform, model, prepend, ctx} = self.props;
         ctx.host = model;
         ctx.match = {...ctx.match, ...transform};
-        const {proxy} = self;
+        const {proxy, target} = self;
         if(of === undefined) return;
         if(typeof of === 'string'){
-            this.doOneOf(proxy, of, shadow, transform, model, model, !!prepend, ctx);
+            this.doOneOf(target, of, shadow, transform, model, model, !!prepend, ctx);
         }else{
             const {length} = of;
             for(let i = 0; i < length; i++){
                 const oneOf = of[i];
                 if(typeof oneOf === 'string'){
-                    await this.doOneOf(proxy, oneOf, shadow, transform, model, model, !!prepend, ctx);
+                    await this.doOneOf(target, oneOf, shadow, transform, model, model, !!prepend, ctx);
                 }else{
-                    await this.doOneOf(proxy, oneOf.of as string, oneOf.shadow, oneOf.transform, model, model, !!prepend, ctx);
+                    await this.doOneOf(target, oneOf.of as string, oneOf.shadow, oneOf.transform, model, model, !!prepend, ctx);
                 }
             }
         }
     }
 
-    async doOneOf(proxy: Element, of: string, shadow: 'open' | 'closed' | undefined, transform: any, model: any, modelSrc: string | IObserve, prepend: boolean, ctx: RenderContext){
-        let templ = upShadowSearch(proxy, of) as HTMLTemplateElement;
+    async doOneOf(target: Element, of: string, shadow: 'open' | 'closed' | undefined, transform: any, model: any, modelSrc: string | IObserve, prepend: boolean, ctx: RenderContext){
+        let templ = upShadowSearch(target, of) as HTMLTemplateElement;
         if(templ === null && ctx.shadowPeer !== undefined){
             templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
         }
         if(templ === null || !(templ instanceof HTMLTemplateElement)){
-            console.error({of, proxy, msg:"Could not locate template."});
+            console.error({of, target, msg:"Could not locate template."});
             return;
         }
         const clone = templ.content.cloneNode(true) as DocumentFragment;
         await DTR.transform(clone, ctx);
-        const verb = prepend ? 'prepend' : 'appendChild';
+        const verb = prepend ? 'prepend' : 'append';
         if(shadow !== undefined){
-            if(proxy.shadowRoot === null){
-                proxy.attachShadow({mode: shadow});
+            if(target.shadowRoot === null){
+                target.attachShadow({mode: shadow});
             }
-            proxy.shadowRoot![verb](clone);
+            target.shadowRoot![verb](clone);
         }else{
-            proxy[verb](clone);
+            target[verb](clone);
         }
     }
 

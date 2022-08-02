@@ -3,9 +3,10 @@ import { register } from 'be-hive/register.js';
 import { unsubscribe } from 'trans-render/lib/subscribe.js';
 import { Includer } from './Includer.js';
 export class BeInclusiveController {
-    //#target!: Element;
+    #target;
     #includer;
     intro(proxy, target, bdp) {
+        this.#target = target;
         // this.#beString = `be-${bdp.ifWantsToBe}`;
         // this.#isString = `is-${bdp.ifWantsToBe}`;
         // this.#target = target;
@@ -15,7 +16,7 @@ export class BeInclusiveController {
     }
     ensure(self) {
         if (self.#includer === undefined) {
-            self.#includer = new Includer(self.proxy, self.proxy, self.proxy);
+            self.#includer = new Includer(self.proxy, self.#target, self.proxy, self.proxy);
         }
     }
     finale(proxy, target, bdp) {

@@ -4,15 +4,20 @@ import {RenderContext} from 'trans-render/lib/types';
 
 export interface BeInclusiveVirtualProps{
     of: string | (string | BeInclusiveVirtualProps)[];
-    shadow: 'open' | 'closed' | undefined;
-    transform: any,
-    model: any,
-    modelSrc: string | IObserve,
-    prepend: boolean,
+    shadow?: 'open' | 'closed' | undefined;
+    transform?: any,
+    model?: any,
+    modelSrc?: string | IObserve,
+    prepend?: boolean,
+    transformPlugins?: {[key: string]: boolean},
+}
+
+export interface BeInclusiveWithStateVirtualProps extends BeInclusiveVirtualProps{
     ctx: RenderContext,
 }
-export interface BeInclusiveProps extends BeInclusiveVirtualProps{
-    proxy: Element & BeInclusiveVirtualProps
+
+export interface BeInclusiveProps extends BeInclusiveWithStateVirtualProps{
+    proxy: Element & BeInclusiveWithStateVirtualProps,
 }
 
 export interface BeInclusiveActions{

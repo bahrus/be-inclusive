@@ -20,6 +20,7 @@ export const trPlugin: TransformPluginSettings = {
         }
         if(vp !== undefined){
             const includer = new Includer(target!, vp, shadowPeer!);
+            await includer.onOf(includer);
         }
     }
 };

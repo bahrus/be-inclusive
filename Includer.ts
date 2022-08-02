@@ -17,7 +17,7 @@ export class Includer{
         }
     }
 
-    onOf(self: this){
+    async onOf(self: this){
         if(self.props.ctx === undefined){
             self.props.ctx = {
                 plugins: {
@@ -37,22 +37,25 @@ export class Includer{
             for(let i = 0; i < length; i++){
                 const oneOf = of[i];
                 if(typeof oneOf === 'string'){
-                    this.doOneOf(proxy, oneOf, shadow, transform, model, model, !!prepend, ctx);
+                    await this.doOneOf(proxy, oneOf, shadow, transform, model, model, !!prepend, ctx);
                 }else{
-                    this.doOneOf(proxy, oneOf.of as string, oneOf.shadow, oneOf.transform, model, model, !!prepend, ctx);
+                    await this.doOneOf(proxy, oneOf.of as string, oneOf.shadow, oneOf.transform, model, model, !!prepend, ctx);
                 }
             }
         }
     }
 
-    doOneOf(proxy: Element, of: string, shadow: 'open' | 'closed' | undefined, transform: any, model: any, modelSrc: string | IObserve, prepend: boolean, ctx: RenderContext){
-        const templ = upShadowSearch(proxy, of) as HTMLTemplateElement;
+    async doOneOf(proxy: Element, of: string, shadow: 'open' | 'closed' | undefined, transform: any, model: any, modelSrc: string | IObserve, prepend: boolean, ctx: RenderContext){
+        let templ = upShadowSearch(proxy, of) as HTMLTemplateElement;
+        if(templ === null && ctx.shadowPeer !== undefined){
+            templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
+        }
         if(templ === null || !(templ instanceof HTMLTemplateElement)){
             console.error({of, proxy, msg:"Could not locate template."});
             return;
         }
         const clone = templ.content.cloneNode(true) as DocumentFragment;
-        DTR.transform(clone, ctx);
+        await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'appendChild';
         if(shadow !== undefined){
             if(proxy.shadowRoot === null){

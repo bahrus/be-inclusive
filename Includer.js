@@ -14,7 +14,7 @@ export class Includer {
             this.props = proxy;
         }
     }
-    onOf(self) {
+    async onOf(self) {
         if (self.props.ctx === undefined) {
             self.props.ctx = {
                 plugins: {
@@ -36,22 +36,25 @@ export class Includer {
             for (let i = 0; i < length; i++) {
                 const oneOf = of[i];
                 if (typeof oneOf === 'string') {
-                    this.doOneOf(proxy, oneOf, shadow, transform, model, model, !!prepend, ctx);
+                    await this.doOneOf(proxy, oneOf, shadow, transform, model, model, !!prepend, ctx);
                 }
                 else {
-                    this.doOneOf(proxy, oneOf.of, oneOf.shadow, oneOf.transform, model, model, !!prepend, ctx);
+                    await this.doOneOf(proxy, oneOf.of, oneOf.shadow, oneOf.transform, model, model, !!prepend, ctx);
                 }
             }
         }
     }
-    doOneOf(proxy, of, shadow, transform, model, modelSrc, prepend, ctx) {
-        const templ = upShadowSearch(proxy, of);
+    async doOneOf(proxy, of, shadow, transform, model, modelSrc, prepend, ctx) {
+        let templ = upShadowSearch(proxy, of);
+        if (templ === null && ctx.shadowPeer !== undefined) {
+            templ = upShadowSearch(ctx.shadowPeer, of);
+        }
         if (templ === null || !(templ instanceof HTMLTemplateElement)) {
             console.error({ of, proxy, msg: "Could not locate template." });
             return;
         }
         const clone = templ.content.cloneNode(true);
-        DTR.transform(clone, ctx);
+        await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'appendChild';
         if (shadow !== undefined) {
             if (proxy.shadowRoot === null) {

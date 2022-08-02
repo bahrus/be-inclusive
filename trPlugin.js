@@ -17,6 +17,7 @@ export const trPlugin = {
         }
         if (vp !== undefined) {
             const includer = new Includer(target, vp, shadowPeer);
+            await includer.onOf(includer);
         }
     }
 };

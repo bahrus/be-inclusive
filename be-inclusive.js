@@ -21,9 +21,9 @@ export class BeInclusiveController {
         }
         unsubscribe(proxy);
     }
-    onOf(self) {
+    async onOf(self) {
         self.ensure(self);
-        self.#includer.onOf(self.#includer);
+        await self.#includer.onOf(self.#includer);
     }
     onModel(self) {
         self.ensure(self);

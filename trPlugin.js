@@ -4,6 +4,7 @@ export const trPlugin = {
     selector: 'beInclusiveAttribs',
     ready: true,
     processor: async ({ target, val, attrib, host, shadowPeer, ctx }) => {
+        delete ctx?.queryCache;
         let vp;
         if (val?.startsWith('{')) {
             vp = JSON.parse(val);

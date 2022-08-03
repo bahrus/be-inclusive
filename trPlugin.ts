@@ -8,6 +8,7 @@ export const trPlugin: TransformPluginSettings = {
     selector: 'beInclusiveAttribs',
     ready: true,
     processor: async({target, val, attrib, host, shadowPeer, ctx}: RenderContext) => {
+        delete ctx?.queryCache
         let vp: BeInclusiveWithStateVirtualProps | undefined;
         if(val?.startsWith('{')){
             vp = JSON.parse(val) as BeInclusiveWithStateVirtualProps;

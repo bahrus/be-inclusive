@@ -37,9 +37,9 @@ export class BeInclusiveController implements BeInclusiveActions{
     }
 
 
-    onModel(self: this){
+    async onModel(self: this){
         self.ensure(self);
-        self.#includer.onModel(self.#includer);
+        await self.#includer.onModel(self.#includer);
     }
 
 

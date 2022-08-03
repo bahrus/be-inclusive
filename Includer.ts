@@ -35,7 +35,7 @@ export class Includer{
         const {proxy, target} = self;
         if(of === undefined) return;
         if(typeof of === 'string'){
-            this.doOneOf(target, of, shadow, transform, model, model, !!prepend, ctx);
+            await this.doOneOf(target, of, shadow, transform, model, model, !!prepend, ctx);
         }else{
             const {length} = of;
             for(let i = 0; i < length; i++){
@@ -73,12 +73,12 @@ export class Includer{
 
 
 
-    onModel(self: this){
+    async onModel(self: this){
         const {proxy} = this;
         const {model, ctx} = this.props;
         if(model === this.#lastModel) return;
         ctx.host = model;
-        DTR.transform(proxy.shadowRoot || proxy, ctx);
+        await DTR.transform(proxy.shadowRoot || proxy, ctx);
     }
 
     dispose(){}

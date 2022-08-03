@@ -29,9 +29,9 @@ export class BeInclusiveController {
         self.ensure(self);
         await self.#includer.onOf(self.#includer);
     }
-    onModel(self) {
+    async onModel(self) {
         self.ensure(self);
-        self.#includer.onModel(self.#includer);
+        await self.#includer.onModel(self.#includer);
     }
 }
 const tagName = 'be-inclusive';

@@ -429,16 +429,16 @@ Either way, we do start to have true "fragment" support.
 
 
 ```html
-<template id=Friday>
+<template id=friday->
     <div>It's <span class=day5></span> I'm in love</div>
 </template>
-<template id=Opening>
+<template id=opening->
     <div>I don't care if <span class=day1></span>'s blue</div>
     <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
     <div><span class=day4></span> I don't care about you</div>
     <div be-inclusive=Friday></div>
 </template>
-<template id=FallApart>
+<template id=fall-apart>
     <div class="stanza">
         <div><span class=day1></span> you can fall apart</div>
         <div><span class=day2></span> <span class=day3></span> break my heart</div>
@@ -448,8 +448,8 @@ Either way, we do start to have true "fragment" support.
 </template>
 
 <template id="love">
-    <Opening- bi/>
-    <FallApart- bi/>
+    <opening- bi/>
+    <fallApart- bi/>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
         <div>And <span class=day7></span> always comes too late</div>
@@ -460,13 +460,13 @@ Either way, we do start to have true "fragment" support.
         <div>I don't care if <span class=day1></span>'s black</div>
         <div><span class=day2></span>, <span class=day3></span> heart attack</div>
         <div><span class=day4></span> never looking back</div>
-        <Friday- bi/>
+        <friday- bi/>
     </div>
     <div class="stanza">
         <div><span class=day1></span> you can hold your head</div>
         <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
         <div>Or <span class=day4></span> watch the walls instead</div>
-        <Friday- bi/>
+        <friday- bi/>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -489,8 +489,8 @@ Either way, we do start to have true "fragment" support.
         <div>It's <span class=day5></span></div>
         <div>I'm in love</div>
     </div>
-    <Friday- bi/>
-    <FallApart- bi/>
+    <friday- bi/>
+    <fall-apart bi/>
     <style>
         .stanza{
         padding-top: 20px;

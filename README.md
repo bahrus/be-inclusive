@@ -415,7 +415,13 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 ## Example 5 - Flattened, 'JSX' like [TODO]
 
-Inclusions inside templates can take the form of temporary "custom element" names with name i-[Lisp-case of the id].
+Inclusions inside templates can take the form of temporary "custom element like" names with name [Lisp-case of the id] and attribute bi.  If the id is not a compound word, a dash is appended to the id for the name of the tag.  We'll refer to these as "virtual inclusions".  
+
+If a virtual inclusion has no next siblings, then the contents of the template are appended using appendChild.
+
+Else the contents are laboriously inserted using insertAdjacentElement.
+
+Either way, we do have true "fragment" support.
 
 ```html
 <template id=Friday>
@@ -432,7 +438,7 @@ Inclusions inside templates can take the form of temporary "custom element" name
         <div><span class=day1></span> you can fall apart</div>
         <div><span class=day2></span> <span class=day3></span> break my heart</div>
         <div>Oh, <span class=day4></span> doesn't even start</div>
-        <t-friday></t-friday>
+        <friday- bi/>
     </div>
 </template>
 

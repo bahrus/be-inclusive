@@ -413,6 +413,101 @@ In order to support this, some features have been added to *be-inclusive* -- spe
 
 The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/baseline/demo/periodic_table.html).
 
+## Example 5 - Flattened, 'JSX' like [TODO]
+
+```html
+<template id=Friday>
+    <div>It's <span class=day5></span> I'm in love</div>
+</template>
+<template id=Opening>
+    <div>I don't care if <span class=day1></span>'s blue</div>
+    <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+    <div><span class=day4></span> I don't care about you</div>
+    <div be-inclusive=Friday></div>
+</template>
+<template id=FallApart>
+    <div class="stanza">
+        <div><span class=day1></span> you can fall apart</div>
+        <div><span class=day2></span> <span class=day3></span> break my heart</div>
+        <div>Oh, <span class=day4></span> doesn't even start</div>
+        <t-friday></t-friday>
+    </div>
+</template>
+
+<template id="love">
+    <t-opening></t-opening>
+    <t-fall-apart></t-fall-apart>
+    <div class="stanza">
+        <div><span class=day6></span> wait</div>
+        <div>And <span class=day7></span> always comes too late</div>
+        <div>But <span class=day5></span> never hesitate</div>
+    </div>
+
+    <div class="stanza">
+        <div>I don't care if <span class=day1></span>'s black</div>
+        <div><span class=day2></span>, <span class=day3></span> heart attack</div>
+        <div><span class=day4></span> never looking back</div>
+        <t-friday></t-friday>
+    </div>
+    <div class="stanza">
+        <div><span class=day1></span> you can hold your head</div>
+        <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
+        <div>Or <span class=day4></span> watch the walls instead</div>
+        <div be-inclusive=Friday></div>
+    </div>
+    <div class="stanza">
+        <div><span class=day6></span> wait</div>
+        <div>And <span class=day7></span> always comes too late</div>
+        <div>But <span class=day5></span> never hesitate</div>
+    </div>
+    <div class="stanza">
+        <div>Dressed up to the eyes</div>
+        <div>It's a wonderful surprise</div>
+        <div>To see your shoes and your spirits rise</div>
+        <div>Throwing out your frown</div>
+        <div>And just smiling at the sound</div>
+        <div>And as sleek as a shriek</div>
+        <div>Spinning round and round</div>
+        <div>Always take a big bite</div>
+        <div>It's such a gorgeous sight</div>
+        <div>To see you in the middle of the night</div>
+        <div>You can never get enough</div>
+        <div>Enough of this stuff</div>
+        <div>It's <span class=day5></span></div>
+        <div>I'm in love</div>
+    </div>
+    <t-friday></t-friday>
+    <t-fall-apart></t-fall-apart>
+    <style>
+        .stanza{
+        padding-top: 20px;
+    }
+</style>
+</template>
+<div id=target be-inclusive='{
+    "of": "love",
+    "model": {
+        "day1": "Monday",
+        "day2": "Tuesday",
+        "day3": "Wednesday",
+        "day4": "Thursday",
+        "day5": "Friday",
+        "day6": "Saturday",
+        "day7": "Sunday"
+    },
+    "transform":{
+        ".day1": "day1",
+        ".day2": "day2",
+        ".day3": "day3",
+        ".day4": "day4",
+        ".day5": "day5",
+        ".day6": "day6",
+        ".day7": "day7"
+    }
+}'></div>
+```
+
+
 ## Viewing Demos Locally
 
 1.  Install git.

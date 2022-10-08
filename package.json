@@ -24,10 +24,10 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "be-decorated": "0.0.126",
-    "be-observant": "0.0.128",
-    "trans-render": "0.0.539",
-    "be-hive": "0.0.48"
+    "be-decorated": "0.0.165",
+    "be-observant": "0.0.151",
+    "trans-render": "0.0.619",
+    "be-hive": "0.0.72",
   },
   "devDependencies": {
     "may-it-serve": "0.0.2",

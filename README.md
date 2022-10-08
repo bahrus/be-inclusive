@@ -419,7 +419,7 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 ## Example 5 - Flattened, 'JSX' like [TODO]
 
-Inclusions inside templates can take the form of temporary "custom element like" names with name [Lisp-case of the id] and attribute bi.  If the id is not a compound word, a dash is appended to the id for the name of the tag.  We'll refer to these as "virtual inclusions".  
+Inclusions inside templates can take the form of temporary "custom element like" names with name matching the referenced id followed by a dash and attribute bi. We'll refer to these as "virtual inclusions".  
 
 If a virtual inclusion has no next siblings, then the contents of the template are appended using appendChild.
 
@@ -448,8 +448,8 @@ Either way, we do start to have true "fragment" support.
 </template>
 
 <template id="love">
-    <opening- bi/>
-    <fall-apart bi/>
+    <Opening- bi/>
+    <FallApart- bi/>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
         <div>And <span class=day7></span> always comes too late</div>
@@ -460,13 +460,13 @@ Either way, we do start to have true "fragment" support.
         <div>I don't care if <span class=day1></span>'s black</div>
         <div><span class=day2></span>, <span class=day3></span> heart attack</div>
         <div><span class=day4></span> never looking back</div>
-        <friday- bi/>
+        <Friday- bi/>
     </div>
     <div class="stanza">
         <div><span class=day1></span> you can hold your head</div>
         <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
         <div>Or <span class=day4></span> watch the walls instead</div>
-        <friday- bi/>
+        <Friday- bi/>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -489,8 +489,8 @@ Either way, we do start to have true "fragment" support.
         <div>It's <span class=day5></span></div>
         <div>I'm in love</div>
     </div>
-    <friday- bi/>
-    <fall-apart bi/>
+    <Friday- bi/>
+    <FallApart- bi/>
     <style>
         .stanza{
         padding-top: 20px;
@@ -523,7 +523,7 @@ Either way, we do start to have true "fragment" support.
 When these virtual inclusions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
 
 ```html
-<template data-ref=friday data-cnt=2></template>
+<template data-ref=Friday data-cnt=2></template>
 <div>It's <span class=day5></span> I'm in love</div>
 ```
 

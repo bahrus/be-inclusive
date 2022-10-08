@@ -7,9 +7,27 @@
     <title>Document</title>
 </head>
 <body>
+    <template id=Friday>
+        <div>It's <span class=day5></span> I'm in love</div>
+    </template>
+    <template id=Opening>
+        <div>I don't care if <span class=day1></span>'s blue</div>
+        <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+        <div><span class=day4></span> I don't care about you</div>
+        <div be-inclusive=Friday></div>
+    </template>
+    <template id=FallApart>
+        <div class="stanza">
+            <div><span class=day1></span> you can fall apart</div>
+            <div><span class=day2></span> <span class=day3></span> break my heart</div>
+            <div>Oh, <span class=day4></span> doesn't even start</div>
+            <friday- bi/>
+        </div>
+    </template>
+    
     <template id="love">
-        <opening- bi/>
-        <fall-apart bi/>
+        <Opening- bi/>
+        <FallApart- bi/>
         <div class="stanza">
             <div><span class=day6></span> wait</div>
             <div>And <span class=day7></span> always comes too late</div>
@@ -20,13 +38,13 @@
             <div>I don't care if <span class=day1></span>'s black</div>
             <div><span class=day2></span>, <span class=day3></span> heart attack</div>
             <div><span class=day4></span> never looking back</div>
-            <friday- bi/>
+            <Friday- bi/>
         </div>
         <div class="stanza">
             <div><span class=day1></span> you can hold your head</div>
             <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
             <div>Or <span class=day4></span> watch the walls instead</div>
-            <friday- bi/>
+            <Friday- bi/>
         </div>
         <div class="stanza">
             <div><span class=day6></span> wait</div>
@@ -49,8 +67,8 @@
             <div>It's <span class=day5></span></div>
             <div>I'm in love</div>
         </div>
-        <friday- bi/>
-        <fall-apart bi/>
+        <Friday- bi/>
+        <FallApart- bi/>
         <style>
             .stanza{
             padding-top: 20px;

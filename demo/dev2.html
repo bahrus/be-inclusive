@@ -7,11 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <style>
-        div {
-            background-color: cornsilk;
-        }
-    </style>
+
         
     <h3><a href="https://www.youtube.com/watch?v=eAfyFTzZDMM" target="_blank">Beautiful</a></h3>
     <h4>Christina Aguilera</h4>
@@ -68,17 +64,14 @@
         <down-/>
     </template>
 
-    <div be-inclusive='{
-        "of": "chorus",
-        "shadow": "open"
-    }'>
+    <chorus->
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>me</span>
         <span slot=pronoun2>me</span>
         <span slot=subjectIs1>I am</span>
         <span slot=subjectIs2>I am</span>
-    </div>
+    </chorus->
 
     <p>
         <div>To all your friends you're delirious</div>
@@ -90,42 +83,28 @@
         <div>Ain't that the way it is</div>
     </p>
     <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadow": "open"
-        }'>
+        <chorus->
             <span slot=verb1>can't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>you</span>
             <span slot=pronoun2>you</span>
             <span slot=subjectIs1>You are</span>
             <span slot=subjectIs2>You are</span>
-        </div>
+        </chorus->
     </p>
     <br>
     <template id=no-matter>
-        <style>
-        :host {
-            background-color: blanchedalmond;
-        }
-        </style>
         No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
     </template>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadow": "open"
-    }'>
+    <no-matter>
         <span slot=verb1>do</span>
         <span slot=verb2>do</span>
-    </div>
+    </no-matter>
     <br>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadow": "open"
-    }'>
+    <no-matter>
         <span slot=verb1>say</span>
         <span slot=verb2>say</span>
-    </div>
+    </no-matter>
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
     <p>
@@ -135,17 +114,14 @@
         <div>On the other side</div>
     </p>
     <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadow": "open"
-        }'>
+        <chorus->
             <span slot=verb1>won't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>us</span>
             <span slot=pronoun2>us</span>
             <span slot=subjectIs1>We are</span>
             <span slot=subjectIs2>We are</span>
-        </div>
+        </chorus->
     </p>
     <p>
         <div>Oh, oh</div>

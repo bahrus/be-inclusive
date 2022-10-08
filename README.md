@@ -523,11 +523,11 @@ Either way, we do start to have true "fragment" support.
 When these virtual inclusions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
 
 ```html
-<template data-ref=Friday data-cnt=2></template>
+<template data-ref=friday- data-cnt=2></template>
 <div>It's <span class=day5></span> I'm in love</div>
 ```
 
-data-cnt counts the number of elements generated from template id "friday", including itself (1-based).  Other be-decorated behaviors (like [be-free-ranged](https://github.dev/bahrus/be-free-ranged)) can be used to attach "scope" and other features to the fragment.
+data-cnt counts the number of elements generated from template id "friday-", including itself (1-based).  Other be-decorated behaviors (like [be-free-ranged](https://github.dev/bahrus/be-free-ranged)) can be used to attach "scope" and other features to the fragment.
 
 
 ## Viewing Demos Locally

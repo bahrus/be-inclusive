@@ -437,8 +437,8 @@ Inclusions inside templates can take the form of temporary "custom element" name
 </template>
 
 <template id="love">
-    <i-opening></i-opening>
-    <i-fall-apart></i-fall-apart>
+    <i-opening -/>
+    <i-fall-apart -/>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
         <div>And <span class=day7></span> always comes too late</div>

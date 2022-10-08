@@ -210,6 +210,8 @@ Please expand below to see the "code".
 
 To aid with avoiding syntax errors, which can be challenging when editing JSON inside HTML, a [vscode extension is available](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) to help with this.  That extension is compatible with [web-based vscode solutions](https://github.dev/bahrus/be-inclusive).
 
+The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides TypeScript support for editing such attributes, and compiles the content to HTML files (from a *.mjs/*.mts source).
+
 ## Example 2 - Without Shadow DOM
 
 Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON required).
@@ -423,7 +425,8 @@ If a virtual inclusion has no next siblings, then the contents of the template a
 
 Else the contents are laboriously inserted using insertAdjacentElement.
 
-Either way, we do have true "fragment" support.
+Either way, we do start to have true "fragment" support.
+
 
 ```html
 <template id=Friday>
@@ -516,6 +519,15 @@ Either way, we do have true "fragment" support.
     }
 }'></div>
 ```
+
+When these virtual inclusesions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
+
+```html
+<template data-ref=friday data-cnt=2>
+<div>It's <span class=day5></span> I'm in love</div>
+```
+
+data-cnt counts the number of elements generated from template id friday, including itself (1-based).
 
 
 ## Viewing Demos Locally

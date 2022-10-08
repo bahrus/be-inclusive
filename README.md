@@ -415,6 +415,8 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 ## Example 5 - Flattened, 'JSX' like [TODO]
 
+Inclusions inside templates can take the form of temporary "custom element" names with name i-[Lisp-case of the id].
+
 ```html
 <template id=Friday>
     <div>It's <span class=day5></span> I'm in love</div>
@@ -435,8 +437,8 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 </template>
 
 <template id="love">
-    <t-opening></t-opening>
-    <t-fall-apart></t-fall-apart>
+    <i-opening></i-opening>
+    <i-fall-apart></i-fall-apart>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
         <div>And <span class=day7></span> always comes too late</div>
@@ -447,7 +449,7 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
         <div>I don't care if <span class=day1></span>'s black</div>
         <div><span class=day2></span>, <span class=day3></span> heart attack</div>
         <div><span class=day4></span> never looking back</div>
-        <t-friday></t-friday>
+        <i-friday></i-friday>
     </div>
     <div class="stanza">
         <div><span class=day1></span> you can hold your head</div>
@@ -476,8 +478,8 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
         <div>It's <span class=day5></span></div>
         <div>I'm in love</div>
     </div>
-    <t-friday></t-friday>
-    <t-fall-apart></t-fall-apart>
+    <i-friday></i-friday>
+    <i-fall-apart></i-fall-apart>
     <style>
         .stanza{
         padding-top: 20px;

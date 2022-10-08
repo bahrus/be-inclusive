@@ -518,7 +518,7 @@ Either way, we do start to have true "fragment" support.
 }'></div>
 ```
 
-When these virtual inclusesions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
+When these virtual inclusions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
 
 ```html
 <template data-ref=friday data-cnt=2>

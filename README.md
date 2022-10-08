@@ -419,7 +419,7 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 ## Example 5 - Flattened, 'JSX' like [TODO]
 
-Inclusions inside templates can take the form of temporary "custom element like" names with name matching the referenced id followed by a dash and attribute bi. We'll refer to these as "virtual inclusions".  The id must contain a dash (which can go at the end, if a two-word description doesn't jump out.)  Among the advantages of requiring a dash in the id, is that such templates defined outside any ShadowDOM won't create ambiguities with global constants / methods that follow JavaScript naming conventions.
+Inclusions inside templates can take the form of temporary "custom element like" names with name matching the referenced id followed by a dash and attribute bi. We'll refer to these as "virtual inclusions".  The id must be lower case and contain a dash, which can go at the end, if a two-word description doesn't jump out.  Among the advantages of requiring a dash in the id, is that such templates defined outside any ShadowDOM won't create ambiguities with global constants / methods that follow JavaScript naming conventions.
 
 If a virtual inclusion has no next siblings, then the contents of the template are appended using appendChild (or append I guess).
 
@@ -436,7 +436,7 @@ Either way, we do start to have true "fragment" support.
     <div>I don't care if <span class=day1></span>'s blue</div>
     <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
     <div><span class=day4></span> I don't care about you</div>
-    <div be-inclusive=Friday></div>
+    <friday- bi/>
 </template>
 <template id=fall-apart>
     <div class="stanza">

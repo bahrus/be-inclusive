@@ -419,9 +419,9 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 ## Example 5 - Flattened, 'JSX' like [TODO]
 
-Inclusions inside templates can take the form of temporary "custom element like" names with name matching the referenced id followed by a dash and attribute bi. We'll refer to these as "virtual inclusions".  
+Inclusions inside templates can take the form of temporary "custom element like" names with name matching the referenced id followed by a dash and attribute bi. We'll refer to these as "virtual inclusions".  The id must contain a dash (which can go at the end, if a two-word description doesn't jump out.)  Among the advantages of requiring a dash in the id, is that such templates defined outside any ShadowDOM won't create ambiguities with global constants / methods that follow JavaScript naming conventions.
 
-If a virtual inclusion has no next siblings, then the contents of the template are appended using appendChild.
+If a virtual inclusion has no next siblings, then the contents of the template are appended using appendChild (or append I guess).
 
 Else the contents are laboriously inserted using insertAdjacentElement.
 
@@ -449,7 +449,7 @@ Either way, we do start to have true "fragment" support.
 
 <template id="love">
     <opening- bi/>
-    <fallApart- bi/>
+    <fall-apart bi/>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
         <div>And <span class=day7></span> always comes too late</div>

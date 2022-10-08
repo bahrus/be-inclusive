@@ -28,6 +28,8 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
+The syntax could also be used to good effect during a build process (SSG) (especially the "virtual inclusions" discussed below) or while server-side rendering.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.
+
 The syntax could also serve a useful purpose on the server-side or in a service worker, but this package provides no support for this.
 
 Like other "isomorphic" be-decorated decorators, be-inclusive includes a [DTR plugin](https://github.com/bahrus/trans-render#extending-dtr-horizontally--via-dynamically-imported-plugins) for template instantiation.  But if be-inclusive has not been loaded yet, Без проблем, the DTR library ignores the template without including the template references, so that rendering isn't blocked, and then lets the support for enhancing live DOM tree that be-inclusive also provides accomplish the same thing (but with a little more rendering strain on the browser).

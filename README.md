@@ -30,7 +30,7 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
-The syntax could also be used to good effect during a build process (SSG) (especially the "virtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently.
+The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently.  The may-it-be compiler while (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
 
 Like other "isomorphic" be-decorated decorators, be-inclusive includes a [DTR plugin](https://github.com/bahrus/trans-render#extending-dtr-horizontally--via-dynamically-imported-plugins) for template instantiation.  But if be-inclusive has not been loaded yet, Без проблем, the DTR library ignores the template without including the template references, so that rendering isn't blocked, and then lets the support for enhancing live DOM tree that be-inclusive also provides accomplish the same thing (but with a little more rendering strain on the browser).
 
@@ -419,9 +419,9 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 ## Example 5 - Flattened, 'JSX' like [TODO]
 
-Inclusions inside templates can take the form of temporary "custom element like" names with name matching the referenced id followed by a dash and attribute bi. We'll refer to these as "virtual inclusions".  The id must be lower case and contain a dash, which can go at the end, if a two-word description doesn't jump out.  Among the advantages of requiring a dash in the id, is that such templates defined outside any ShadowDOM won't create ambiguities with global constants / methods that follow JavaScript naming conventions.
+Inclusions inside templates can take the form of temporary "custom element like" names with the name matching the referenced id followed and attribute "bi". We'll refer to these as "birtual inclusions" (inclusions during the birthing process).  The id must be lower case and contain a dash, which can go at the end, if a two-word description doesn't jump out.  Among the advantages of requiring a dash in the id, is that such templates defined outside any ShadowDOM won't create ambiguities with global constants / methods that follow JavaScript naming conventions.
 
-If a virtual inclusion has no next siblings, then the contents of the template are appended using appendChild (or append I guess).
+If a birtual inclusion has no next siblings, then the contents of the template are appended using appendChild (or append I guess).
 
 Else the contents are laboriously inserted using insertAdjacentElement.
 
@@ -520,7 +520,7 @@ Either way, we do start to have true "fragment" support.
 }'></div>
 ```
 
-When these virtual inclusions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
+When these birtual inclusions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
 
 ```html
 <template data-ref=friday- data-cnt=2></template>

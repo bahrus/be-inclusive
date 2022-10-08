@@ -437,8 +437,8 @@ Inclusions inside templates can take the form of temporary "custom element" name
 </template>
 
 <template id="love">
-    <i-opening -/>
-    <i-fall-apart -/>
+    <opening- bi/>
+    <fall-apart bi/>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
         <div>And <span class=day7></span> always comes too late</div>
@@ -449,13 +449,13 @@ Inclusions inside templates can take the form of temporary "custom element" name
         <div>I don't care if <span class=day1></span>'s black</div>
         <div><span class=day2></span>, <span class=day3></span> heart attack</div>
         <div><span class=day4></span> never looking back</div>
-        <i-friday></i-friday>
+        <friday- bi/>
     </div>
     <div class="stanza">
         <div><span class=day1></span> you can hold your head</div>
         <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
         <div>Or <span class=day4></span> watch the walls instead</div>
-        <div be-inclusive=Friday></div>
+        <friday- bi/>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -478,8 +478,8 @@ Inclusions inside templates can take the form of temporary "custom element" name
         <div>It's <span class=day5></span></div>
         <div>I'm in love</div>
     </div>
-    <i-friday></i-friday>
-    <i-fall-apart></i-fall-apart>
+    <friday- bi/>
+    <fall-apart bi/>
     <style>
         .stanza{
         padding-top: 20px;

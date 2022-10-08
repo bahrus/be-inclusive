@@ -525,7 +525,7 @@ When these virtual inclusions are expanded, they leave behind some hints that ca
 <div>It's <span class=day5></span> I'm in love</div>
 ```
 
-data-cnt counts the number of elements generated from template id friday, including itself (1-based).
+data-cnt counts the number of elements generated from template id "friday", including itself (1-based).  Other be-decorated behaviors (like [be-free-ranged](https://github.dev/bahrus/be-free-ranged)) can be used to attach "scope" and other features to the fragment.
 
 
 ## Viewing Demos Locally

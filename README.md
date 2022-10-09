@@ -30,7 +30,7 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
-The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently.  The may-it-be compiler while (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
+The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
 
 Like other "isomorphic" be-decorated decorators, be-inclusive includes a [DTR plugin](https://github.com/bahrus/trans-render#extending-dtr-horizontally--via-dynamically-imported-plugins) for template instantiation.  But if be-inclusive has not been loaded yet, Без проблем, the DTR library ignores the template without including the template references, so that rendering isn't blocked, and then lets the support for enhancing live DOM tree that be-inclusive also provides accomplish the same thing (but with a little more rendering strain on the browser).
 
@@ -423,7 +423,7 @@ Inclusions inside templates can take the form of temporary "custom element like"
 
 If a birtual inclusion has no next siblings, then the contents of the template are appended using appendChild (or append I guess).
 
-Else the contents are laboriously inserted using insertAdjacentElement.
+Else the contents are [laboriously inserted](https://discourse.wicg.io/t/proposal-insertadjacenttemplate-function/3456/3).
 
 Either way, we do start to have true "fragment" support.
 

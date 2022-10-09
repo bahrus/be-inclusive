@@ -8,6 +8,7 @@ export class Includer {
     peer;
     #lastModel;
     didInclude = false;
+    #templateLookup;
     constructor(proxy, target, props, peer) {
         this.proxy = proxy;
         this.target = target;
@@ -16,6 +17,7 @@ export class Includer {
         if (props === undefined) {
             this.props = proxy;
         }
+        this.#templateLookup = {};
     }
     async onOf(self) {
         if (this.didInclude)
@@ -51,15 +53,29 @@ export class Includer {
             }
         }
     }
+    #templSearcher(of) {
+        let templ = this.#templateLookup[of];
+        const { target } = this;
+        const ctx = this.props.ctx;
+        if (templ === undefined) {
+            templ = upShadowSearch(target, of);
+            if (templ === null && ctx.shadowPeer !== undefined) {
+                templ = upShadowSearch(ctx.shadowPeer, of);
+            }
+            if (templ === null || !(templ instanceof HTMLTemplateElement)) {
+                console.error({ of, target, msg: "Could not locate template." });
+                return undefined;
+            }
+            else {
+                this.#templateLookup[of] = templ;
+            }
+        }
+        return templ;
+    }
     async doOneOf(target, of, shadow, transform, model, modelSrc, prepend, ctx) {
-        let templ = upShadowSearch(target, of);
-        if (templ === null && ctx.shadowPeer !== undefined) {
-            templ = upShadowSearch(ctx.shadowPeer, of);
-        }
-        if (templ === null || !(templ instanceof HTMLTemplateElement)) {
-            console.error({ of, target, msg: "Could not locate template." });
+        const templ = this.#templSearcher(of);
+        if (templ === undefined)
             return;
-        }
         const clone = templ.content.cloneNode(true);
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
@@ -81,5 +97,7 @@ export class Includer {
         ctx.host = model;
         await DTR.transform(proxy.shadowRoot || proxy, ctx);
     }
-    dispose() { }
+    dispose() {
+        this.#templateLookup = {};
+    }
 }

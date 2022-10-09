@@ -1,9 +1,9 @@
 import {BeInclusiveVirtualProps, BeInclusiveProps, BeInclusiveWithStateVirtualProps} from './types';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {DTR} from 'trans-render/lib/DTR.js';
-import { hookUp } from 'be-observant/hookUp.js';
-import { PE } from 'trans-render/lib/PE.js';
-import { SplitText } from 'trans-render/lib/SplitText.js';
+// import { hookUp } from 'be-observant/hookUp.js';
+// import { PE } from 'trans-render/lib/PE.js';
+// import { SplitText } from 'trans-render/lib/SplitText.js';
 
 import { RenderContext } from 'trans-render/lib/types';
 import { IObserve } from 'be-observant/types';
@@ -12,10 +12,12 @@ import './trPlugin.js';
 export class Includer{
     #lastModel: any;
     didInclude = false;
+    #templateLookup: {[key: string]: HTMLTemplateElement};
     constructor(public proxy: Element, public target: Element, public props: BeInclusiveWithStateVirtualProps, public peer: Element){
         if(props === undefined){
             this.props = proxy as any as BeInclusiveWithStateVirtualProps;
         }
+        this.#templateLookup = {};
     }
 
     async onOf(self: this){
@@ -49,15 +51,28 @@ export class Includer{
         }
     }
 
+    #templSearcher(of: string){
+        let templ = this.#templateLookup[of];
+        const {target} = this;
+        const ctx = this.props.ctx;
+        if(templ === undefined){
+            templ = upShadowSearch(target, of) as HTMLTemplateElement;
+            if(templ === null && ctx.shadowPeer !== undefined){
+                templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
+            }
+            if(templ === null || !(templ instanceof HTMLTemplateElement)){
+                console.error({of, target, msg:"Could not locate template."});
+                return undefined;
+            }else{
+                this.#templateLookup[of] = templ;
+            }
+        }
+        return templ;       
+    }
+
     async doOneOf(target: Element, of: string, shadow: 'open' | 'closed' | undefined, transform: any, model: any, modelSrc: string | IObserve, prepend: boolean, ctx: RenderContext){
-        let templ = upShadowSearch(target, of) as HTMLTemplateElement;
-        if(templ === null && ctx.shadowPeer !== undefined){
-            templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
-        }
-        if(templ === null || !(templ instanceof HTMLTemplateElement)){
-            console.error({of, target, msg:"Could not locate template."});
-            return;
-        }
+        const templ = this.#templSearcher(of);
+        if(templ === undefined) return;
         const clone = templ.content.cloneNode(true) as DocumentFragment;
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
@@ -81,5 +96,8 @@ export class Includer{
         await DTR.transform(proxy.shadowRoot || proxy, ctx);
     }
 
-    dispose(){}
+    dispose(){
+        this.#templateLookup = {};
+
+    }
 }

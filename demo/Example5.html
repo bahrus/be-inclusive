@@ -34,7 +34,7 @@
     </template>
 
     <template id=chorus->
-        <beautiful->
+        <beautiful- bi>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
@@ -47,7 +47,7 @@
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
 
-        <beautiful->
+        <beautiful- bi>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
@@ -64,7 +64,7 @@
         <down-/>
     </template>
 
-    <chorus->
+    <chorus- bi>
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>me</span>
@@ -83,7 +83,7 @@
         <div>Ain't that the way it is</div>
     </p>
     <p>
-        <chorus->
+        <chorus- bi>
             <span slot=verb1>can't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>you</span>
@@ -94,16 +94,14 @@
     </p>
     <br>
     <template id=no-matter>
-        <div> <!-- drop requirement for div -->
-            No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
-        </div>
+        No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
     </template>
-    <no-matter>
+    <no-matter bi>
         <span slot=verb1>do</span>
         <span slot=verb2>do</span>
     </no-matter>
     <br>
-    <no-matter>
+    <no-matter bi>
         <span slot=verb1>say</span>
         <span slot=verb2>say</span>
     </no-matter>
@@ -116,7 +114,7 @@
         <div>On the other side</div>
     </p>
     <p>
-        <chorus->
+        <chorus- bi>
             <span slot=verb1>won't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>us</span>

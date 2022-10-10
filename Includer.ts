@@ -1,6 +1,7 @@
 import {BeInclusiveVirtualProps, BeInclusiveProps, BeInclusiveWithStateVirtualProps} from './types';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {DTR} from 'trans-render/lib/DTR.js';
+import {birtualize} from 'trans-render/lib/birtualize.js';
 // import { hookUp } from 'be-observant/hookUp.js';
 // import { PE } from 'trans-render/lib/PE.js';
 // import { SplitText } from 'trans-render/lib/SplitText.js';
@@ -73,6 +74,7 @@ export class Includer{
     async doOneOf(target: Element, of: string, shadow: 'open' | 'closed' | undefined, transform: any, model: any, modelSrc: string | IObserve, prepend: boolean, ctx: RenderContext){
         const templ = this.#templSearcher(of);
         if(templ === undefined) return;
+        await birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of));
         const clone = templ.content.cloneNode(true) as DocumentFragment;
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';

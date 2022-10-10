@@ -1,5 +1,6 @@
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
 import { DTR } from 'trans-render/lib/DTR.js';
+import { birtualize } from 'trans-render/lib/birtualize.js';
 import './trPlugin.js';
 export class Includer {
     proxy;
@@ -76,6 +77,7 @@ export class Includer {
         const templ = this.#templSearcher(of);
         if (templ === undefined)
             return;
+        await birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of));
         const clone = templ.content.cloneNode(true);
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';

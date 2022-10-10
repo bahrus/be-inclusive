@@ -8,21 +8,21 @@
 </head>
 <body>
     <a href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
-    <template id="title-">Something's gone wrong again</template>
-    <template id="Title2">Something goes wrong again</template>
-    <template id="Again">And again</template>
-    <template id="Again2">And again, and again, again and something's gone wrong again</template>
-    <template id="Again3">And again, and again, again and something goes wrong again</template>
-    <template id="Agains">
-        <span be-inclusive="Again"></span><br>
-        <span be-inclusive="Again2"></span><br>
-        <title- bi/>
+    <template id="title">Something's gone wrong again</template>
+    <template id="title2">Something goes wrong again</template>
+    <template id="again">And again</template>
+    <template id="again2">And again, and again, again and something's gone wrong again</template>
+    <template id="again3">And again, and again, again and something goes wrong again</template>
+    <template id="agains">
+        <again bi></again><br>
+        <again2 bi></again2><br>
+        <title bi></title>
     </template>
-    <template id="Agains2">
-        <span be-inclusive="Title2"></span><br>
-        <span be-inclusive="Again"></span><br>
-        <span be-inclusive="Again3"></span><br>
-        <span be-inclusive="Title2"></span>
+    <template id="agains2">
+        <title2 bi></title2><br>
+        <again bi></again><br>
+        <again3 bi></again3><br>
+        <title2 bi></title2>
     </template>
     <template id="bus">
         <span>Nothing ever happens to people like us</span><br>
@@ -34,26 +34,26 @@
         <div>
             <span>Tried to find my sock</span><br>
             <span>No good, it's lost</span><br>
-            <title- bi></title-><br>
+            <title bi></title><br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <title- bi ></title->
+            <title bi></title>
         </div>
-        <div be-inclusive="Agains"></div>
+        <agains bi></agains>
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
-            <title- bi/><br>
+            <title bi></title><br>
             <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <title- bi/><br>
-            <title- bi/>
+            <title bi></title><br>
+            <title bi></title>
         </div>
-        <div be-inclusive="Agains"></div>
-        <div be-inclusive="bus"></div>
-        <div be-inclusive="Agains2"></div>
-        <div be-inclusive="Agains2"></div>
-        <div be-inclusive="bus"></div>
-        <div be-inclusive="Agains2"></div>
+        <agains bi></agains>
+        <bus bi></bus>
+        <agains2 bi></agains2>
+        <agains2 bi></agains2>
+        <bus bi></bus>
+        <agains2 bi></agains2>
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
@@ -61,12 +61,12 @@
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
         <div>
-            <span be-inclusive="Title2"></span><br>
-            <span be-inclusive="Again"></span><br>
-            <span be-inclusive="Again3"></span><br>
+            <title2 bi></title2><br>
+            <again bi></again><br>
+            <again3 bi></again><br>
             <span>Ah, something goes wrong again</span><br>
-            <span be-inclusive="Title2"></span><br>
-            <span be-inclusive="Title2"></span>
+            <title2 bi></title2><br>
+            <title2 bi></title2>
         </div>
     </template>
 
@@ -75,6 +75,7 @@
     <style>
         div{
             padding-top:20px;
+            padding-bottom: 20px;
         }
     </style>
 

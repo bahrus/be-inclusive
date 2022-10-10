@@ -1,4 +1,4 @@
-# be-inclusive
+# be-inclusive [WIP]
 
 *be-inclusive* enables merging templates together.  
 
@@ -213,6 +213,38 @@ To aid with avoiding syntax errors, which can be challenging when editing JSON i
 The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides TypeScript support for editing such attributes, and compiles the content to HTML files (from a *.mjs/*.mts source).
 
 ## Example 2 - Without Shadow DOM
+
+A significant shortcut be-inclusive provides is "JSX-like" includes.  This only works within a template, not for elements starting out outside any template.
+
+Within a template, rather than writing:
+
+```html
+<template id="Friday">
+    <div>It's <span class=day5></span> I'm in love</div>
+</template>
+
+...
+<div be-inclusive=Friday></div>
+
+```
+
+We can write:
+
+```html
+<template id="friday">
+    <div>It's <span class=day5></span> I'm in love</div>
+</template>
+...
+<template>
+...
+<friday bi></friday>
+</template>
+
+```
+
+This also allows us to provide slots in the template, and light children, similar to ShadowDOM, but much lighter -- the weaving of the light children into the slots only occurs during template instantiation.
+
+
 
 Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON required).
 

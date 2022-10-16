@@ -1,8 +1,9 @@
-import {BeDecoratedProps} from 'be-decorated/types';
+import {BeDecoratedProps, MinimalProxy} from 'be-decorated/types';
 import {IObserve} from 'be-observant/types';
 import {RenderContext} from 'trans-render/lib/types';
 
-export interface BeInclusiveVirtualProps{
+
+export interface EndUserProps {
     of: string | (string | BeInclusiveVirtualProps)[];
     shadow?: 'open' | 'closed' | undefined;
     transform?: any,
@@ -12,18 +13,21 @@ export interface BeInclusiveVirtualProps{
     transformPlugins?: {[key: string]: boolean},
 }
 
-export interface BeInclusiveWithStateVirtualProps extends BeInclusiveVirtualProps{
+export interface VirtualProps extends EndUserProps, MinimalProxy{
     ctx: RenderContext,
 }
 
-export interface BeInclusiveProps extends BeInclusiveWithStateVirtualProps{
-    proxy: Element & BeInclusiveWithStateVirtualProps,
+export type Proxy = Element & VirtualProps;
+
+export interface ProxyProps extends VirtualProps{
+    proxy: Proxy,
 }
 
-export interface BeInclusiveActions{
+export type PP = ProxyProps;
+
+export interface Actions{
     onOf(self: this): void;
     onModel(self: this): void;
-    intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps): void;
-    batonPass(proxy: Element & BeInclusiveVirtualProps, target: Element, beDecorProps: BeDecoratedProps, baton: any): void;
-    finale(proxy: Element & BeInclusiveVirtualProps, target: Element, beDecor: BeDecoratedProps): void;
+    batonPass(proxy: Proxy, self: Element, beDecorProps: BeDecoratedProps, baton: any): void;
+    finale(proxy: Proxy, self: Element, beDecor: BeDecoratedProps): void;
 }

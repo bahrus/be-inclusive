@@ -1,4 +1,4 @@
-import {BeInclusiveVirtualProps, BeInclusiveProps, BeInclusiveWithStateVirtualProps} from './types';
+import {BeInclusiveVirtualProps, ProxyProps, BeInclusiveWithStateVirtualProps} from './types';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {DTR} from 'trans-render/lib/DTR.js';
 import {birtualize} from 'trans-render/lib/birtualize.js';

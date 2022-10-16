@@ -1,22 +1,15 @@
-import { define } from 'be-decorated/be-decorated.js';
+import { define } from 'be-decorated/DE.js';
 import { register } from 'be-hive/register.js';
 import { unsubscribe } from 'trans-render/lib/subscribe.js';
 import { Includer } from './Includer.js';
 export class BeInclusiveController {
-    #target;
     #includer;
-    intro(proxy, target, bdp) {
-        this.#target = target;
-        // this.#beString = `be-${bdp.ifWantsToBe}`;
-        // this.#isString = `is-${bdp.ifWantsToBe}`;
-        // this.#target = target;
-    }
     batonPass(proxy, target, beDecorProps, baton) {
         this.#includer = baton;
     }
-    ensure(self) {
-        if (self.#includer === undefined) {
-            self.#includer = new Includer(self.proxy, self.#target, self.proxy, self.proxy);
+    ensure({ proxy, self }) {
+        if (this.#includer === undefined) {
+            this.#includer = new Includer(proxy, self, proxy, proxy);
         }
     }
     finale(proxy, target, bdp) {
@@ -25,12 +18,12 @@ export class BeInclusiveController {
         }
         unsubscribe(proxy);
     }
-    async onOf(self) {
-        self.ensure(self);
-        await self.#includer.onOf(self.#includer);
+    async onOf(pp) {
+        this.ensure(pp);
+        await this.#includer.onOf(this.#includer);
     }
     async onModel(self) {
-        self.ensure(self);
+        this.ensure(self);
         await self.#includer.onModel(self.#includer);
     }
 }
@@ -45,7 +38,6 @@ define({
             upgrade,
             ifWantsToBe,
             primaryProp: 'of',
-            intro: 'intro',
             finale: 'finale',
         },
         actions: {

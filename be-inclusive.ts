@@ -1,57 +1,52 @@
-import {define, BeDecoratedProps} from 'be-decorated/be-decorated.js';
-import {BeInclusiveActions, BeInclusiveProps, BeInclusiveVirtualProps} from './types';
+import {define, BeDecoratedProps} from 'be-decorated/DE.js';
+import {Actions, ProxyProps, PP, Proxy} from './types';
 
 import {register} from 'be-hive/register.js';
 
 import { unsubscribe } from 'trans-render/lib/subscribe.js';
 import { Includer } from './Includer.js';
 
-export class BeInclusiveController implements BeInclusiveActions{
+export class BeInclusiveController implements Actions{
     
-    #target!: Element;
     #includer!: Includer;
     
-    intro(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
-        this.#target = target;
-        // this.#beString = `be-${bdp.ifWantsToBe}`;
-        // this.#isString = `is-${bdp.ifWantsToBe}`;
-        // this.#target = target;
-    }
-    batonPass(proxy: Element & BeInclusiveVirtualProps, target: Element, beDecorProps: BeDecoratedProps<any, any>, baton: any): void {
+
+    batonPass(proxy: Proxy, target: Element, beDecorProps: BeDecoratedProps<any, any>, baton: any): void {
         this.#includer = baton;
     }
-    ensure(self: this){
-        if(self.#includer === undefined){
-            self.#includer = new Includer(self.proxy, self.#target, self.proxy, self.proxy);
+    ensure({proxy, self}: PP){
+        if(this.#includer === undefined){
+            this.#includer = new Includer(proxy, self, proxy, proxy);
         }
     }
-    finale(proxy: Element & BeInclusiveVirtualProps, target: Element, bdp: BeDecoratedProps){
+
+    finale(proxy: Proxy, target: Element, bdp: BeDecoratedProps){
         if(this.#includer !== undefined){
             this.#includer.dispose();
         }
         unsubscribe(proxy);
     }
-    async onOf(self: this){
-        self.ensure(self);
-        await self.#includer.onOf(self.#includer);
+    async onOf(pp: PP){
+        this.ensure(pp);
+        await this.#includer.onOf(this.#includer);
     }
 
 
     async onModel(self: this){
-        self.ensure(self);
+        this.ensure(self);
         await self.#includer.onModel(self.#includer);
     }
 
 
 }
 
-export interface BeInclusiveController extends BeInclusiveProps{}
+export interface BeInclusiveController extends ProxyProps{}
 
 const tagName = 'be-inclusive';
 const ifWantsToBe = 'inclusive';
 const upgrade = '*';
 
-define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>, BeInclusiveActions>({
+define<ProxyProps & BeDecoratedProps<ProxyProps, Actions>, Actions>({
     config:{
         tagName,
         propDefaults:{
@@ -59,7 +54,6 @@ define<BeInclusiveProps & BeDecoratedProps<BeInclusiveProps, BeInclusiveActions>
             upgrade,
             ifWantsToBe,
             primaryProp: 'of',
-            intro: 'intro',
             finale: 'finale',
         },
         actions:{

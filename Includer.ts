@@ -1,4 +1,4 @@
-import {BeInclusiveVirtualProps, ProxyProps, BeInclusiveWithStateVirtualProps} from './types';
+import {EndUserProps, ProxyProps, VirtualProps} from './types';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {DTR} from 'trans-render/lib/DTR.js';
 import {birtualize} from 'trans-render/lib/birtualize.js';
@@ -14,9 +14,9 @@ export class Includer{
     #lastModel: any;
     didInclude = false;
     #templateLookup: {[key: string]: HTMLTemplateElement};
-    constructor(public proxy: Element, public target: Element, public props: BeInclusiveWithStateVirtualProps, public peer: Element){
+    constructor(public proxy: Element, public target: Element, public props: VirtualProps, public peer: Element){
         if(props === undefined){
-            this.props = proxy as any as BeInclusiveWithStateVirtualProps;
+            this.props = proxy as any as VirtualProps;
         }
         this.#templateLookup = {};
     }
@@ -33,7 +33,7 @@ export class Includer{
             }
         }
         const {of, shadow, transform, model, prepend, ctx} = self.props;
-        ctx.host = model;
+        ctx.host = model || {};
         ctx.match = {...ctx.match, ...transform};
         const {proxy, target} = self;
         if(of === undefined) return;

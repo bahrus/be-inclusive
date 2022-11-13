@@ -33,7 +33,7 @@ export class Includer {
             };
         }
         const { of, shadow, transform, model, prepend, ctx } = self.props;
-        ctx.host = model;
+        ctx.host = model || {};
         ctx.match = { ...ctx.match, ...transform };
         const { proxy, target } = self;
         if (of === undefined)

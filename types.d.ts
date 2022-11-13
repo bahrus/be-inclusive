@@ -28,6 +28,5 @@ export type PP = ProxyProps;
 export interface Actions{
     onOf(self: this): void;
     onModel(self: this): void;
-    batonPass(proxy: Proxy, self: Element, beDecorProps: BeDecoratedProps, baton: any): void;
     finale(proxy: Proxy, self: Element, beDecor: BeDecoratedProps): void;
 }

@@ -3,13 +3,11 @@
 *be-inclusive* enables merging templates together.  
 
 [![Playwright Tests](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml/badge.svg?branch=baseline)](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml)
-
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/be-inclusive)
-
 <a href="https://nodei.co/npm/be-inclusive/"><img src="https://nodei.co/npm/be-inclusive.png"></a>
 
 
-Like other [be-decorated](https://github.com/bahrus/be-decorated) based web components, be-inclusive uses attributes to enhance the functionality of the element it adorns:
+Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based web components, be-inclusive can use attributes to enhance the functionality of the element it adorns.  So if server rendered HTML looks as follows:
 
 ```html
 <template id="Friday">
@@ -20,10 +18,11 @@ Like other [be-decorated](https://github.com/bahrus/be-decorated) based web comp
 <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
 <div><span class=day4></span> I don't care about you</div>
 <div be-inclusive=Friday></div>
-
 ```
 
-*data-be-inclusive* can also be used, in order to be strictly HTML5 compliant.
+... the last div will be appended with the template content.
+
+*data-enh-by-be-inclusive* can also be used, in order to be strictly HTML5 compliant.
 
 be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 
@@ -31,10 +30,6 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 2.  During template instantiation.
 
 The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
-
-Like other "isomorphic" be-decorated decorators, be-inclusive includes a [DTR plugin](https://github.com/bahrus/trans-render#extending-dtr-horizontally--via-dynamically-imported-plugins) for template instantiation.  But if be-inclusive has not been loaded yet, Без проблем, the DTR library ignores the template without including the template references, so that rendering isn't blocked, and then lets the support for enhancing live DOM tree that be-inclusive also provides accomplish the same thing (but with a little more rendering strain on the browser).
-
-Alternative attributes (be-inc?  be-string?) can be specified with the help of the [be-hive](https://github.com/bahrus/be-hive) web component, while avoiding conflicts with other libraries.
 
 
 ## Example 1 -- slotted content with Shadow DOM

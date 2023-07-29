@@ -1,6 +1,5 @@
-import {BeDecoratedProps, MinimalProxy} from 'be-decorated/types';
-import {IObserve} from 'be-observant/types';
-import {RenderContext} from 'trans-render/lib/types';
+import { ActionOnEventConfigs } from "trans-render/froop/types";
+import {IBE} from 'be-enhanced/types';
 
 
 export interface EndUserProps {

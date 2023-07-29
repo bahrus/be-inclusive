@@ -29,6 +29,34 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
+A significant shortcut be-inclusive provides is "JSX-like" includes.  This only works within a template, not for elements starting out outside any template.
+
+Within a template, rather than writing:
+
+```html
+<template id="Friday">
+    <div>It's <span class=day5></span> I'm in love</div>
+</template>
+
+...
+<div be-inclusive=Friday></div>
+
+```
+
+We can write:
+
+```html
+<template id="friday-">
+    <div>It's <span class=day5></span> I'm in love</div>
+</template>
+...
+<template>
+...
+<friday- bi></friday->
+</template>
+
+```
+
 The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
 
 
@@ -245,9 +273,7 @@ Please expand below to see the "code".
         <no-down bi><no-down>
     </template>
 
-    <div itemscope be-inclusive='{
-        "of": "chorus"
-    }'>
+    <div itemscope be-inclusive=chorus>
         <span itemprop=verb1>can't</span>
         <span itemprop=verb2>can't</span>
         <span itemprop=pronoun1>me</span>
@@ -299,10 +325,7 @@ Please expand below to see the "code".
         <div>On the other side</div>
     </p>
     <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadowRootMode": "open"
-        }'>
+        <div be-inclusive=chorus>
             <span slot=verb1>won't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>us</span>
@@ -328,33 +351,7 @@ The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides Type
 
 ## Example 2 - Without Shadow DOM
 
-A significant shortcut be-inclusive provides is "JSX-like" includes.  This only works within a template, not for elements starting out outside any template.
 
-Within a template, rather than writing:
-
-```html
-<template id="Friday">
-    <div>It's <span class=day5></span> I'm in love</div>
-</template>
-
-...
-<div be-inclusive=Friday></div>
-
-```
-
-We can write:
-
-```html
-<template id="friday">
-    <div>It's <span class=day5></span> I'm in love</div>
-</template>
-...
-<template>
-...
-<friday bi></friday>
-</template>
-
-```
 
 This also allows us to provide slots in the template, and light children, similar to ShadowDOM, but much lighter -- the weaving of the light children into the slots only occurs during template instantiation.
 

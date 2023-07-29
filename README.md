@@ -188,6 +188,140 @@ Please expand below to see the "code".
 ```
 </details>
 
+## Example 1a -- same example without shadow DOM
+
+<details>
+<summary>Sample Markup</summary>
+
+```html
+    <style>
+        div {
+        background-color: cornsilk;
+        }
+    </style>
+        
+    <h3><a href="https://www.youtube.com/watch?v=eAfyFTzZDMM" target="_blank">Beautiful</a></h3>
+    <h4>Christina Aguilera</h4>
+    
+    <p>Don't look at me</p>
+    <p>
+        <div>Everyday is so wonderful</div>
+        <div>Then suddenly</div>
+        <div>It's hard to breathe</div>
+        <div>Now and then I get insecure</div>
+        <div>From all the pain</div>
+        <div>I'm so ashamed</div>
+    </p>
+
+
+    <template id=is-beautiful>
+        <div itemscope>
+            <span itemprop=subjectIs></span> beautiful
+        </div>
+    </template>
+    <template id=no-down>
+        <div>So don't you bring me down today</div>
+    </template>
+    <template id=chorus>
+        <is-beautiful bi=open>
+            <span itemscope slot=subjectIs>
+                <span itemprop=subjectIs1></span>
+            </span>
+        </is-beautiful>
+        <div>No matter what they say</div>
+        <div prop-pronoun>Words
+            <span itemprop=verb1></span> bring <span itemprop=pronoun1></span> down</div>
+        <div>Oh no</div>
+        <is-beautiful bi=open>
+            <span itemscope itemprop=subjectIs>
+                <span itemprop=subjectIs2></slot>
+            </span>
+        </is-beautiful>
+        <div>In every single way</div>
+        <div>Yes words
+            <span itemprop=verb2></span> bring <span itemprop=pronoun2></span> down
+        </div>
+        <div>Oh no</div>
+        <no-down bi><no-down>
+    </template>
+
+    <div itemscope be-inclusive='{
+        "of": "chorus"
+    }'>
+        <span itemprop=verb1>can't</span>
+        <span itemprop=verb2>can't</span>
+        <span itemprop=pronoun1>me</span>
+        <span itemprop=pronoun2>me</span>
+        <span itemprop=subjectIs1>I am</span>
+        <span itemprop=subjectIs2>I am</span>
+    </div>
+
+    <p>
+        <div>To all your friends you're delirious</div>
+        <div>So consumed</div>
+        <div>In all your doom, ooh</div>
+        <div>Trying hard to fill the emptiness</div>
+        <div>The pieces gone</div>
+        <div>Left the puzzle undone</div>
+        <div>Ain't that the way it is</div>
+    </p>
+    <p>
+        <div be-inclusive='{
+            "of": "chorus"
+        }'>
+            <span itemprop=verb1>can't</span>
+            <span itemprop=verb2>can't</span>
+            <span itemprop=pronoun1>you</span>
+            <span itemprop=pronoun2>you</span>
+            <span itemprop=subjectIs1>You are</span>
+            <span itemprop=subjectIs2>You are</span>
+        </div>
+    </p>
+    <br>
+    <template id=no-matter>
+        <div itemscope>No matter what we <span itemprop=verb1></slot> (no matter what we <span name=verb2></span>)</div>
+    </template>
+    <no-matter bi=open>
+        <span slot=verb1>do</span>
+        <span slot=verb2>do</span>
+    </no-matter>
+    <br>
+    <no-matter bi=open>
+        <span slot=verb1>say</span>
+        <span slot=verb2>say</span>
+    </no-matter>
+    <div>We're the song inside the tune (yeah, oh yeah)</div>
+    <div>Full of beautiful mistakes</div>
+    <p>
+        <div>And everywhere we go (and everywhere we go)</div>
+        <div>The sun will always shine (the sun will always, always, shine)</div>
+        <div>And tomorrow we might awake</div>
+        <div>On the other side</div>
+    </p>
+    <p>
+        <div be-inclusive='{
+            "of": "chorus",
+            "shadowRootMode": "open"
+        }'>
+            <span slot=verb1>won't</span>
+            <span slot=verb2>can't</span>
+            <span slot=pronoun1>us</span>
+            <span slot=pronoun2>us</span>
+            <span slot=subjectIs1>We are</span>
+            <span slot=subjectIs2>We are</span>
+        </div>
+    </p>
+    <p>
+        <div>Oh, oh</div>
+        <div>Don't you bring me down today</div>
+        <div>Don't you bring me down, ooh</div>
+        <div>Today</div>
+    </p>
+
+```
+</details>
+
+
 To aid with avoiding syntax errors, which can be challenging when editing JSON inside HTML, a [vscode extension is available](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) to help with this.  That extension is compatible with [web-based vscode solutions](https://github.dev/bahrus/be-inclusive).
 
 The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides TypeScript support for editing such attributes, and compiles the content to HTML files (from a *.mjs/*.mts source).

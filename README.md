@@ -62,17 +62,17 @@ Please expand below to see the "code".
     </p>
 
 
-    <template id=beautiful>
+    <template id=is-beautiful>
         <style>
         div {
             background-color: burlywood;
         }
         </style>
         <div>
-        <slot name=subjectIs></slot> beautiful
+            <slot name=subjectIs></slot> beautiful
         </div>
     </template>
-    <template id=down>
+    <template id=no-down>
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
@@ -81,42 +81,33 @@ Please expand below to see the "code".
             background-color: paleturquoise;
         }
         </style>
-
-        <div be-inclusive='{
-            "of": "beautiful",
-            "shadow": "open"
-        }'>
+        <is-beautiful bi=open>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
-        </div>
+        </is-beautiful>
         <div>No matter what they say</div>
         <div prop-pronoun>Words
             <slot name=verb1></slot> bring
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <div be-inclusive='{
-            "of": "beautiful",
-            "shadow": "open"
-        }'>
+        <is-beautiful bi=open>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
-        </div>
+        </is-beautiful>
         <div>In every single way</div>
         <div>Yes words
             <slot name=verb2></slot> bring
             <slot name=pronoun2></slot> down
         </div>
         <div>Oh no</div>
-
-        <div be-inclusive=down></div>
-        <be-inclusive></be-inclusive>
+        <no-down bi><no-down>
     </template>
 
     <div be-inclusive='{
         "of": "chorus",
-        "shadow": "open"
+        "shadowRootMode": "open"
     }'>
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
@@ -138,7 +129,7 @@ Please expand below to see the "code".
     <p>
         <div be-inclusive='{
             "of": "chorus",
-            "shadow": "open"
+            "shadowRootMode": "open"
         }'>
             <span slot=verb1>can't</span>
             <span slot=verb2>can't</span>
@@ -157,21 +148,15 @@ Please expand below to see the "code".
         </style>
         No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
     </template>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadow": "open"
-    }'>
+    <no-matter bi=open>
         <span slot=verb1>do</span>
         <span slot=verb2>do</span>
-    </div>
+    </no-matter>
     <br>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadow": "open"
-    }'>
+    <no-matter bi=open>
         <span slot=verb1>say</span>
         <span slot=verb2>say</span>
-    </div>
+    </no-matter>
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
     <p>
@@ -183,7 +168,7 @@ Please expand below to see the "code".
     <p>
         <div be-inclusive='{
             "of": "chorus",
-            "shadow": "open"
+            "shadowRootMode": "open"
         }'>
             <span slot=verb1>won't</span>
             <span slot=verb2>can't</span>

@@ -109,6 +109,7 @@ Please expand below to see the "code".
             background-color: paleturquoise;
         }
         </style>
+
         <is-beautiful bi=open>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>

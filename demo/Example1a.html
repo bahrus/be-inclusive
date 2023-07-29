@@ -36,9 +36,9 @@
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <b-i href="#beautiful" shadowrootmode="open">
-            <span slot-bot="subjectIs">
-                <slot-bot name="subjectIs1"></slot-bot>
+        <b-i href=#beautiful>
+            <span slot-bot=subjectIs>
+                <slot-bot name=subjectIs1></slot-bot>
             </span>
         </b-i>
 
@@ -47,16 +47,12 @@
             <slot-bot name=verb1></slot-bot> bring
             <slot-bot name=pronoun1></slot-bot> down</div>
         <div>Oh no</div>
-        <bi be-inclusive='{
-            "of": "beautiful",
-            "shadow": "open"
-        }'>
+        <b-i href=#beautiful>
             <span slot-bot=subjectIs>
                 <slot-bot name=subjectIs2></slot-bot>
             </span>
-        </bi>
+        </b-i>
         <div>In every single way</div>
-        <abc></abc>
         <div>Yes words
             <slot-bot name=verb2></slot-bot> bring
             <slot-bot name=pronoun2></slot-bot> down
@@ -66,17 +62,15 @@
         <div be-inclusive=down></div>
     </template>
 
-    <div be-inclusive='{
-        "of": "chorus",
-        "shadow": "open"
-    }'>
+    <b-i href=#chorus>
         <span slot-bot=verb1>can't</span>
         <span slot-bot=verb2>can't</span>
         <span slot-bot=pronoun1>me</span>
         <span slot-bot=pronoun2>me</span>
         <span slot-bot=subjectIs1>I am</span>
         <span slot-bot=subjectIs2>I am</span>
-    </div>
+    </b-i>
+
 
     <p>
         <div>To all your friends you're delirious</div>
@@ -88,42 +82,29 @@
         <div>Ain't that the way it is</div>
     </p>
     <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadow": "open"
-        }'>
+        <b-i href=#chorus>
             <span slot-bot=verb1>can't</span>
             <span slot-bot=verb2>can't</span>
             <span slot-bot=pronoun1>you</span>
             <span slot-bot=pronoun2>you</span>
             <span slot-bot=subjectIs1>You are</span>
             <span slot-bot=subjectIs2>You are</span>
-        </div>
+        </b-i>
     </p>
     <br>
     <template id=no-matter>
-        <style>
-        :host {
-            background-color: blanchedalmond;
-        }
-        </style>
         No matter what we <slot-bot name=verb1></slot-bot> (no matter what we <slot-bot name=verb2></slot-bot>)
     </template>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadow": "open"
-    }'>
+    <b-i href=#no-matter>
         <span slot-bot=verb1>do</span>
         <span slot-bot=verb2>do</span>
-    </div>
+    </b-i>
     <br>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadow": "open"
-    }'>
+    <b-i href=#no-matter>
         <span slot-bot=verb1>say</span>
         <span slot-bot=verb2>say</span>
-    </div>
+    </b-i>
+
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
     <p>
@@ -133,17 +114,14 @@
         <div>On the other side</div>
     </p>
     <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadow": "open"
-        }'>
+        <b-i href=#chorus>
             <span slot-bot=verb1>won't</span>
             <span slot-bot=verb2>can't</span>
             <span slot-bot=pronoun1>us</span>
             <span slot-bot=pronoun2>us</span>
             <span slot-bot=subjectIs1>We are</span>
             <span slot-bot=subjectIs2>We are</span>
-        </div>
+        </b-i>
     </p>
     <p>
         <div>Oh, oh</div>

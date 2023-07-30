@@ -66,7 +66,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         const templ = this.#templSearcher(of, self);
         if(templ === undefined) return;
         const {birtualize} = await import('trans-render/lib/birtualize.js');
-        await birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, pp));
+        await birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self));
         const clone = templ.content.cloneNode(true) as DocumentFragment;
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
@@ -105,7 +105,12 @@ const xe = new XE<AP, Actions>({
             ...propInfo
         },
         actions:{
-
+            onOf:{
+                ifAllOf:['of']
+            },
+            onModel:{
+                ifAllOf:['model']
+            }
         }
     },
     superclass: BeInclusive

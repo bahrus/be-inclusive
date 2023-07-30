@@ -25,6 +25,6 @@ export type POA = [PAP | undefined, ActionOnEventConfigs<PAP, Actions>]
 
 export interface Actions{
     onOf(self: this): Promise<void>;
-    // onModel(self: this): void;
+    onModel(self: this): Promise<void>;
     // finale(proxy: Proxy, self: Element, beDecor: BeDecoratedProps): void;
 }

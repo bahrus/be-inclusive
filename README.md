@@ -197,7 +197,7 @@ Please expand below to see the "code".
 ```
 </details>
 
-## Example 1a -- same example without shadow DOM
+## Example 1b -- same example with shadow DOM
 
 <details>
 <summary>Sample Markup</summary>

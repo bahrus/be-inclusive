@@ -28,67 +28,53 @@
 
 
     <template id=beautiful>
-        <style>
-        div {
-            background-color: burlywood;
-        }
-        </style>
         <div>
-        <slot name=subjectIs></slot> beautiful
+            <slot-bot name=subjectIs></slot-bot> beautiful
         </div>
     </template>
     <template id=down>
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <style>
-        div {
-            background-color: paleturquoise;
-        }
-        </style>
-
-        <div be-inclusive='{
-            "of": "beautiful",
-            "shadowRootMode": "open"
-        }'>
-            <span slot=subjectIs>
-                <slot name=subjectIs1></slot>
+        <b-i href=#beautiful>
+            <span slot-bot=subjectIs>
+                <slot-bot name=subjectIs1></slot-bot>
             </span>
-        </div>
+        </b-i>
+
         <div>No matter what they say</div>
         <div prop-pronoun>Words
-            <slot name=verb1></slot> bring
-            <slot name=pronoun1></slot> down</div>
+            <slot-bot name=verb1></slot-bot> bring
+            <slot-bot name=pronoun1></slot-bot> down</div>
         <div>Oh no</div>
-        <div be-inclusive='{
-            "of": "beautiful",
-            "shadowRootMode": "open"
-        }'>
-            <span slot=subjectIs>
-                <slot name=subjectIs2></slot>
+        <b-i href=#beautiful>
+            <span slot-bot=subjectIs>
+                <slot-bot name=subjectIs2></slot-bot>
             </span>
-        </div>
+        </b-i>
         <div>In every single way</div>
         <div>Yes words
-            <slot name=verb2></slot> bring
-            <slot name=pronoun2></slot> down
+            <slot-bot name=verb2></slot-bot> bring
+            <slot-bot name=pronoun2></slot-bot> down
         </div>
         <div>Oh no</div>
 
         <div be-inclusive=down></div>
     </template>
 
-    <div be-inclusive='{
+    <div  be-inclusive='{
         "of": "chorus",
         "shadowRootMode": "open"
     }'>
-        <span slot=verb1>can't</span>
-        <span slot=verb2>can't</span>
-        <span slot=pronoun1>me</span>
-        <span slot=pronoun2>me</span>
-        <span slot=subjectIs1>I am</span>
-        <span slot=subjectIs2>I am</span>
+        <span slot-bot=verb1>can't</span>
+        <span slot-bot=verb2>can't</span>
+        <span slot-bot=pronoun1>me</span>
+        <span slot-bot=pronoun2>me</span>
+        <span slot-bot=subjectIs1>I am</span>
+        <span slot-bot=subjectIs2>I am</span>
     </div>
+
+
 
     <p>
         <div>To all your friends you're delirious</div>
@@ -104,38 +90,34 @@
             "of": "chorus",
             "shadowRootMode": "open"
         }'>
-            <span slot=verb1>can't</span>
-            <span slot=verb2>can't</span>
-            <span slot=pronoun1>you</span>
-            <span slot=pronoun2>you</span>
-            <span slot=subjectIs1>You are</span>
-            <span slot=subjectIs2>You are</span>
+            <span slot-bot=verb1>can't</span>
+            <span slot-bot=verb2>can't</span>
+            <span slot-bot=pronoun1>you</span>
+            <span slot-bot=pronoun2>you</span>
+            <span slot-bot=subjectIs1>You are</span>
+            <span slot-bot=subjectIs2>You are</span>
         </div>
     </p>
     <br>
     <template id=no-matter>
-        <style>
-        :host {
-            background-color: blanchedalmond;
-        }
-        </style>
-        No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
+        No matter what we <slot-bot name=verb1></slot-bot> (no matter what we <slot-bot name=verb2></slot-bot>)
     </template>
     <div be-inclusive='{
         "of": "no-matter",
         "shadowRootMode": "open"
     }'>
-        <span slot=verb1>do</span>
-        <span slot=verb2>do</span>
+        <span slot-bot=verb1>do</span>
+        <span slot-bot=verb2>do</span>
     </div>
     <br>
     <div be-inclusive='{
         "of": "no-matter",
         "shadowRootMode": "open"
     }'>
-        <span slot=verb1>say</span>
-        <span slot=verb2>say</span>
+        <span slot-bot=verb1>say</span>
+        <span slot-bot=verb2>say</span>
     </div>
+
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
     <p>
@@ -149,12 +131,12 @@
             "of": "chorus",
             "shadowRootMode": "open"
         }'>
-            <span slot=verb1>won't</span>
-            <span slot=verb2>can't</span>
-            <span slot=pronoun1>us</span>
-            <span slot=pronoun2>us</span>
-            <span slot=subjectIs1>We are</span>
-            <span slot=subjectIs2>We are</span>
+            <span slot-bot=verb1>won't</span>
+            <span slot-bot=verb2>can't</span>
+            <span slot-bot=pronoun1>us</span>
+            <span slot-bot=pronoun2>us</span>
+            <span slot-bot=subjectIs1>We are</span>
+            <span slot-bot=subjectIs2>We are</span>
         </div>
     </p>
     <p>
@@ -167,12 +149,10 @@
     <script type=importmap>
         {
             "imports": {
-                "trans-render/": "../node_modules/trans-render/",
-                "xtal-element/": "../node_modules/xtal-element/",
-                "be-decorated/": "../node_modules/be-decorated/",
-                "on-to-me/": "../node_modules/on-to-me/",
-                "be-observant/": "../node_modules/be-observant/",
-                "be-hive/": "../node_modules/be-hive/"
+                "be-enhanced/": "../node_modules/be-enhanced/",
+                "be-hive/": "../node_modules/be-hive/",
+                "trans-render/": "../trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/"
             }
         }
     </script>

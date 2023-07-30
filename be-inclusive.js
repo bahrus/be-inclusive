@@ -46,7 +46,7 @@ export class BeInclusive extends BE {
         let templ = this.#templateLookup[of];
         const { enhancedElement, ctx } = self;
         if (templ === undefined) {
-            templ = upShadowSearch(self, of);
+            templ = upShadowSearch(enhancedElement, of);
             if (templ === null && ctx.shadowPeer !== undefined) {
                 templ = upShadowSearch(ctx.shadowPeer, of);
             }

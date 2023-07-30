@@ -49,7 +49,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         let templ = this.#templateLookup[of];
         const {enhancedElement, ctx} = self;
         if(templ === undefined){
-            templ = upShadowSearch(self, of) as HTMLTemplateElement;
+            templ = upShadowSearch(enhancedElement, of) as HTMLTemplateElement;
             if(templ === null && ctx.shadowPeer !== undefined){
                 templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
             }

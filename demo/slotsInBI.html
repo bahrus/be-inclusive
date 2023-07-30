@@ -15,10 +15,14 @@
     </template>
     <template id=main>
         <b-i href=#test>
-            <div slot-bot=test-slot>I am here</div>
+            <div slot-bot=test-slot>
+                <slot-bot name=outer-slot></slot-bot>
+            </div>
         </b-i>
     </template>
-    <div be-inclusive=main></div>
+    <div be-inclusive=main>
+        <span slot-bot=outer-slot>I am here</span>
+    </div>
     <script type=importmap>
         {
             "imports": {

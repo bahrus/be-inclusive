@@ -1,51 +1,50 @@
-import { define } from 'be-decorated/DE.js';
-import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
+import { BE, propDefaults, propInfo } from 'be-enhanced/BE.js';
+import { XE } from 'xtal-element/XE.js';
 import { register } from 'be-hive/register.js';
 import { DTR } from 'trans-render/lib/DTR.js';
-import { unsubscribe } from 'trans-render/lib/subscribe.js';
-export class BeInclusiveController {
-    didInclude = false;
-    finale(proxy, target, bdp) {
-        unsubscribe(proxy);
+import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
+export class BeInclusive extends BE {
+    static get beConfig() {
+        return {
+            parse: true,
+            primaryProp: 'of'
+        };
     }
-    async onOf(pp) {
-        if (this.didInclude)
+    #didInclude = false;
+    async onOf(self) {
+        if (this.#didInclude)
             return;
-        if (pp.ctx === undefined) {
-            pp.ctx = {
-                plugins: {
-                    ...pp.transformPlugins,
-                    beInclusive: true
-                },
-                shadowPeer: pp.self,
+        const { enhancedElement } = self;
+        if (self.ctx === undefined) {
+            self.ctx = {
+                shadowPeer: enhancedElement,
             };
         }
-        const { of, shadow, transform, model, prepend, ctx } = pp;
+        const { of, shadowRootMode, transform, model, bePrepended, ctx } = self;
         ctx.host = model || {};
         ctx.match = { ...ctx.match, ...transform };
-        const { proxy, self } = pp;
         if (of === undefined)
             return;
         if (typeof of === 'string') {
-            await this.doOneOf(pp, self, of, shadow, transform, model, !!prepend, ctx);
+            await this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
         }
         else {
             const { length } = of;
             for (let i = 0; i < length; i++) {
                 const oneOf = of[i];
                 if (typeof oneOf === 'string') {
-                    await this.doOneOf(pp, self, oneOf, shadow, transform, model, !!prepend, ctx);
+                    await this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
                 }
                 else {
-                    await this.doOneOf(pp, self, oneOf.of, oneOf.shadow, oneOf.transform, model, !!prepend, ctx);
+                    await this.doOneOf(self, enhancedElement, oneOf.of, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
                 }
             }
         }
     }
     #templateLookup = {};
-    #templSearcher(of, pp) {
+    #templSearcher(of, self) {
         let templ = this.#templateLookup[of];
-        const { self, ctx } = pp;
+        const { enhancedElement, ctx } = self;
         if (templ === undefined) {
             templ = upShadowSearch(self, of);
             if (templ === null && ctx.shadowPeer !== undefined) {
@@ -61,8 +60,8 @@ export class BeInclusiveController {
         }
         return templ;
     }
-    async doOneOf(pp, target, of, shadow, transform, model, prepend, ctx) {
-        const templ = this.#templSearcher(of, pp);
+    async doOneOf(self, target, of, shadowRootMode, transform, model, prepend, ctx) {
+        const templ = this.#templSearcher(of, self);
         if (templ === undefined)
             return;
         const { birtualize } = await import('trans-render/lib/birtualize.js');
@@ -70,9 +69,9 @@ export class BeInclusiveController {
         const clone = templ.content.cloneNode(true);
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
-        if (shadow !== undefined) {
+        if (shadowRootMode !== undefined) {
             if (target.shadowRoot === null) {
-                target.attachShadow({ mode: shadow });
+                target.attachShadow({ mode: shadowRootMode });
             }
             target.shadowRoot[verb](clone);
         }
@@ -81,39 +80,28 @@ export class BeInclusiveController {
         }
     }
     #lastModel;
-    async onModel(pp) {
-        const { proxy } = this;
-        const { model, ctx } = pp;
+    async onModel(self) {
+        const { enhancedElement, model, ctx } = self;
         if (model === this.#lastModel)
             return;
         ctx.host = model;
-        await DTR.transform(proxy.shadowRoot || proxy, ctx);
+        await DTR.transform(enhancedElement.shadowRoot || enhancedElement, ctx);
     }
 }
 const tagName = 'be-inclusive';
 const ifWantsToBe = 'inclusive';
 const upgrade = '*';
-define({
+const xe = new XE({
     config: {
         tagName,
         propDefaults: {
-            virtualProps: ['of', 'shadow', 'transform', 'model', 'modelSrc', 'ctx', 'prepend', 'transformPlugins'],
-            upgrade,
-            ifWantsToBe,
-            primaryProp: 'of',
-            finale: 'finale',
+            ...propDefaults,
         },
-        actions: {
-            onOf: {
-                ifAllOf: ['of']
-            },
-            onModel: {
-                ifAllOf: ['model']
-            }
-        }
+        propInfo: {
+            ...propInfo
+        },
+        actions: {}
     },
-    complexPropDefaults: {
-        controller: BeInclusiveController
-    }
+    superclass: BeInclusive
 });
 register(ifWantsToBe, upgrade, tagName);

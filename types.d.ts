@@ -1,5 +1,6 @@
 import { ActionOnEventConfigs } from "trans-render/froop/types";
 import {IBE} from 'be-enhanced/types';
+import {RenderContext} from 'trans-render/lib/types';
 
 
 export interface EndUserProps extends IBE{
@@ -11,6 +12,7 @@ export interface EndUserProps extends IBE{
 }
 
 export interface AllProps extends EndUserProps{
+    ctx: RenderContext,
 }
 
 export type AP = AllProps;
@@ -22,7 +24,7 @@ export type ProPAP = Promise<PAP>;
 export type POA = [PAP | undefined, ActionOnEventConfigs<PAP, Actions>]
 
 export interface Actions{
-    // onOf(self: this): void;
+    onOf(self: this): Promise<void>;
     // onModel(self: this): void;
     // finale(proxy: Proxy, self: Element, beDecor: BeDecoratedProps): void;
 }

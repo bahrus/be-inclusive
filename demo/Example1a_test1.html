@@ -32,6 +32,9 @@
             <slot-bot name=subjectIs></slot-bot> beautiful
         </div>
     </template>
+    <template id=down>
+        <div>So don't you bring me down today</div>
+    </template>
     <template id=chorus>
         <b-i href=#beautiful>
             <span slot-bot=subjectIs>
@@ -39,6 +42,24 @@
             </span>
         </b-i>
 
+        <div>No matter what they say</div>
+        <div prop-pronoun>Words
+            <slot-bot name=verb1></slot-bot> bring
+            <slot-bot name=pronoun1></slot-bot> down</div>
+        <div>Oh no</div>
+        <b-i href=#beautiful>
+            <span slot-bot=subjectIs>
+                <slot-bot name=subjectIs2></slot-bot>
+            </span>
+        </b-i>
+        <div>In every single way</div>
+        <div>Yes words
+            <slot-bot name=verb2></slot-bot> bring
+            <slot-bot name=pronoun2></slot-bot> down
+        </div>
+        <div>Oh no</div>
+
+        <div be-inclusive=down></div>
     </template>
 
     <div be-inclusive=chorus>

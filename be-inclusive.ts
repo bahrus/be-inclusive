@@ -6,6 +6,7 @@ import {register} from 'be-hive/register.js';
 import {RenderContext} from 'trans-render/lib/types';
 import {DTR} from 'trans-render/lib/DTR.js';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
+import {birtualize} from 'trans-render/lib/birtualize.js';
 
 export class BeInclusive extends BE<AP, Actions> implements Actions{
     static override get beConfig(){
@@ -65,7 +66,6 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     async doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, transform: any, model: any, prepend: boolean, ctx: RenderContext){
         const templ = this.#templSearcher(of, self);
         if(templ === undefined) return;
-        const {birtualize} = await import('trans-render/lib/birtualize.js');
         await birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self));
         const clone = templ.content.cloneNode(true) as DocumentFragment;
         await DTR.transform(clone, ctx);
@@ -76,6 +76,16 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
             }
             target.shadowRoot![verb](clone);
         }else{
+            const slots =  target.querySelectorAll('[slot-bot]');
+            for(const slot of slots){
+                const slotName = slot.getAttribute('slot-bot')!;
+                const slotDestiny = clone.querySelector(`slot-bot[name=${slotName}]`);
+                if(slotDestiny !== null){
+                    slotDestiny.appendChild(slot);
+                }else{
+                    slot.remove();
+                }
+            }
             target[verb](clone);
         }
     }

@@ -2,30 +2,27 @@ import { ActionOnEventConfigs } from "trans-render/froop/types";
 import {IBE} from 'be-enhanced/types';
 
 
-export interface EndUserProps {
-    of: string | (string | BeInclusiveVirtualProps)[];
-    shadow?: 'open' | 'closed' | undefined;
+export interface EndUserProps extends IBE{
+    of: string | (string | EndUserProps)[];
+    shadowRootMode?: 'open' | 'closed' | undefined;
     transform?: any,
     model?: any,
-    modelSrc?: string | IObserve,
-    prepend?: boolean,
-    transformPlugins?: {[key: string]: boolean},
+    bePrepended?: boolean,
 }
 
-export interface VirtualProps extends EndUserProps, MinimalProxy{
-    ctx: RenderContext,
+export interface AllProps extends EndUserProps{
 }
 
-export type Proxy = Element & VirtualProps;
+export type AP = AllProps;
 
-export interface ProxyProps extends VirtualProps{
-    proxy: Proxy,
-}
+export type PAP = Partial<AP>;
 
-export type PP = ProxyProps;
+export type ProPAP = Promise<PAP>;
+
+export type POA = [PAP | undefined, ActionOnEventConfigs<PAP, Actions>]
 
 export interface Actions{
-    onOf(self: this): void;
-    onModel(self: this): void;
-    finale(proxy: Proxy, self: Element, beDecor: BeDecoratedProps): void;
+    // onOf(self: this): void;
+    // onModel(self: this): void;
+    // finale(proxy: Proxy, self: Element, beDecor: BeDecoratedProps): void;
 }

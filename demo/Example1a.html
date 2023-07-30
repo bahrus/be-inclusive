@@ -62,14 +62,15 @@
         <div be-inclusive=down></div>
     </template>
 
-    <b-i href=#chorus>
+    <div be-inclusive=chorus>
         <span slot-bot=verb1>can't</span>
         <span slot-bot=verb2>can't</span>
         <span slot-bot=pronoun1>me</span>
         <span slot-bot=pronoun2>me</span>
         <span slot-bot=subjectIs1>I am</span>
         <span slot-bot=subjectIs2>I am</span>
-    </b-i>
+    </div>
+
 
 
     <p>
@@ -82,28 +83,28 @@
         <div>Ain't that the way it is</div>
     </p>
     <p>
-        <b-i href=#chorus>
+        <div href=#chorus>
             <span slot-bot=verb1>can't</span>
             <span slot-bot=verb2>can't</span>
             <span slot-bot=pronoun1>you</span>
             <span slot-bot=pronoun2>you</span>
             <span slot-bot=subjectIs1>You are</span>
             <span slot-bot=subjectIs2>You are</span>
-        </b-i>
+        </div>
     </p>
     <br>
     <template id=no-matter>
         No matter what we <slot-bot name=verb1></slot-bot> (no matter what we <slot-bot name=verb2></slot-bot>)
     </template>
-    <b-i href=#no-matter>
+    <div be-inclusive=no-matter>
         <span slot-bot=verb1>do</span>
         <span slot-bot=verb2>do</span>
-    </b-i>
+    </div>
     <br>
-    <b-i href=#no-matter>
+    <div be-inclusive=no-matter>
         <span slot-bot=verb1>say</span>
         <span slot-bot=verb2>say</span>
-    </b-i>
+    </div>
 
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
@@ -114,14 +115,14 @@
         <div>On the other side</div>
     </p>
     <p>
-        <b-i href=#chorus>
+        <div be-inclusive=chorus>
             <span slot-bot=verb1>won't</span>
             <span slot-bot=verb2>can't</span>
             <span slot-bot=pronoun1>us</span>
             <span slot-bot=pronoun2>us</span>
             <span slot-bot=subjectIs1>We are</span>
             <span slot-bot=subjectIs2>We are</span>
-        </b-i>
+        </div>
     </p>
     <p>
         <div>Oh, oh</div>

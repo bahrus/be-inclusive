@@ -79,7 +79,7 @@ export class BeInclusive extends BE {
             const slots = target.querySelectorAll('[slot-bot]');
             for (const slot of slots) {
                 const slotName = slot.getAttribute('slot-bot');
-                const slotDestiny = clone.querySelector(`slot-bot[name=${slotName}]`);
+                const slotDestiny = clone.querySelector(`slot-bot[name="${slotName}"]`);
                 if (slotDestiny !== null) {
                     slotDestiny.appendChild(slot);
                 }

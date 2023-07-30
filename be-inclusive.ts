@@ -8,6 +8,7 @@ import {DTR} from 'trans-render/lib/DTR.js';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {birtualize} from 'trans-render/lib/birtualize.js';
 
+const birtualized = new Set<HTMLTemplateElement>();
 export class BeInclusive extends BE<AP, Actions> implements Actions{
     static override get beConfig(){
         return {
@@ -63,10 +64,16 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         }
         return templ;       
     }
+    
     async doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, transform: any, model: any, prepend: boolean, ctx: RenderContext){
         const templ = this.#templSearcher(of, self);
         if(templ === undefined) return;
-        await birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self));
+        if(!birtualized.has(templ)){
+            birtualized.add(templ);
+            birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self));
+            
+        }
+        
         const clone = templ.content.cloneNode(true) as DocumentFragment;
         await DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';

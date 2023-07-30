@@ -13,7 +13,18 @@ export class BeInclusive extends BE {
         };
     }
     #didInclude = false;
+    #timoutHandler = undefined;
     async onOf(self) {
+        const { debouncePeriod } = self;
+        const debouncePeriod2 = debouncePeriod || 16;
+        if (this.#timoutHandler !== undefined) {
+            clearTimeout(this.#timoutHandler);
+        }
+        this.#timoutHandler = setTimeout(() => {
+            this.onOfCommit(self);
+        }, debouncePeriod2);
+    }
+    async onOfCommit(self) {
         if (this.#didInclude)
             return;
         const { enhancedElement } = self;
@@ -42,6 +53,7 @@ export class BeInclusive extends BE {
                 }
             }
         }
+        this.#didInclude = true;
     }
     #templateLookup = {};
     #templSearcher(of, self) {

@@ -9,6 +9,7 @@ export interface EndUserProps extends IBE{
     transform?: any,
     model?: any,
     bePrepended?: boolean,
+    debouncePeriod?: number,
 }
 
 export interface AllProps extends EndUserProps{

@@ -18,8 +18,19 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     }
 
     #didInclude = false;
-    
+    #timoutHandler: number | undefined = undefined;
     async onOf(self: this){
+        const {debouncePeriod} = self;
+        const debouncePeriod2 = debouncePeriod || 16;
+        if(this.#timoutHandler !== undefined){
+            clearTimeout(this.#timoutHandler);
+        }
+        this.#timoutHandler = setTimeout(() => {
+            this.onOfCommit(self);
+        }, debouncePeriod2);
+    }
+
+    async onOfCommit(self: this){
         if(this.#didInclude) return;
         const {enhancedElement} = self;
         if(self.ctx === undefined){
@@ -44,6 +55,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
                 }
             }
         }
+        this.#didInclude = true;
     }
 
     #templateLookup: {[key: string]: HTMLTemplateElement} = {};

@@ -27,7 +27,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         }
         this.#timoutHandler = setTimeout(() => {
             this.onOfCommit(self);
-        }, debouncePeriod2);
+        }, debouncePeriod2) as any as number;
     }
 
     async onOfCommit(self: this){

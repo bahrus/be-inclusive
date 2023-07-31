@@ -28,6 +28,12 @@
 
 
     <template id=beautiful>
+        <style>
+            div {
+                background-color: burlywood;
+            }
+        </style>
+    
         <div>
             <slot name=subjectIs></slot> beautiful
         </div>
@@ -36,9 +42,9 @@
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <b-i href=#beautiful>
-            <span slot-bot=subjectIs>
-                <slot-bot name=subjectIs1></slot-bot>
+        <b-i href=#beautiful shadowrootmode=open>
+            <span slot=subjectIs>
+                <slot name=subjectIs1></slot>
             </span>
         </b-i>
 

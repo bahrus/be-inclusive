@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Example 2</title>
 </head>
 <body>
     <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
@@ -14,15 +14,15 @@
     <template id="again2">And again, and again, again and something's gone wrong again</template>
     <template id="again3">And again, and again, again and something goes wrong again</template>
     <template id="agains">
-        <again bi></again><br>
-        <again2 bi></again2><br>
-        <title bi></title>
+        <b-i href=#again></b-i><br>
+        <b-i href=#again2></b-i><br>
+        <b-i href=#title></b-i>
     </template>
     <template id="agains2">
-        <title2 bi></title2><br>
-        <again bi></again><br>
-        <again3 bi></again3><br>
-        <title2 bi></title2>
+        <b-i href=#title2></b-i><br>
+        <b-i href=#again></b-i><br>
+        <b-i href=#again3></b-i><br>
+        <b-i href=#title2></b-i>
     </template>
     <template id="bus">
         <span>Nothing ever happens to people like us</span><br>
@@ -34,12 +34,12 @@
         <div>
             <span>Tried to find my sock</span><br>
             <span>No good, it's lost</span><br>
-            <title bi></title><br>
+            <b-i href=#title></b-i><br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <title bi></title>
+            <b-i href=#title></bi>
         </div>
-        <agains bi></agains>
+        <b-i href=#agains></b-i>
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
@@ -48,12 +48,12 @@
             <title bi></title><br>
             <title bi></title>
         </div>
-        <agains bi></agains>
-        <bus bi></bus>
-        <agains2 bi></agains2>
-        <agains2 bi></agains2>
-        <bus bi></bus>
-        <agains2 bi></agains2>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
@@ -61,12 +61,12 @@
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
         <div>
-            <title2 bi></title2><br>
-            <again bi></again><br>
-            <again3 bi></again><br>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#again></b-i><br>
+            <b-i href=#again3></b-i>
             <span>Ah, something goes wrong again</span><br>
-            <title2 bi></title2><br>
-            <title2 bi></title2>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#title2></b-i>
         </div>
     </template>
 
@@ -83,12 +83,11 @@
     <script type=importmap>
         {
             "imports": {
-                "trans-render/": "../node_modules/trans-render/",
-                "xtal-element/": "../node_modules/xtal-element/",
-                "be-decorated/": "../node_modules/be-decorated/",
-                "on-to-me/": "../node_modules/on-to-me/",
-                "be-observant/": "../node_modules/be-observant/",
-                "be-hive/": "../node_modules/be-hive/"
+                
+                "be-enhanced/": "../node_modules/be-enhanced/",
+                "be-hive/": "../node_modules/be-hive/",
+                "trans-render/": "../trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/"
             }
         }
     </script>

@@ -574,7 +574,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
 ## Example 4 - Applying DRY to the song of the material universe
 
 
-The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved over server-rendering all ths HTML by utilizing templates for the purpose of reducing repeatng HTML (yes, it even improves over HTML with gzip in place).
+The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved over server-rendering all ths HTML by utilizing templates for the purpose of reducing repeating HTML (yes, it even improves over HTML with gzip in place).
 
 In order to support this, some features have been added to *be-inclusive* -- specifying arrays of includes, and prepending when needed.
 

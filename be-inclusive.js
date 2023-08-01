@@ -13,14 +13,14 @@ export class BeInclusive extends BE {
         };
     }
     #didInclude = false;
-    #timoutHandler = undefined;
+    #timeoutHandler = undefined;
     async onOf(self) {
         const { debouncePeriod } = self;
         const debouncePeriod2 = debouncePeriod || 16;
-        if (this.#timoutHandler !== undefined) {
-            clearTimeout(this.#timoutHandler);
+        if (this.#timeoutHandler !== undefined) {
+            clearTimeout(this.#timeoutHandler);
         }
-        this.#timoutHandler = setTimeout(() => {
+        this.#timeoutHandler = setTimeout(() => {
             this.onOfCommit(self);
         }, debouncePeriod2);
     }
@@ -132,7 +132,7 @@ const xe = new XE({
                 ifAllOf: ['of']
             },
             onModel: {
-                ifAllOf: ['model']
+                ifAllOf: ['model', 'ctx']
             }
         }
     },

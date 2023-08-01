@@ -18,14 +18,14 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     }
 
     #didInclude = false;
-    #timoutHandler: number | undefined = undefined;
+    #timeoutHandler: number | undefined = undefined;
     async onOf(self: this){
         const {debouncePeriod} = self;
         const debouncePeriod2 = debouncePeriod || 16;
-        if(this.#timoutHandler !== undefined){
-            clearTimeout(this.#timoutHandler);
+        if(this.#timeoutHandler !== undefined){
+            clearTimeout(this.#timeoutHandler);
         }
-        this.#timoutHandler = setTimeout(() => {
+        this.#timeoutHandler = setTimeout(() => {
             this.onOfCommit(self);
         }, debouncePeriod2) as any as number;
     }
@@ -138,7 +138,7 @@ const xe = new XE<AP, Actions>({
                 ifAllOf:['of']
             },
             onModel:{
-                ifAllOf:['model']
+                ifAllOf:['model', 'ctx']
             }
         }
     },

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Example 3</title>
 </head>
 <body>
     <a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
@@ -22,19 +22,21 @@
         <div>It's <span class=day5></span> I'm in love</div>
     </template>
     <template id="Opening">
-        <div>I don't care if <span class=day1></span>'s blue</div>
-        <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
-        <div><span class=day4></span> I don't care about you</div>
-        <div be-inclusive=Friday></div>
+        <div class=stanza>
+            <div>I don't care if <span class=day1></span>'s blue</div>
+            <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+            <div><span class=day4></span> I don't care about you</div>
+            <b-i href=#Friday></b-i>
+        </div>
     </template>
 
     <template id="love">
-        <div be-inclusive=Opening class="stanza"></div>
+        <b-i href=#Opening></b-i>
         <div class="stanza">
             <div><span class=day1></span> you can fall apart</div>
             <div><span class=day2></span> <span class=day3></span> break my heart</div>
             <div>Oh, <span class=day4></span> doesn't even start</div>
-            <div be-inclusive=Friday></div>
+            <b-i href=#Friday></b-i>
         </div>
         <div class="stanza">
             <div><span class=day6></span> wait</div>
@@ -46,13 +48,13 @@
             <div>I don't care if <span class=day1></span>'s black</div>
             <div><span class=day2></span>, <span class=day3></span> heart attack</div>
             <div><span class=day4></span> never looking back</div>
-            <div be-inclusive=Friday></div>
+            <b-i href=#Friday></b-i>
         </div>
         <div class="stanza">
             <div><span class=day1></span> you can hold your head</div>
             <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
             <div>Or <span class=day4></span> watch the walls instead</div>
-            <div be-inclusive=Friday></div>
+            <b-i href=#Friday></b-i>
         </div>
         <div class="stanza">
             <div><span class=day6></span> wait</div>
@@ -80,7 +82,7 @@
             <div><span class=day1></span> you can fall apart</div>
             <div><span class=day2></span>, <span class=day3></span> break my heart</div>
             <div><span class=day4></span> doesn't even start</div>
-            <div be-inclusive=Friday></div>
+            <b-i href=#Friday></b-i>
         </div>
         <style>
             .stanza{
@@ -114,12 +116,10 @@
     <script type=importmap>
         {
             "imports": {
+                "be-enhanced/": "../node_modules/be-enhanced/",
+                "be-hive/": "../node_modules/be-hive/",
                 "trans-render/": "../node_modules/trans-render/",
-                "xtal-element/": "../node_modules/xtal-element/",
-                "be-decorated/": "../node_modules/be-decorated/",
-                "on-to-me/": "../node_modules/on-to-me/",
-                "be-observant/": "../node_modules/be-observant/",
-                "be-hive/": "../node_modules/be-hive/"
+                "xtal-element/": "../node_modules/xtal-element/"
             }
         }
     </script>

@@ -15,17 +15,7 @@ export class BeInclusive extends BE {
     }
     #didInclude = false;
     #timeoutHandler = undefined;
-    async onOf(self) {
-        const { debouncePeriod } = self;
-        const debouncePeriod2 = debouncePeriod || 16;
-        if (this.#timeoutHandler !== undefined) {
-            clearTimeout(this.#timeoutHandler);
-        }
-        this.#timeoutHandler = setTimeout(() => {
-            this.onOfCommit(self);
-        }, debouncePeriod2);
-    }
-    onOfCommit(self) {
+    onOf(self) {
         if (this.#didInclude)
             return;
         const { enhancedElement } = self;
@@ -129,7 +119,7 @@ const xe = new XE({
             ...propInfo
         },
         actions: {
-            onOfCommit: {
+            onOf: {
                 ifAllOf: ['of']
             },
             onModel: {

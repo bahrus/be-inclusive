@@ -581,6 +581,7 @@ In order to support this, some features have been added to *be-inclusive* -- spe
 The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/baseline/demo/periodic_table.html).
 
 
+[TODO] beatify
 
 ## Viewing Demos Locally
 

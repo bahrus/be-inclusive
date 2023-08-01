@@ -25,7 +25,7 @@ export class BeInclusive extends BE {
             this.onOfCommit(self);
         }, debouncePeriod2);
     }
-    async onOfCommit(self) {
+    onOfCommit(self) {
         if (this.#didInclude)
             return;
         const { enhancedElement } = self;
@@ -40,17 +40,17 @@ export class BeInclusive extends BE {
         if (of === undefined)
             return;
         if (typeof of === 'string') {
-            await this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
+            this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
         }
         else {
             const { length } = of;
             for (let i = 0; i < length; i++) {
                 const oneOf = of[i];
                 if (typeof oneOf === 'string') {
-                    await this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
                 }
                 else {
-                    await this.doOneOf(self, enhancedElement, oneOf.of, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf.of, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
                 }
             }
         }
@@ -75,7 +75,7 @@ export class BeInclusive extends BE {
         }
         return templ;
     }
-    async doOneOf(self, target, of, shadowRootMode, transform, model, prepend, ctx) {
+    doOneOf(self, target, of, shadowRootMode, transform, model, prepend, ctx) {
         const templ = this.#templSearcher(of, self);
         if (templ === undefined)
             return;
@@ -84,7 +84,7 @@ export class BeInclusive extends BE {
             birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of, self));
         }
         const clone = templ.content.cloneNode(true);
-        await DTR.transform(clone, ctx);
+        DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
         if (shadowRootMode !== undefined) {
             if (target.shadowRoot === null) {
@@ -129,7 +129,7 @@ const xe = new XE({
             ...propInfo
         },
         actions: {
-            onOf: {
+            onOfCommit: {
                 ifAllOf: ['of']
             },
             onModel: {

@@ -31,7 +31,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         }, debouncePeriod2) as any as number;
     }
 
-    async onOfCommit(self: this){
+    onOfCommit(self: this){
         if(this.#didInclude) return;
         const {enhancedElement} = self;
         if(self.ctx === undefined){
@@ -44,15 +44,15 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         ctx.match = {...ctx.match, ...transform};
         if(of === undefined) return;
         if(typeof of === 'string'){
-            await this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
+            this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
         }else{
             const {length} = of;
             for(let i = 0; i < length; i++){
                 const oneOf = of[i];
                 if(typeof oneOf === 'string'){
-                    await this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
                 }else{
-                    await this.doOneOf(self, enhancedElement, oneOf.of as string, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf.of as string, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
                 }
             }
         }
@@ -78,7 +78,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         return templ;       
     }
     
-    async doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, transform: any, model: any, prepend: boolean, ctx: RenderContext){
+    doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, transform: any, model: any, prepend: boolean, ctx: RenderContext){
         const templ = this.#templSearcher(of, self);
         if(templ === undefined) return;
         if(!birtualized.has(templ)){
@@ -88,7 +88,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         }
         
         const clone = templ.content.cloneNode(true) as DocumentFragment;
-        await DTR.transform(clone, ctx);
+        DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
         if(shadowRootMode !== undefined){
             if(target.shadowRoot === null){
@@ -135,7 +135,7 @@ const xe = new XE<AP, Actions>({
             ...propInfo
         },
         actions:{
-            onOf:{
+            onOfCommit:{
                 ifAllOf:['of']
             },
             onModel:{

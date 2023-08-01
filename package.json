@@ -26,7 +26,7 @@
   "dependencies": {
     "be-enhanced": "0.0.37",
     "be-hive": "0.0.116",
-    "trans-render": "0.0.699",
+    "trans-render": "0.0.700",
     "xtal-element": "0.0.575"
   },
   "devDependencies": {

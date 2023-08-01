@@ -14,8 +14,9 @@
             const model = {
                 day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
                 day6: 'lördag', day7: 'söndag',
-            }
-            target.setAttribute('be-inclusive', JSON.stringify({model}));
+            };
+            target.beEnhanced.beInclusive.model = model;
+            //target.setAttribute('be-inclusive', JSON.stringify({model}));
         }
     </script>
     <template id="Friday">

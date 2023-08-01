@@ -9,7 +9,8 @@ export class BeInclusive extends BE {
     static get beConfig() {
         return {
             parse: true,
-            primaryProp: 'of'
+            primaryProp: 'of',
+            primaryPropReq: true,
         };
     }
     #didInclude = false;

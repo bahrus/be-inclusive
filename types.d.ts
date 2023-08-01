@@ -14,7 +14,6 @@ export interface EndUserProps extends IBE{
 
 export interface AllProps extends EndUserProps{
     ctx: RenderContext,
-    shadowRootModeEcho?: 'open' | 'closed' | 
 }
 
 export type AP = AllProps;

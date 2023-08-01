@@ -13,7 +13,8 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     static override get beConfig(){
         return {
             parse: true,
-            primaryProp: 'of'
+            primaryProp: 'of',
+            primaryPropReq: true,
         } as BEConfig
     }
 

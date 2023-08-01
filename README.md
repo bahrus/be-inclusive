@@ -29,7 +29,7 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
-A significant shortcut be-inclusive provides is "JSX-like" includes.  This only works within a template, not for elements starting out outside any template.
+A significant shortcut be-inclusive provides "birtual inclusions".  This only works within a template, not for elements starting out outside any template.
 
 Within a template, rather than writing:
 
@@ -46,16 +46,18 @@ Within a template, rather than writing:
 We can write:
 
 ```html
-<template id="friday-">
+<template id="friday">
     <div>It's <span class=day5></span> I'm in love</div>
 </template>
 ...
 <template>
 ...
-<friday- bi></friday->
+<b-i href=#Friday></b-i>
 </template>
 
 ```
+
+This syntax allows IDE's like VS Code to be able to jump to the source without the need for extensions being installed.
 
 The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
 
@@ -223,45 +225,60 @@ Please expand below to see the "code".
     </p>
 
 
-    <template id=is-beautiful>
-        <div itemscope>
-            <span itemprop=subjectIs></span> beautiful
+    <template id=beautiful>
+        <style>
+            div {
+                background-color: burlywood;
+            }
+        </style>
+    
+        <div>
+            <slot name=subjectIs></slot> beautiful
         </div>
     </template>
-    <template id=no-down>
+    <template id=down>
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <is-beautiful bi=open>
-            <span itemscope slot=subjectIs>
-                <span itemprop=subjectIs1></span>
+        <b-i href=#beautiful shadowrootmode=open>
+            <span slot=subjectIs>
+                <slot name=subjectIs1></slot>
             </span>
-        </is-beautiful>
+        </b-i>
+
         <div>No matter what they say</div>
         <div prop-pronoun>Words
-            <span itemprop=verb1></span> bring <span itemprop=pronoun1></span> down</div>
+            <slot name=verb1></slot> bring
+            <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <is-beautiful bi=open>
-            <span itemscope itemprop=subjectIs>
-                <span itemprop=subjectIs2></slot>
+        <b-i href=#beautiful shadowrootmode=open>
+            <span slot=subjectIs>
+                <slot name=subjectIs2></slot>
             </span>
-        </is-beautiful>
+        </b-i>
         <div>In every single way</div>
         <div>Yes words
-            <span itemprop=verb2></span> bring <span itemprop=pronoun2></span> down
+            <slot name=verb2></slot> bring
+            <slot name=pronoun2></slot> down
         </div>
         <div>Oh no</div>
-        <no-down bi><no-down>
+
+        <div be-inclusive=down></div>
     </template>
 
-    <div itemscope be-inclusive=chorus>
-        <span itemprop=verb1>can't</span>
-        <span itemprop=verb2>can't</span>
-        <span itemprop=pronoun1>me</span>
-        <span itemprop=pronoun2>me</span>
-        <span itemprop=subjectIs1>I am</span>
-        <span itemprop=subjectIs2>I am</span>
+    <div  be-inclusive='{
+        "of": "chorus",
+        "shadowRootMode": "open"
+    }'>
+        <span slot=verb1>can't</span>
+        <span slot=verb2>can't</span>
+        <span slot=pronoun1>me</span>
+        <span slot=pronoun2>me</span>
+        <span slot=subjectIs1>I am</span>
+        <span slot=subjectIs2>I am</span>
     </div>
+
+
 
     <p>
         <div>To all your friends you're delirious</div>
@@ -274,29 +291,45 @@ Please expand below to see the "code".
     </p>
     <p>
         <div be-inclusive='{
-            "of": "chorus"
+            "of": "chorus",
+            "shadowRootMode": "open"
         }'>
-            <span itemprop=verb1>can't</span>
-            <span itemprop=verb2>can't</span>
-            <span itemprop=pronoun1>you</span>
-            <span itemprop=pronoun2>you</span>
-            <span itemprop=subjectIs1>You are</span>
-            <span itemprop=subjectIs2>You are</span>
+            <span slot=verb1>can't</span>
+            <span slot=verb2>can't</span>
+            <span slot=pronoun1>you</span>
+            <span slot=pronoun2>you</span>
+            <span slot=subjectIs1>You are</span>
+            <span slot=subjectIs2>You are</span>
         </div>
     </p>
     <br>
     <template id=no-matter>
-        <div itemscope>No matter what we <span itemprop=verb1></slot> (no matter what we <span name=verb2></span>)</div>
+        <style>
+            div {
+                background-color: rgb(221, 255, 205);
+            }
+        </style>
+        <div>
+            No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
+        </div>
+        
     </template>
-    <no-matter bi=open>
+    <div be-inclusive='{
+        "of": "no-matter",
+        "shadowRootMode": "open"
+    }'>
         <span slot=verb1>do</span>
         <span slot=verb2>do</span>
-    </no-matter>
+    </div>
     <br>
-    <no-matter bi=open>
+    <div be-inclusive='{
+        "of": "no-matter",
+        "shadowRootMode": "open"
+    }'>
         <span slot=verb1>say</span>
         <span slot=verb2>say</span>
-    </no-matter>
+    </div>
+
     <div>We're the song inside the tune (yeah, oh yeah)</div>
     <div>Full of beautiful mistakes</div>
     <p>
@@ -306,7 +339,10 @@ Please expand below to see the "code".
         <div>On the other side</div>
     </p>
     <p>
-        <div be-inclusive=chorus>
+        <div be-inclusive='{
+            "of": "chorus",
+            "shadowRootMode": "open"
+        }'>
             <span slot=verb1>won't</span>
             <span slot=verb2>can't</span>
             <span slot=pronoun1>us</span>
@@ -330,12 +366,10 @@ To aid with avoiding syntax errors, which can be challenging when editing JSON i
 
 The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides TypeScript support for editing such attributes, and compiles the content to HTML files (from a *.mjs/*.mts source).
 
-## Example 2 - Without Shadow DOM
-
+## Example 2 - Simpler example
 
 
 This also allows us to provide slots in the template, and light children, similar to ShadowDOM, but much lighter -- the weaving of the light children into the slots only occurs during template instantiation.
-
 
 
 Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON required).
@@ -344,22 +378,22 @@ Please expand below to see how to include a template without using shadow DOM.  
 <summary>Applying DRY to punk lyrics</summary>
 
 ```html
-    <a href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
-    <template id="Title">Something's gone wrong again</template>
-    <template id="Title2">Something goes wrong again</template>
-    <template id="Again">And again</template>
-    <template id="Again2">And again, and again, again and something's gone wrong again</template>
-    <template id="Again3">And again, and again, again and something goes wrong again</template>
-    <template id="Agains">
-        <span be-inclusive="Again"></span><br>
-        <span be-inclusive="Again2"></span><br>
-        <span be-inclusive="Title"></span>
+    <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
+    <template id="title">Something's gone wrong again</template>
+    <template id="title2">Something goes wrong again</template>
+    <template id="again">And again</template>
+    <template id="again2">And again, and again, again and something's gone wrong again</template>
+    <template id="again3">And again, and again, again and something goes wrong again</template>
+    <template id="agains">
+        <b-i href=#again></b-i><br>
+        <b-i href=#again2></b-i><br>
+        <b-i href=#title></b-i>
     </template>
-    <template id="Agains2">
-        <span be-inclusive="Title2"></span><br>
-        <span be-inclusive="Again"></span><br>
-        <span be-inclusive="Again3"></span><br>
-        <span be-inclusive="Title2"></span>
+    <template id="agains2">
+        <b-i href=#title2></b-i><br>
+        <b-i href=#again></b-i><br>
+        <b-i href=#again3></b-i><br>
+        <b-i href=#title2></b-i>
     </template>
     <template id="bus">
         <span>Nothing ever happens to people like us</span><br>
@@ -371,26 +405,26 @@ Please expand below to see how to include a template without using shadow DOM.  
         <div>
             <span>Tried to find my sock</span><br>
             <span>No good, it's lost</span><br>
-            <span be-inclusive="Title"></span><br>
+            <b-i href=#title></b-i><br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <span be-inclusive="Title"></span>
+            <b-i href=#title></bi>
         </div>
-        <div be-inclusive="Agains"></div>
+        <b-i href=#agains></b-i>
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
-            <span be-inclusive="Title"></span><br>
+            <title bi></title><br>
             <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <span be-inclusive="Title"></span><br>
-            <span be-inclusive="Title"></span>
+            <title bi></title><br>
+            <title bi></title>
         </div>
-        <div be-inclusive="Agains"></div>
-        <div be-inclusive="bus"></div>
-        <div be-inclusive="Agains2"></div>
-        <div be-inclusive="Agains2"></div>
-        <div be-inclusive="bus"></div>
-        <div be-inclusive="Agains2"></div>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
@@ -398,12 +432,12 @@ Please expand below to see how to include a template without using shadow DOM.  
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
         <div>
-            <span be-inclusive="Title2"></span><br>
-            <span be-inclusive="Again"></span><br>
-            <span be-inclusive="Again3"></span><br>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#again></b-i><br>
+            <b-i href=#again3></b-i>
             <span>Ah, something goes wrong again</span><br>
-            <span be-inclusive="Title2"></span><br>
-            <span be-inclusive="Title2"></span>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#title2></b-i>
         </div>
     </template>
 
@@ -412,6 +446,7 @@ Please expand below to see how to include a template without using shadow DOM.  
     <style>
         div{
             padding-top:20px;
+            padding-bottom: 20px;
         }
     </style>
 ```
@@ -433,27 +468,30 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         const model = {
             day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
             day6: 'lördag', day7: 'söndag',
-        }
-        target.setAttribute('be-inclusive', JSON.stringify({model}));
+        };
+        target.beEnhanced.beInclusive.model = model;
+        //target.setAttribute('be-inclusive', JSON.stringify({model}));
     }
 </script>
 <template id="Friday">
     <div>It's <span class=day5></span> I'm in love</div>
 </template>
 <template id="Opening">
-    <div>I don't care if <span class=day1></span>'s blue</div>
-    <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
-    <div><span class=day4></span> I don't care about you</div>
-    <div be-inclusive=Friday></div>
+    <div class=stanza>
+        <div>I don't care if <span class=day1></span>'s blue</div>
+        <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
+        <div><span class=day4></span> I don't care about you</div>
+        <b-i href=#Friday></b-i>
+    </div>
 </template>
 
 <template id="love">
-    <div be-inclusive=Opening class="stanza"></div>
+    <b-i href=#Opening></b-i>
     <div class="stanza">
         <div><span class=day1></span> you can fall apart</div>
         <div><span class=day2></span> <span class=day3></span> break my heart</div>
         <div>Oh, <span class=day4></span> doesn't even start</div>
-        <div be-inclusive=Friday></div>
+        <b-i href=#Friday></b-i>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -465,13 +503,13 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         <div>I don't care if <span class=day1></span>'s black</div>
         <div><span class=day2></span>, <span class=day3></span> heart attack</div>
         <div><span class=day4></span> never looking back</div>
-        <div be-inclusive=Friday></div>
+        <b-i href=#Friday></b-i>
     </div>
     <div class="stanza">
         <div><span class=day1></span> you can hold your head</div>
         <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
         <div>Or <span class=day4></span> watch the walls instead</div>
-        <div be-inclusive=Friday></div>
+        <b-i href=#Friday></b-i>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -499,7 +537,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         <div><span class=day1></span> you can fall apart</div>
         <div><span class=day2></span>, <span class=day3></span> break my heart</div>
         <div><span class=day4></span> doesn't even start</div>
-        <div be-inclusive=Friday></div>
+        <b-i href=#Friday></b-i>
     </div>
     <style>
         .stanza{
@@ -526,6 +564,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         ".day5": "day5",
         ".day6": "day6",
         ".day7": "day7"
+        
     }
 }'></div>
 ```
@@ -535,123 +574,12 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
 ## Example 4 - Applying DRY to the song of the material universe
 
 
-The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved by utilizing templates for this purpose.
+The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved over server-rendering all ths HTML by utilizing templates for the purpose of reducing repeatng HTML (yes, it even improves over HTML with gzip in place).
 
 In order to support this, some features have been added to *be-inclusive* -- specifying arrays of includes, and prepending when needed.
 
 The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/baseline/demo/periodic_table.html).
 
-## Example 5 - Flattened, 'JSX' like [TODO]
-
-Inclusions inside templates can take the form of temporary "custom element like" names with the name matching the referenced id followed and attribute "bi". We'll refer to these as "birtual inclusions" (inclusions during the birthing process).  The id must be lower case and contain a dash, which can go at the end, if a two-word description doesn't jump out.  Among the advantages of requiring a dash in the id, is that such templates defined outside any ShadowDOM won't create ambiguities with global constants / methods that follow JavaScript naming conventions.
-
-If a birtual inclusion has no next siblings, then the contents of the template are appended using appendChild (or append I guess).
-
-Else the contents are [laboriously inserted](https://discourse.wicg.io/t/proposal-insertadjacenttemplate-function/3456/3).
-
-Either way, we do start to have true "fragment" support.
-
-
-```html
-<template id=friday->
-    <div>It's <span class=day5></span> I'm in love</div>
-</template>
-<template id=opening->
-    <div>I don't care if <span class=day1></span>'s blue</div>
-    <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
-    <div><span class=day4></span> I don't care about you</div>
-    <friday- bi/>
-</template>
-<template id=fall-apart>
-    <div class="stanza">
-        <div><span class=day1></span> you can fall apart</div>
-        <div><span class=day2></span> <span class=day3></span> break my heart</div>
-        <div>Oh, <span class=day4></span> doesn't even start</div>
-        <friday- bi/>
-    </div>
-</template>
-
-<template id="love">
-    <opening- bi/>
-    <fall-apart bi/>
-    <div class="stanza">
-        <div><span class=day6></span> wait</div>
-        <div>And <span class=day7></span> always comes too late</div>
-        <div>But <span class=day5></span> never hesitate</div>
-    </div>
-
-    <div class="stanza">
-        <div>I don't care if <span class=day1></span>'s black</div>
-        <div><span class=day2></span>, <span class=day3></span> heart attack</div>
-        <div><span class=day4></span> never looking back</div>
-        <friday- bi/>
-    </div>
-    <div class="stanza">
-        <div><span class=day1></span> you can hold your head</div>
-        <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
-        <div>Or <span class=day4></span> watch the walls instead</div>
-        <friday- bi/>
-    </div>
-    <div class="stanza">
-        <div><span class=day6></span> wait</div>
-        <div>And <span class=day7></span> always comes too late</div>
-        <div>But <span class=day5></span> never hesitate</div>
-    </div>
-    <div class="stanza">
-        <div>Dressed up to the eyes</div>
-        <div>It's a wonderful surprise</div>
-        <div>To see your shoes and your spirits rise</div>
-        <div>Throwing out your frown</div>
-        <div>And just smiling at the sound</div>
-        <div>And as sleek as a shriek</div>
-        <div>Spinning round and round</div>
-        <div>Always take a big bite</div>
-        <div>It's such a gorgeous sight</div>
-        <div>To see you in the middle of the night</div>
-        <div>You can never get enough</div>
-        <div>Enough of this stuff</div>
-        <div>It's <span class=day5></span></div>
-        <div>I'm in love</div>
-    </div>
-    <friday- bi/>
-    <fall-apart bi/>
-    <style>
-        .stanza{
-        padding-top: 20px;
-    }
-</style>
-</template>
-<div id=target be-inclusive='{
-    "of": "love",
-    "model": {
-        "day1": "Monday",
-        "day2": "Tuesday",
-        "day3": "Wednesday",
-        "day4": "Thursday",
-        "day5": "Friday",
-        "day6": "Saturday",
-        "day7": "Sunday"
-    },
-    "transform":{
-        ".day1": "day1",
-        ".day2": "day2",
-        ".day3": "day3",
-        ".day4": "day4",
-        ".day5": "day5",
-        ".day6": "day6",
-        ".day7": "day7"
-    }
-}'></div>
-```
-
-When these birtual inclusions are expanded, they leave behind some hints that can help provide "custom-element-like" behaviors attached to the inclusion:
-
-```html
-<template data-ref=friday- data-cnt=2></template>
-<div>It's <span class=day5></span> I'm in love</div>
-```
-
-data-cnt counts the number of elements generated from template id "friday-", including itself (1-based).  Other be-decorated behaviors (like [be-free-ranged](https://github.dev/bahrus/be-free-ranged)) can be used to attach "scope" and other features to the fragment.
 
 
 ## Viewing Demos Locally

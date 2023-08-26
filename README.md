@@ -7,7 +7,7 @@
 <a href="https://nodei.co/npm/be-inclusive/"><img src="https://nodei.co/npm/be-inclusive.png"></a>
 
 
-Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based web components, be-inclusive can use attributes to enhance the functionality of the element it adorns.  So if server rendered HTML looks as follows:
+Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based custom enhancements, be-inclusive can use attributes to enhance the functionality of the element it adorns.  So if server rendered HTML looks as follows:
 
 ```html
 <template id="Friday">
@@ -29,9 +29,9 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
-A significant shortcut be-inclusive provides "birtual inclusions".  This only works within a template, not for elements starting out outside any template.
+A significant shortcut be-inclusive provides in the latter scenario is something we refer to as "birtual inclusions" (abbreviation b-i).  This only works within a template, not for elements starting out outside any template.
 
-Within a template, rather than writing:
+So within a template, rather than writing:
 
 ```html
 <template id="Friday">
@@ -46,7 +46,7 @@ Within a template, rather than writing:
 We can write:
 
 ```html
-<template id="friday">
+<template id="Friday">
     <div>It's <span class=day5></span> I'm in love</div>
 </template>
 ...
@@ -59,7 +59,7 @@ We can write:
 
 This syntax allows IDE's like VS Code to be able to jump to the source without the need for extensions being installed.
 
-The syntax could also be used to good effect during a build process (SSG) (especially the "birtual inclusions" discussed below) or while server-side rendering, or in a service worker.  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
+The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1217#issuecomment-1694483432).  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
 
 
 ## Example 1 -- slotted content without Shadow DOM

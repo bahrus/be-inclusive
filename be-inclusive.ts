@@ -123,7 +123,10 @@ const xe = new XE<AP, Actions>({
             ...propDefaults,
         },
         propInfo:{
-            ...propInfo
+            ...propInfo,
+            bePrepended: {
+                type: 'Boolean'
+            }
         },
         actions:{
             onOf:{

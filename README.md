@@ -7,7 +7,7 @@
 <a href="https://nodei.co/npm/be-inclusive/"><img src="https://nodei.co/npm/be-inclusive.png"></a>
 
 
-Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based custom enhancements, be-inclusive can use attributes to enhance the functionality of the element it adorns.  So if server rendered HTML looks as follows:
+Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based [custom enhancements](https://github.com/WICG/webcomponents/issues/1000), be-inclusive can use attributes to enhance the functionality of the element it adorns.  So if server rendered HTML looks as follows:
 
 ```html
 <template id="Friday">

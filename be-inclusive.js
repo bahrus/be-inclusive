@@ -116,7 +116,10 @@ const xe = new XE({
             ...propDefaults,
         },
         propInfo: {
-            ...propInfo
+            ...propInfo,
+            bePrepended: {
+                type: 'Boolean'
+            }
         },
         actions: {
             onOf: {

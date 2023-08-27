@@ -63,7 +63,7 @@
             templ.remove();
             outer.content.innerHTML = ''
             for(let i = 0; i < ubound; i++){
-                outer.content.cloneNode(true);
+                const outerClone = outer.content.cloneNode(true);
                 templ.content.cloneNode(true);
             }
             const end = performance.now();

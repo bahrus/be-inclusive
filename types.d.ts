@@ -14,6 +14,7 @@ export interface EndUserProps extends IBE{
 
 export interface AllProps extends EndUserProps{
     ctx: RenderContext,
+    isC?: boolean,
 }
 
 export type AP = AllProps;

@@ -15,6 +15,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
             parse: true,
             primaryProp: 'of',
             primaryPropReq: true,
+            isParsedProp: 'isC',
         } as BEConfig
     }
 
@@ -130,7 +131,7 @@ const xe = new XE<AP, Actions>({
         },
         actions:{
             onOf:{
-                ifAllOf:['of']
+                ifAllOf:['of', 'isC']
             },
             onModel:{
                 ifAllOf:['model', 'ctx']

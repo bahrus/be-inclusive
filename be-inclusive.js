@@ -11,6 +11,7 @@ export class BeInclusive extends BE {
             parse: true,
             primaryProp: 'of',
             primaryPropReq: true,
+            isParsedProp: 'isC',
         };
     }
     #didInclude = false;
@@ -25,6 +26,7 @@ export class BeInclusive extends BE {
             };
         }
         const { of, shadowRootMode, transform, model, bePrepended, ctx } = self;
+        console.log({ of, bePrepended });
         ctx.host = model || {};
         ctx.match = { ...ctx.match, ...transform };
         if (of === undefined)
@@ -123,7 +125,7 @@ const xe = new XE({
         },
         actions: {
             onOf: {
-                ifAllOf: ['of']
+                ifAllOf: ['of', 'isC']
             },
             onModel: {
                 ifAllOf: ['model', 'ctx']

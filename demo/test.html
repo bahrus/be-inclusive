@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id=outer>
+        <template id=inner>
+            <div class="element other-nonmetal c15 r2">
+                <input class="activate" type="radio" name="elements"/>
+                <input class="deactivate" type="radio" name="elements"/>
+                <div class="overlay"></div>
+                <div class="square">
+                  <div class="model">
+                    <div class="orbital">
+                      <div class="electron"></div>
+                      <div class="electron"></div>
+                      <div class="electron"></div>
+                      <div class="electron"></div>
+                      <div class="electron"></div>
+                    </div>
+                    <div class="orbital">
+                      <div class="electron"></div>
+                      <div class="electron"></div>
+                    </div>
+                  </div>
+                  <div class="atomic-number">7</div>
+                  <div class="label">
+                    <div class="symbol">N</div>
+                    <div class="name">Nitrogen</div>
+                  </div>
+                  <div class="atomic-mass">14.007</div>
+                  <ul class="atomic-weight">
+                    <li>2</li>
+                    <li>5</li>
+                  </ul>
+                </div>
+              </div>
+        </template>
+    </template>
+
+    <button onclick="test1()">Test 1</button>
+    <button onclick="test2()">Test 2</button>
+    <script>
+        const ubound = 100000;
+        function test1(){
+            const start  = performance.now();
+            for(let i = 0; i < ubound; i++){
+                clonedNode = outer.content.cloneNode(true);
+                const inner = clonedNode.querySelector('#inner');
+                inner.content.cloneNode(true);
+            }
+            const end = performance.now();
+            console.log((end - start) / 1000);
+        }
+
+        function test2(){
+            const start  = performance.now();
+            const content = outer.content;
+            const templ = content.querySelector('#inner');
+            templ.remove();
+            outer.content.innerHTML = ''
+            for(let i = 0; i < ubound; i++){
+                outer.content.cloneNode(true);
+                templ.content.cloneNode(true);
+            }
+            const end = performance.now();
+            console.log((end - start) / 1000);
+        }
+    </script>
+</body>
+</html>

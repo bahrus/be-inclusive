@@ -26,7 +26,6 @@ export class BeInclusive extends BE {
             };
         }
         const { of, shadowRootMode, transform, model, bePrepended, ctx } = self;
-        console.log({ of, bePrepended });
         ctx.host = model || {};
         ctx.match = { ...ctx.match, ...transform };
         if (of === undefined)

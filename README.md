@@ -201,6 +201,8 @@ Please expand below to see the "code".
 
 ## Example 1b -- same example with shadow DOM
 
+The example above used tags and attributes with the name "slot" but they are only "birtual" -- there is no ability to update the slotted content once the instantiation has taken place.  If we need that, we can use shadow DOM, but we need to specify that via shadowrootmode attribute.  Expand the section below to see what that looks like:
+
 <details>
 <summary>Sample Markup</summary>
 

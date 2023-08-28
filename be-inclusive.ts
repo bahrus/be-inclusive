@@ -52,14 +52,22 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     }
 
     #templateLookup: {[key: string]: HTMLTemplateElement} = {};
-    #templSearcher(of: string, self: this){
+    #templSearcher(of: string, self: this, templContainer?: HTMLTemplateElement){
+        if(of === 'title') debugger;
         let templ = this.#templateLookup[of];
         const {enhancedElement, ctx} = self;
         if(templ === undefined){
-            templ = upShadowSearch(enhancedElement, of) as HTMLTemplateElement;
-            if(templ === null && ctx.shadowPeer !== undefined){
-                templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
+            if(templContainer instanceof HTMLTemplateElement){
+                templ = templContainer.content.querySelector(`#${of}`) as HTMLTemplateElement;
             }
+            
+            if(!templ){
+                templ = upShadowSearch(enhancedElement, of) as HTMLTemplateElement;
+                if(templ === null && ctx.shadowPeer !== undefined){
+                    templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
+                }
+            }
+
             if(templ === null || !(templ instanceof HTMLTemplateElement)){
                 console.error({of, self, msg:"Could not locate template."});
                 return undefined;
@@ -75,7 +83,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         if(templ === undefined) return;
         if(!birtualized.has(templ)){
             birtualized.add(templ);
-            birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self));
+            birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self, templ));
             
         }
         

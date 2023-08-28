@@ -48,13 +48,20 @@ export class BeInclusive extends BE {
         this.#didInclude = true;
     }
     #templateLookup = {};
-    #templSearcher(of, self) {
+    #templSearcher(of, self, templContainer) {
+        if (of === 'title')
+            debugger;
         let templ = this.#templateLookup[of];
         const { enhancedElement, ctx } = self;
         if (templ === undefined) {
-            templ = upShadowSearch(enhancedElement, of);
-            if (templ === null && ctx.shadowPeer !== undefined) {
-                templ = upShadowSearch(ctx.shadowPeer, of);
+            if (templContainer instanceof HTMLTemplateElement) {
+                templ = templContainer.content.querySelector(`#${of}`);
+            }
+            if (!templ) {
+                templ = upShadowSearch(enhancedElement, of);
+                if (templ === null && ctx.shadowPeer !== undefined) {
+                    templ = upShadowSearch(ctx.shadowPeer, of);
+                }
             }
             if (templ === null || !(templ instanceof HTMLTemplateElement)) {
                 console.error({ of, self, msg: "Could not locate template." });
@@ -72,7 +79,7 @@ export class BeInclusive extends BE {
             return;
         if (!birtualized.has(templ)) {
             birtualized.add(templ);
-            birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of, self));
+            birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of, self, templ));
         }
         const clone = templ.content.cloneNode(true);
         DTR.transform(clone, ctx);

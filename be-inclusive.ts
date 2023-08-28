@@ -88,10 +88,10 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
             }
             target.shadowRoot![verb](clone);
         }else{
-            const slots =  target.querySelectorAll('[slot]');
+            const slots =  target.querySelectorAll('[slot-bot]');
             for(const slot of slots){
-                const slotName = slot.getAttribute('slot')!;
-                const slotDestiny = clone.querySelector(`slot[name="${slotName}"]`);
+                const slotName = slot.getAttribute('slot-bot')!;
+                const slotDestiny = clone.querySelector(`slot-bot[name="${slotName}"]`);
                 if(slotDestiny !== null){
                     slotDestiny.appendChild(slot);
                 }else{

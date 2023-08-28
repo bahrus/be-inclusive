@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example 2</title>
+</head>
+<body>
+    <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
+    
+    <template id="title2">Something goes wrong again</template>
+    <template id="again">And again</template>
+    <template id="again2">And again, and again, again and something's gone wrong again</template>
+    <template id="again3">And again, and again, again and something goes wrong again</template>
+    <template id="agains">
+        <b-i href=#again></b-i><br>
+        <b-i href=#again2></b-i><br>
+        <b-i href=#title></b-i>
+    </template>
+    <template id="agains2">
+        <b-i href=#title2></b-i><br>
+        <b-i href=#again></b-i><br>
+        <b-i href=#again3></b-i><br>
+        <b-i href=#title2></b-i>
+    </template>
+    <template id="bus">
+        <span>Nothing ever happens to people like us</span><br>
+        <span>'Cept we miss the bus, something goes wrong again</span><br>
+        <span>Need a smoke, use my last fifty P.</span><br>
+        <span>But the machine is broke, something's gone wrong again</span>
+    </template>
+    <template id=main>
+        <template id="title">Something's gone wrong again</template>
+        <div>
+            <span>Tried to find my sock</span><br>
+            <span>No good, it's lost</span><br>
+            <b-i href=#title></b-i><br>
+            <span>Need a shave</span><br>
+            <span>Cut myself, need a new blade</span><br>
+            <b-i href=#title></bi>
+        </div>
+        <b-i href=#agains></b-i>
+        <div>
+            <span>Tried to fry an egg</span><br>
+            <span>Broke the yolk, no joke</span><br>
+            <title bi></title><br>
+            <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
+            <title bi></title><br>
+            <title bi></title>
+        </div>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
+        <div>
+            <span>I turned up early in time for our date</span><br>
+            <span>But then you turn up late, something goes wrong again</span><br>
+            <span>Need a drink, go to the pub</span><br>
+            <span>But the bugger's shut, something goes wrong again</span>
+        </div>
+        <div>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#again></b-i><br>
+            <b-i href=#again3></b-i>
+            <span>Ah, something goes wrong again</span><br>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#title2></b-i>
+        </div>
+    </template>
+
+    <div be-inclusive="main"></div>
+
+    <style>
+        div{
+            padding-top:20px;
+            padding-bottom: 20px;
+        }
+    </style>
+
+
+    <script type=importmap>
+        {
+            "imports": {
+                
+                "be-enhanced/": "../node_modules/be-enhanced/",
+                "be-hive/": "../node_modules/be-hive/",
+                "trans-render/": "../node_modules/trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/"
+            }
+        }
+    </script>
+    <script type=module>
+        import '../be-inclusive.js';
+        
+    </script>
+</body>
+</html>

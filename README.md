@@ -29,7 +29,7 @@ be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 1.  In the live DOM tree
 2.  During template instantiation.
 
-A significant shortcut be-inclusive provides in the latter scenario is something we refer to as "birtual inclusions" (abbreviation b-i).  This only works within a template, not for elements starting out outside any template.
+A significant developer productivity improvement be-inclusive provides in the latter scenario is something we refer to as "birtual inclusions" (abbreviation b-i).  This only works within a template, not for elements starting out outside any template.
 
 So within a template, rather than writing:
 

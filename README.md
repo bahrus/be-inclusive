@@ -582,7 +582,8 @@ The markup can be found [here](https://github.com/bahrus/be-inclusive/blob/basel
 
 
 [TODO] beatify
-[TODO] share templates
+
+[WIP] share templates
 
 ## Viewing Demos Locally
 

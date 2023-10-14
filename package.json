@@ -26,11 +26,12 @@
   "dependencies": {
     "be-enhanced": "0.0.46",
     "be-hive": "0.0.117",
+    "be-memed": "0.0.2",
     "trans-render": "0.0.705",
     "xtal-element": "0.0.577"
   },
   "devDependencies": {
-    "be-memed": "0.0.2",
+    
     "@playwright/test": "1.37.1",
     "may-it-serve": "0.0.5"
   },

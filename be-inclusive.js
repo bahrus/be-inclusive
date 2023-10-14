@@ -4,6 +4,7 @@ import { register } from 'be-hive/register.js';
 import { DTR } from 'trans-render/lib/DTR.js';
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
 import { birtualize } from 'trans-render/lib/birtualize.js';
+import { getContent } from 'be-memed/be-memed.js';
 const birtualized = new Set();
 export class BeInclusive extends BE {
     static get beConfig() {
@@ -73,15 +74,26 @@ export class BeInclusive extends BE {
         }
         return templ;
     }
+    templCloner(templ) {
+        let clone;
+        const beMemedId = templ.getAttribute('be-memed-id');
+        if (beMemedId) {
+            clone = getContent(beMemedId).cloneNode(true);
+        }
+        else {
+            clone = templ.content.cloneNode(true);
+        }
+        return clone;
+    }
     doOneOf(self, target, of, shadowRootMode, transform, model, prepend, ctx) {
         const templ = this.#templSearcher(of, self);
         if (templ === undefined)
             return;
         if (!birtualized.has(templ)) {
             birtualized.add(templ);
-            birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of, self, templ));
+            birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of, self, templ), this.templCloner);
         }
-        const clone = templ.content.cloneNode(true);
+        const clone = this.templCloner(templ);
         DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
         if (shadowRootMode !== undefined) {

@@ -7,6 +7,7 @@ import {RenderContext} from 'trans-render/lib/types';
 import {DTR} from 'trans-render/lib/DTR.js';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {birtualize} from 'trans-render/lib/birtualize.js';
+import {getContent} from 'be-memed/be-memed.js';
 
 const birtualized = new Set<HTMLTemplateElement>();
 export class BeInclusive extends BE<AP, Actions> implements Actions{
@@ -77,17 +78,29 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         }
         return templ;       
     }
+
+    templCloner(templ: HTMLTemplateElement){
+        let clone: DocumentFragment;
+        const beMemedId = templ.getAttribute('be-memed-id');
+        if(beMemedId){
+            clone = getContent(beMemedId).cloneNode(true) as DocumentFragment;
+        }else{
+            clone = templ.content.cloneNode(true) as DocumentFragment;
+        }
+        return clone;
+    }
     
     doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, transform: any, model: any, prepend: boolean, ctx: RenderContext){
         const templ = this.#templSearcher(of, self);
         if(templ === undefined) return;
         if(!birtualized.has(templ)){
             birtualized.add(templ);
-            birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self, templ));
+            birtualize(templ, this.#templateLookup, (of: string) => this.#templSearcher(of, self, templ), this.templCloner);
             
         }
         
-        const clone = templ.content.cloneNode(true) as DocumentFragment;
+        const clone = this.templCloner(templ);
+        
         DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
         if(shadowRootMode !== undefined){

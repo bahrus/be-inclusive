@@ -24,16 +24,16 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.46",
-    "be-hive": "0.0.117",
+    "be-enhanced": "0.0.66",
+    "be-hive": "0.0.135",
     "be-memed": "0.0.2",
-    "trans-render": "0.0.705",
-    "xtal-element": "0.0.577"
+    "trans-render": "0.0.737",
+    "xtal-element": "0.0.594"
   },
   "devDependencies": {
     
-    "@playwright/test": "1.37.1",
-    "may-it-serve": "0.0.5"
+    "@playwright/test": "1.41.2",
+    "may-it-serve": "0.0.6"
   },
   "scripts": {
     "serve": "node node_modules/may-it-serve/serve.js",

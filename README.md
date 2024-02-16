@@ -410,16 +410,16 @@ Please expand below to see how to include a template without using shadow DOM.  
             <b-i href=#title></b-i><br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <b-i href=#title></bi>
+            <b-i href=#title></b-i>
         </div>
         <b-i href=#agains></b-i>
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
-            <title bi></title><br>
+            <b-i href=#title></b-i><br>
             <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <title bi></title><br>
-            <title bi></title>
+            <b-i href=#title></b-i><br>
+            <b-i href=#title></b-i>
         </div>
         <b-i href=#agains></b-i>
         <b-i href=#bus></b-i>

@@ -3,11 +3,9 @@ import {BEConfig} from 'be-enhanced/types';
 import {XE} from 'xtal-element/XE.js';
 import {Actions, AllProps, AP, PAP, ProPAP, POA} from './types';
 import {register} from 'be-hive/register.js';
-import {RenderContext} from 'trans-render/lib/types';
-import {DTR} from 'trans-render/lib/DTR.js';
 import {upShadowSearch} from 'trans-render/lib/upShadowSearch.js';
 import {birtualize} from 'trans-render/lib/birtualize.js';
-import {getContent} from 'be-memed/be-memed.js';
+
 
 const birtualized = new Set<HTMLTemplateElement>();
 export class BeInclusive extends BE<AP, Actions> implements Actions{
@@ -27,14 +25,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     onOf(self: this){
         if(this.#didInclude) return;
         const {enhancedElement} = self;
-        if(self.ctx === undefined){
-            self.ctx = {
-                shadowPeer: enhancedElement,
-            }
-        }
-        const {of, shadowRootMode, transform, model, bePrepended, ctx} = self;
-        ctx.host = model || {};
-        ctx.match = {...ctx.match, ...transform};
+        const {of, shadowRootMode, model, bePrepended} = self;
         if(of === undefined) return;
         if(typeof of === 'string'){
             this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
@@ -81,12 +72,14 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
 
     templCloner(templ: HTMLTemplateElement){
         let clone: DocumentFragment;
-        const beMemedId = templ.getAttribute('be-memed-id');
-        if(beMemedId){
-            clone = getContent(beMemedId).cloneNode(true) as DocumentFragment;
-        }else{
+
+        //TODO switch to blow-dry
+        // const beMemedId = templ.getAttribute('be-memed-id');
+        // if(beMemedId){
+        //     clone = getContent(beMemedId).cloneNode(true) as DocumentFragment;
+        // }else{
             clone = templ.content.cloneNode(true) as DocumentFragment;
-        }
+        //}
         return clone;
     }
     
@@ -132,7 +125,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     }
 }
 
-export interface BeInclusive extends AllProps{}
+export interface BeInclusive extends AllProps<any, any, any>{}
 
 const tagName = 'be-inclusive';
 const ifWantsToBe = 'inclusive';

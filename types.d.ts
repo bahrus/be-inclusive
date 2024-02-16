@@ -1,23 +1,22 @@
 import { ActionOnEventConfigs } from "trans-render/froop/types";
 import {IBE} from 'be-enhanced/types';
-import {RenderContext} from 'trans-render/lib/types';
+import { XForm } from "trans-render/types";
 
 
-export interface EndUserProps extends IBE{
-    of: string | (string | EndUserProps)[];
+export interface EndUserProps<TProps, TMethods, TElement = {}> extends IBE{
+    of: string | (string | EndUserProps<TProps, TMethods, TElement>)[];
     shadowRootMode?: 'open' | 'closed' | undefined;
-    transform?: any,
+    xform?: XForm<any, any, any>;
     model?: any,
     bePrepended?: boolean,
     debouncePeriod?: number,
 }
 
-export interface AllProps extends EndUserProps{
-    ctx: RenderContext,
+export interface AllProps<TProps, TMethods, TElement = {}> extends EndUserProps<TProps, TMethods, TElement>{
     isC?: boolean,
 }
 
-export type AP = AllProps;
+export type AP = AllProps<any, any, any>;
 
 export type PAP = Partial<AP>;
 

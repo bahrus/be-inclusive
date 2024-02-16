@@ -1,10 +1,8 @@
 import { BE, propDefaults, propInfo } from 'be-enhanced/BE.js';
 import { XE } from 'xtal-element/XE.js';
 import { register } from 'be-hive/register.js';
-import { DTR } from 'trans-render/lib/DTR.js';
 import { upShadowSearch } from 'trans-render/lib/upShadowSearch.js';
 import { birtualize } from 'trans-render/lib/birtualize.js';
-import { getContent } from 'be-memed/be-memed.js';
 const birtualized = new Set();
 export class BeInclusive extends BE {
     static get beConfig() {
@@ -21,28 +19,21 @@ export class BeInclusive extends BE {
         if (this.#didInclude)
             return;
         const { enhancedElement } = self;
-        if (self.ctx === undefined) {
-            self.ctx = {
-                shadowPeer: enhancedElement,
-            };
-        }
-        const { of, shadowRootMode, transform, model, bePrepended, ctx } = self;
-        ctx.host = model || {};
-        ctx.match = { ...ctx.match, ...transform };
+        const { of, shadowRootMode, model, bePrepended } = self;
         if (of === undefined)
             return;
         if (typeof of === 'string') {
-            this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
+            this.doOneOf(self, enhancedElement, of, shadowRootMode, model, !!bePrepended);
         }
         else {
             const { length } = of;
             for (let i = 0; i < length; i++) {
                 const oneOf = of[i];
                 if (typeof oneOf === 'string') {
-                    this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, model, !!bePrepended);
                 }
                 else {
-                    this.doOneOf(self, enhancedElement, oneOf.of, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf.of, oneOf.shadowRootMode, model, !!bePrepended);
                 }
             }
         }
@@ -50,19 +41,14 @@ export class BeInclusive extends BE {
     }
     #templateLookup = {};
     #templSearcher(of, self, templContainer) {
-        if (of === 'title')
-            debugger;
         let templ = this.#templateLookup[of];
-        const { enhancedElement, ctx } = self;
+        const { enhancedElement } = self;
         if (templ === undefined) {
             if (templContainer instanceof HTMLTemplateElement) {
                 templ = templContainer.content.querySelector(`#${of}`);
             }
             if (!templ) {
                 templ = upShadowSearch(enhancedElement, of);
-                if (templ === null && ctx.shadowPeer !== undefined) {
-                    templ = upShadowSearch(ctx.shadowPeer, of);
-                }
             }
             if (templ === null || !(templ instanceof HTMLTemplateElement)) {
                 console.error({ of, self, msg: "Could not locate template." });
@@ -76,16 +62,16 @@ export class BeInclusive extends BE {
     }
     templCloner(templ) {
         let clone;
-        const beMemedId = templ.getAttribute('be-memed-id');
-        if (beMemedId) {
-            clone = getContent(beMemedId).cloneNode(true);
-        }
-        else {
-            clone = templ.content.cloneNode(true);
-        }
+        //TODO switch to blow-dry
+        // const beMemedId = templ.getAttribute('be-memed-id');
+        // if(beMemedId){
+        //     clone = getContent(beMemedId).cloneNode(true) as DocumentFragment;
+        // }else{
+        clone = templ.content.cloneNode(true);
+        //}
         return clone;
     }
-    doOneOf(self, target, of, shadowRootMode, transform, model, prepend, ctx) {
+    doOneOf(self, target, of, shadowRootMode, model, prepend) {
         const templ = this.#templSearcher(of, self);
         if (templ === undefined)
             return;
@@ -94,7 +80,7 @@ export class BeInclusive extends BE {
             birtualize(templ, this.#templateLookup, (of) => this.#templSearcher(of, self, templ), this.templCloner);
         }
         const clone = this.templCloner(templ);
-        DTR.transform(clone, ctx);
+        //DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
         if (shadowRootMode !== undefined) {
             if (target.shadowRoot === null) {
@@ -119,11 +105,10 @@ export class BeInclusive extends BE {
     }
     #lastModel;
     async onModel(self) {
-        const { enhancedElement, model, ctx } = self;
-        if (model === this.#lastModel)
-            return;
-        ctx.host = model;
-        await DTR.transform(enhancedElement.shadowRoot || enhancedElement, ctx);
+        // const {enhancedElement, model, ctx} = self;
+        // if(model === this.#lastModel) return;
+        // ctx.host = model;
+        // await DTR.transform(enhancedElement.shadowRoot || enhancedElement, ctx);
     }
 }
 const tagName = 'be-inclusive';
@@ -146,7 +131,7 @@ const xe = new XE({
                 ifAllOf: ['of', 'isC']
             },
             onModel: {
-                ifAllOf: ['model', 'ctx']
+                ifAllOf: ['model',]
             }
         }
     },

@@ -28,15 +28,15 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         const {of, shadowRootMode, model, bePrepended} = self;
         if(of === undefined) return;
         if(typeof of === 'string'){
-            this.doOneOf(self, enhancedElement, of, shadowRootMode, transform, model, !!bePrepended, ctx);
+            this.doOneOf(self, enhancedElement, of, shadowRootMode, model, !!bePrepended);
         }else{
             const {length} = of;
             for(let i = 0; i < length; i++){
                 const oneOf = of[i];
                 if(typeof oneOf === 'string'){
-                    this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf, shadowRootMode, model, !!bePrepended);
                 }else{
-                    this.doOneOf(self, enhancedElement, oneOf.of as string, oneOf.shadowRootMode, oneOf.transform, model, !!bePrepended, ctx);
+                    this.doOneOf(self, enhancedElement, oneOf.of as string, oneOf.shadowRootMode, model, !!bePrepended);
                 }
             }
         }
@@ -45,9 +45,8 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
 
     #templateLookup: {[key: string]: HTMLTemplateElement} = {};
     #templSearcher(of: string, self: this, templContainer?: HTMLTemplateElement){
-        if(of === 'title') debugger;
         let templ = this.#templateLookup[of];
-        const {enhancedElement, ctx} = self;
+        const {enhancedElement} = self;
         if(templ === undefined){
             if(templContainer instanceof HTMLTemplateElement){
                 templ = templContainer.content.querySelector(`#${of}`) as HTMLTemplateElement;
@@ -55,9 +54,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
             
             if(!templ){
                 templ = upShadowSearch(enhancedElement, of) as HTMLTemplateElement;
-                if(templ === null && ctx.shadowPeer !== undefined){
-                    templ = upShadowSearch(ctx.shadowPeer as Element, of) as HTMLTemplateElement;
-                }
+                
             }
 
             if(templ === null || !(templ instanceof HTMLTemplateElement)){
@@ -83,7 +80,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         return clone;
     }
     
-    doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, transform: any, model: any, prepend: boolean, ctx: RenderContext){
+    doOneOf(self: this, target: Element, of: string, shadowRootMode: 'open' | 'closed' | undefined, model: any, prepend: boolean){
         const templ = this.#templSearcher(of, self);
         if(templ === undefined) return;
         if(!birtualized.has(templ)){
@@ -94,7 +91,7 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
         
         const clone = this.templCloner(templ);
         
-        DTR.transform(clone, ctx);
+        //DTR.transform(clone, ctx);
         const verb = prepend ? 'prepend' : 'append';
         if(shadowRootMode !== undefined){
             if(target.shadowRoot === null){
@@ -118,10 +115,10 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
 
     #lastModel: any;
     async onModel(self: this){
-        const {enhancedElement, model, ctx} = self;
-        if(model === this.#lastModel) return;
-        ctx.host = model;
-        await DTR.transform(enhancedElement.shadowRoot || enhancedElement, ctx);
+        // const {enhancedElement, model, ctx} = self;
+        // if(model === this.#lastModel) return;
+        // ctx.host = model;
+        // await DTR.transform(enhancedElement.shadowRoot || enhancedElement, ctx);
     }
 }
 
@@ -148,7 +145,7 @@ const xe = new XE<AP, Actions>({
                 ifAllOf:['of', 'isC']
             },
             onModel:{
-                ifAllOf:['model', 'ctx']
+                ifAllOf:['model',]
             }
         }
     },

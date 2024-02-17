@@ -6,15 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <template id=templ>
-        <script>
-            alert('hello');
-        </script>
-    </template>
-    <div id=target></div>
-    <script>
-        target.appendChild(templ.content.cloneNode(true));
-    </script>
-    <div href=#test1 href=#test2></div>
+    <div>
+        <template shadowrootmode=open>
+            <slot name=day1></slot>
+            hello
+            <slot name=day1></slot>
+        </template>
+        <span slot=day1>Monday</span>
+        <span slot=day1>Monday</span>
+    </div>
 </body>
 </html>

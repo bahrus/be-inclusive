@@ -27,7 +27,9 @@
             <div>I don't care if <slot name=day1></slot>'s blue</div>
             <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
             <div><slot name=day4></slot> I don't care about you</div>
-            <b-i href=#Friday></b-i>
+            <b-i href=#Friday>
+                <span slot=day5><slot name=day5></slot></span>
+            </b-i>
         </div>
     </template>
 
@@ -37,6 +39,7 @@
             <span slot=day2><slot name=day2></slot></span>
             <span slot=day3><slot name=day3></slot></span>
             <span slot=day4><slot name=day4></slot></span>
+            <span slot=day5><slot name=day5></slot></span>
         </b-i>
         <div class="stanza">
             <div><slot name=day1></slot> you can fall apart</div>

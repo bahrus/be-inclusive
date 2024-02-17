@@ -179,7 +179,7 @@ This is shorthand for some (context-sensitive) default values:
 <my-kinda-sorta-slotted-custom-element-without-shadow-dom 
     be-inclusive='{
         "of": "#love",
-        "assignModelTo": "$0",
+        "slotmap": "|",
         "xform": {
             "| day1": 0,
             "| day2": 0,
@@ -189,7 +189,6 @@ This is shorthand for some (context-sensitive) default values:
             "| day6": 0,
             "| day7": 0
         },
-        "mapSlotTo": "itemprop"
     }'
 >
     <span slot=day1>Monday</span>

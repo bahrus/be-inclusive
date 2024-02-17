@@ -118,42 +118,95 @@ Please expand below to see the "code".
 
 ## Value-add of be-inclusive 
 
-The built-in inclusiveness that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- the residue of slots vanishes so as not to conflict in any way with the ShadowDOM support that slots provide.
+The built-in inclusiveness that "birtual inclusions" that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- with the birtual inclusions, all traces of  "slots" vanish so as not to conflict in any way with the ShadowDOM support that slots provide.
 
 And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature.
 
-be-inclusive is a useful syntax for two fundamental in-browser scenarios:
-
-1.  In the live DOM tree
-2.  During template instantiation.
-
-A significant developer productivity improvement be-inclusive provides in the latter scenario is something we refer to as "birtual inclusions" (abbreviation b-i).  This only works within a template, not for elements starting out outside any template.
-
-So within a template, rather than writing:
+## be-inclusive in a nutshell [TODO]
 
 ```html
 <template id="Friday">
-    <div>It's <span class=day5></span> I'm in love</div>
+    <div>It's <slot name=day5></slot> I'm in love</div>
+</template>
+<template id="Opening">
+    <div class=stanza>
+        <div>I don't care if <slot name=day1></slot>'s blue</div>
+        <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
+        <div><slot name=day4></slot> I don't care about you</div>
+        <b-i href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </b-i>
+    </div>
 </template>
 
-...
-<div be-inclusive=Friday></div>
+<template id="love">
+    <b-i href=#Opening>
+        <slot slot=day1 name=day1></slot>
+        <slot slot=day2 name=day2></slot>
+        <slot slot=day3 name=day3></slot>
+        <slot slot=day4 name=day4></slot>
+        <slot slot=day5 name=day5></slot>
+    </b-i>
+    <div class="stanza">
+        <div><slot name=day1></slot> you can fall apart</div>
+        <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
+        <div>Oh, <slot name=day4></slot> doesn't even start</div>
+        <b-i href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </b-i>
+    </div>
+    ...
+</template>
 
+<my-kinda-sorta-custom-element-without-shadow-dom 
+    be-inclusive='{
+        "of": "#love"
+    }'
+>
+    <span slot=day1>Monday</span>
+    <span slot=day2>Tuesday</span>
+    <span slot=day3>Wednesday</span>
+    <span slot=day4>Thursday</span>
+    <span slot=day5>Friday</span>
+    <span slot=day6>Saturday</span>
+    <span slot=day7>Sunday</span>
+</my-kinda-sorta-custom-element-without-shadow-dom>
 ```
 
-We can write:
+This is shorthand for some default values:
 
 ```html
-<template id="Friday">
-    <div>It's <span class=day5></span> I'm in love</div>
-</template>
-...
-<template>
-...
-<b-i href=#Friday></b-i>
-</template>
-
+<my-kinda-sorta-slotted-custom-element-without-shadow-dom 
+    be-inclusive='{
+        "of": "#love",
+        "assignModelTo": "$0",
+        "bindWith":{
+            "*": ["itemprop"]
+        }
+    }'
+>
+    <span slot=day1>Monday</span>
+    <span slot=day2>Tuesday</span>
+    <span slot=day3>Wednesday</span>
+    <span slot=day4>Thursday</span>
+    <span slot=day5>Friday</span>
+    <span slot=day6>Saturday</span>
+    <span slot=day7>Sunday</span>
+</my-kinda-sorta-slotted-custom-element-without-shadow-dom>
 ```
+
+
+
+What this does:
+
+1.  Creates an element, b-i, with href matching the of parameter
+2.  Creates a JavaScript "model" by taking the "standard values" of each of the elements adorned with the slot attribute.
+The key of each field of the model is the name of the slot.
+3.  Does an Object.assign of this model on the element adorned by be-inclusive.
+3.  Moves all the slotted children inside the custom element into the programmatically created b-i element.
+4.  Attaches event listener to b-i -- "load" which the mount observer dispatches when it has finished weaving all the slots into the cloned templates.
+5.  Copies the slot attribute to the attribute specified by the bindWith parameter (itemprop in this case).
+6.  Formulates a trans-render transform so that 
 
 
 

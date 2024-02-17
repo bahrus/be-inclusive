@@ -28,7 +28,7 @@
             <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
             <div><slot name=day4></slot> I don't care about you</div>
             <b-i href=#Friday>
-                <span slot=day5><slot name=day5></slot></span>
+                <slot slot=day5 name=day5></slot>
             </b-i>
         </div>
     </template>
@@ -36,10 +36,10 @@
     <template id="love">
         <b-i href=#Opening>
             <slot slot=day1 name=day1></slot>
-            <span slot=day2><slot name=day2></slot></span>
-            <span slot=day3><slot name=day3></slot></span>
-            <span slot=day4><slot name=day4></slot></span>
-            <span slot=day5><slot name=day5></slot></span>
+            <slot slot=day2 name=day2></slot>
+            <slot slot=day3 name=day3></slot>
+            <slot slot=day4 name=day4></slot>
+            <slot slot=day5 name=day5></slot>
         </b-i>
         <div class="stanza">
             <div><slot name=day1></slot> you can fall apart</div>

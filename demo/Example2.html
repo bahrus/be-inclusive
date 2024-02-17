@@ -59,13 +59,17 @@
             <div>I don't care if <slot name=day1></slot>'s black</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
             <div><slot name=day4></slot> never looking back</div>
-            <b-i href=#Friday></b-i>
+            <b-i href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </b-i>
         </div>
         <div class="stanza">
             <div><slot name=day1></slot> you can hold your head</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
             <div>Or <slot name=day4></slot> watch the walls instead</div>
-            <b-i href=#Friday></b-i>
+            <b-i href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </b-i>
         </div>
         <div class="stanza">
             <div><slot name=day6></slot> wait</div>
@@ -88,12 +92,20 @@
             <div>It's <slot name=day5></slot></div>
             <div>I'm in love</div>
         </div>
-        <div be-inclusive=Opening class="stanza"></div>
+        <b-i href=#Opening>
+            <slot slot=day1 name=day1></slot>
+            <slot slot=day2 name=day2></slot>
+            <slot slot=day3 name=day3></slot>
+            <slot slot=day4 name=day4></slot>
+            <slot slot=day5 name=day5></slot>
+        </b-i>
         <div class="stanza">
             <div><slot name=day1></slot> you can fall apart</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
             <div><slot name=day4></slot> doesn't even start</div>
-            <b-i href=#Friday></b-i>
+            <b-i href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </b-i>
         </div>
         <style>
             .stanza{

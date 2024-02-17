@@ -6,23 +6,115 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/be-inclusive)
 <a href="https://nodei.co/npm/be-inclusive/"><img src="https://nodei.co/npm/be-inclusive.png"></a>
 
+Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based [custom enhancements](https://github.com/WICG/webcomponents/issues/1000), be-inclusive can use attributes to enhance the functionality of the element it adorns.  
 
-Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based [custom enhancements](https://github.com/WICG/webcomponents/issues/1000), be-inclusive can use attributes to enhance the functionality of the element it adorns.  So if server rendered HTML looks as follows:
+However, the core functionality be-inclusive addresses seems [so fundamental and important](https://github.com/bahrus/mount-observer?tab=readme-ov-file#birtual-inclusions), that its functionality is already built into the underlying infrastructure supporting custom enhancements and binding from a distance (like [trans-rendering](https://github.com/bahrus/trans-render) supports).
+
+Namely, without any help from this particular package, we can already do:
 
 ```html
 <template id="Friday">
-    <div>It's <span class=day5></span> I'm in love</div>
+    <div>It's <slot name=day5></slot> I'm in love</div>
 </template>
 
-<div>I don't care if <span class=day1></span>'s blue</div>
-<div><span class=day2></span>'s gray and <span class=day3></span> too</div>
-<div><span class=day4></span> I don't care about you</div>
-<div be-inclusive=Friday></div>
+<div>I don't care if <slot name=day1></slot>'s blue</div>
+<div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
+<div><slot name=day4></slot> I don't care about you</div>
+<b-i href=#Friday>
+    <span slot=day5>Friday</span>
+</b-i>
 ```
 
-... the last div will be appended with the template content.
+... and the last element (*b-i*) will be replaced with the template content.
 
-*data-enh-by-be-inclusive* can also be used, in order to be strictly HTML5 compliant.
+This syntax allows IDE's like VS Code to be able to jump to the source without the need for extensions being installed.
+
+The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1217#issuecomment-1694483432).  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  
+
+## Example 1 - Simplest example with no value added from this package, no slots
+
+Song lyrics can be "deconstructed" and repetitive sections (like the chorus) shared, without a single line of JavaScript (once the be-inclusive library is loaded).
+
+Please expand below to see the "code".
+
+<details>
+<summary>Applying DRY to punk lyrics</summary>
+
+```html
+    <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
+    <template id="title">Something's gone wrong again</template>
+    <template id="title2">Something goes wrong again</template>
+    <template id="again">And again</template>
+    <template id="again2">And again, and again, again and something's gone wrong again</template>
+    <template id="again3">And again, and again, again and something goes wrong again</template>
+    <template id="agains">
+        <b-i href=#again></b-i><br>
+        <b-i href=#again2></b-i><br>
+        <b-i href=#title></b-i>
+    </template>
+    <template id="agains2">
+        <b-i href=#title2></b-i><br>
+        <b-i href=#again></b-i><br>
+        <b-i href=#again3></b-i><br>
+        <b-i href=#title2></b-i>
+    </template>
+    <template id="bus">
+        <span>Nothing ever happens to people like us</span><br>
+        <span>'Cept we miss the bus, something goes wrong again</span><br>
+        <span>Need a smoke, use my last fifty P.</span><br>
+        <span>But the machine is broke, something's gone wrong again</span>
+    </template>
+    <template id=main>
+        <div>
+            <span>Tried to find my sock</span><br>
+            <span>No good, it's lost</span><br>
+            <b-i href=#title></b-i><br>
+            <span>Need a shave</span><br>
+            <span>Cut myself, need a new blade</span><br>
+            <b-i href=#title></b-i>
+        </div>
+        <b-i href=#agains></b-i>
+        <div>
+            <span>Tried to fry an egg</span><br>
+            <span>Broke the yolk, no joke</span><br>
+            <b-i href=#title></b-i><br>
+            <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
+            <b-i href=#title></b-i><br>
+            <b-i href=#title></b-i>
+        </div>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#agains></b-i>
+        <b-i href=#bus></b-i>
+        <b-i href=#agains></b-i>
+        <div>
+            <span>I turned up early in time for our date</span><br>
+            <span>But then you turn up late, something goes wrong again</span><br>
+            <span>Need a drink, go to the pub</span><br>
+            <span>But the bugger's shut, something goes wrong again</span>
+        </div>
+        <div>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#again></b-i><br>
+            <b-i href=#again3></b-i>
+            <span>Ah, something goes wrong again</span><br>
+            <b-i href=#title2></b-i><br>
+            <b-i href=#title2></b-i>
+        </div>
+    </template>
+
+    <b-i href="#main"></b-i>
+
+    <style>
+        div{
+            padding-top:20px;
+            padding-bottom: 20px;
+        }
+    </style>
+```
+
+</details>
 
 be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 
@@ -57,16 +149,12 @@ We can write:
 
 ```
 
-This syntax allows IDE's like VS Code to be able to jump to the source without the need for extensions being installed.
 
-The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1217#issuecomment-1694483432).  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  The may-it-be compiler will (likely) support doing the inclusion during the build process (but again, needs to be configurable, because it could still be beneficial to do on the client side) [TODO].
 
 
 ## Example 1 -- slotted content without Shadow DOM
 
-Song lyrics can be "deconstructed" and repetitive sections (like the chorus) shared, without a single line of JavaScript (once the be-inclusive library is loaded).
 
-Please expand below to see the "code".
 
 <details>
 <summary>Sample Markup</summary>
@@ -368,92 +456,7 @@ To aid with avoiding syntax errors, which can be challenging when editing JSON i
 
 The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides TypeScript support for editing such attributes, and compiles the content to HTML files (from a *.mjs/*.mts source).
 
-## Example 2 - Simpler example
 
-
-This also allows us to provide slots in the template, and light children, similar to ShadowDOM, but much lighter -- the weaving of the light children into the slots only occurs during template instantiation.
-
-
-Please expand below to see how to include a template without using shadow DOM.  This is the default, and the syntax is simpler (no JSON required).
-
-<details>
-<summary>Applying DRY to punk lyrics</summary>
-
-```html
-    <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
-    <template id="title">Something's gone wrong again</template>
-    <template id="title2">Something goes wrong again</template>
-    <template id="again">And again</template>
-    <template id="again2">And again, and again, again and something's gone wrong again</template>
-    <template id="again3">And again, and again, again and something goes wrong again</template>
-    <template id="agains">
-        <b-i href=#again></b-i><br>
-        <b-i href=#again2></b-i><br>
-        <b-i href=#title></b-i>
-    </template>
-    <template id="agains2">
-        <b-i href=#title2></b-i><br>
-        <b-i href=#again></b-i><br>
-        <b-i href=#again3></b-i><br>
-        <b-i href=#title2></b-i>
-    </template>
-    <template id="bus">
-        <span>Nothing ever happens to people like us</span><br>
-        <span>'Cept we miss the bus, something goes wrong again</span><br>
-        <span>Need a smoke, use my last fifty P.</span><br>
-        <span>But the machine is broke, something's gone wrong again</span>
-    </template>
-    <template id=main>
-        <div>
-            <span>Tried to find my sock</span><br>
-            <span>No good, it's lost</span><br>
-            <b-i href=#title></b-i><br>
-            <span>Need a shave</span><br>
-            <span>Cut myself, need a new blade</span><br>
-            <b-i href=#title></b-i>
-        </div>
-        <b-i href=#agains></b-i>
-        <div>
-            <span>Tried to fry an egg</span><br>
-            <span>Broke the yolk, no joke</span><br>
-            <b-i href=#title></b-i><br>
-            <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <b-i href=#title></b-i><br>
-            <b-i href=#title></b-i>
-        </div>
-        <b-i href=#agains></b-i>
-        <b-i href=#bus></b-i>
-        <b-i href=#agains></b-i>
-        <b-i href=#agains></b-i>
-        <b-i href=#bus></b-i>
-        <b-i href=#agains></b-i>
-        <div>
-            <span>I turned up early in time for our date</span><br>
-            <span>But then you turn up late, something goes wrong again</span><br>
-            <span>Need a drink, go to the pub</span><br>
-            <span>But the bugger's shut, something goes wrong again</span>
-        </div>
-        <div>
-            <b-i href=#title2></b-i><br>
-            <b-i href=#again></b-i><br>
-            <b-i href=#again3></b-i>
-            <span>Ah, something goes wrong again</span><br>
-            <b-i href=#title2></b-i><br>
-            <b-i href=#title2></b-i>
-        </div>
-    </template>
-
-    <div be-inclusive="main"></div>
-
-    <style>
-        div{
-            padding-top:20px;
-            padding-bottom: 20px;
-        }
-    </style>
-```
-
-</details>
 
 ## Example 3 - With Transform Support
 

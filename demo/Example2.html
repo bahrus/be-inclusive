@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example 2</title>
+</head>
+<body>
+    <a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
+    <button id="changeDays" onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
+    <script>
+        function updateModel(){
+            const model = {
+                day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
+                day6: 'lördag', day7: 'söndag',
+            };
+            target.beEnhanced.beInclusive.model = model;
+            //target.setAttribute('be-inclusive', JSON.stringify({model}));
+        }
+    </script>
+    <template id="Friday">
+        <div>It's <slot name=day5></slot> I'm in love</div>
+    </template>
+    <template id="Opening">
+        <div class=stanza>
+            <div>I don't care if <slot name=day1></slot>'s blue</div>
+            <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
+            <div><slot name=day4></slot> I don't care about you</div>
+            <b-i href=#Friday></b-i>
+        </div>
+    </template>
+
+    <template id="love">
+        <b-i href=#Opening>
+            <span slot=day1><slot name=day1></slot></span>
+            <span slot=day2><slot name=day2></slot></span>
+            <span slot=day3><slot name=day3></slot></span>
+            <span slot=day4><slot name=day4></slot></span>
+        </b-i>
+        <div class="stanza">
+            <div><slot name=day1></slot> you can fall apart</div>
+            <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
+            <div>Oh, <slot name=day4></slot> doesn't even start</div>
+            <b-i href=#Friday></b-i>
+        </div>
+        <div class="stanza">
+            <div><slot name=day6></slot> wait</div>
+            <div>And <slot name=day7></slot> always comes too late</div>
+            <div>But <slot name=day5></slot> never hesitate</div>
+        </div>
+
+        <div class="stanza">
+            <div>I don't care if <slot name=day1></slot>'s black</div>
+            <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
+            <div><slot name=day4></slot> never looking back</div>
+            <b-i href=#Friday></b-i>
+        </div>
+        <div class="stanza">
+            <div><slot name=day1></slot> you can hold your head</div>
+            <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
+            <div>Or <slot name=day4></slot> watch the walls instead</div>
+            <b-i href=#Friday></b-i>
+        </div>
+        <div class="stanza">
+            <div><slot name=day6></slot> wait</div>
+            <div>And <slot name=day7></slot> always comes too late</div>
+            <div>But <slot name=day5></slot> never hesitate</div>
+        </div>
+        <div class="stanza">
+            <div>Dressed up to the eyes</div>
+            <div>It's a wonderful surprise</div>
+            <div>To see your shoes and your spirits rise</div>
+            <div>Throwing out your frown</div>
+            <div>And just smiling at the sound</div>
+            <div>And as sleek as a shriek</div>
+            <div>Spinning round and round</div>
+            <div>Always take a big bite</div>
+            <div>It's such a gorgeous sight</div>
+            <div>To see you in the middle of the night</div>
+            <div>You can never get enough</div>
+            <div>Enough of this stuff</div>
+            <div>It's <slot name=day5></slot></div>
+            <div>I'm in love</div>
+        </div>
+        <div be-inclusive=Opening class="stanza"></div>
+        <div class="stanza">
+            <div><slot name=day1></slot> you can fall apart</div>
+            <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
+            <div><slot name=day4></slot> doesn't even start</div>
+            <b-i href=#Friday></b-i>
+        </div>
+        <style>
+            .stanza{
+            padding-top: 20px;
+        }
+    </style>
+    </template>
+    <b-i href=#love>
+        <span slot=day1>Monday</span>
+        <span slot=day2>Tuesday</span>
+        <span slot=day3>Wednesday</span>
+        <span slot=day4>Thursday</span>
+        <span slot=day5>Friday</span>
+    </b-i>
+    <!-- <div id=target be-inclusivex='{
+        "of": "love",
+        "model": {
+            "day1": "Monday",
+            "day2": "Tuesday",
+            "day3": "Wednesday",
+            "day4": "Thursday",
+            "day5": "Friday",
+            "day6": "Saturday",
+            "day7": "Sunday"
+        },
+        "transform":{
+            ".day1": "day1",
+            ".day2": "day2",
+            ".day3": "day3",
+            ".day4": "day4",
+            ".day5": "day5",
+            ".day6": "day6",
+            ".day7": "day7"
+            
+        }
+    }'></div> -->
+
+    <script type=importmap>
+        {
+            "imports": {
+                "be-enhanced/": "../node_modules/be-enhanced/",
+                "be-hive/": "../node_modules/be-hive/",
+                "mount-observer/": "../mount-observer/",
+                "trans-render/": "../node_modules/trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/"
+            }
+        }
+    </script>
+    <script type=module>
+        import '../be-inclusive.js';
+        
+    </script>
+</body>
+</html>

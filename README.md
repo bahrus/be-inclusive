@@ -173,16 +173,23 @@ And more significantly, the mechanism for updating the slots and having them be 
 </my-kinda-sorta-custom-element-without-shadow-dom>
 ```
 
-This is shorthand for some default values:
+This is shorthand for some (context-sensitive) default values:
 
 ```html
 <my-kinda-sorta-slotted-custom-element-without-shadow-dom 
     be-inclusive='{
         "of": "#love",
         "assignModelTo": "$0",
-        "bindWith":{
-            "*": ["itemprop"]
-        }
+        "xform": {
+            "| day1": 0,
+            "| day2": 0,
+            "| day3": 0,
+            "| day4": 0,
+            "| day5": 0,
+            "| day6": 0,
+            "| day7": 0
+        },
+        "mapSlotTo": "itemprop"
     }'
 >
     <span slot=day1>Monday</span>
@@ -199,7 +206,7 @@ This is shorthand for some default values:
 
 What this does:
 
-1.  Creates an element, b-i, with href matching the of parameter
+1.  Creates an element, b-i, with href matching the "of" parameter
 2.  Creates a JavaScript "model" by taking the "standard values" of each of the elements adorned with the slot attribute.
 The key of each field of the model is the name of the slot.
 3.  Does an Object.assign of this model on the element adorned by be-inclusive.

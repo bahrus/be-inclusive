@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id=templ>
+        <script>
+            alert('hello');
+        </script>
+    </template>
+    <div id=target></div>
+    <script>
+        target.appendChild(templ.content.cloneNode(true));
+    </script>
+    <div href=#test1 href=#test2></div>
+</body>
+</html>

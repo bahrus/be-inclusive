@@ -19,7 +19,6 @@ export class BeInclusive extends BE<AP, Actions> implements Actions{
     }
 
     #didInclude = false;
-    #timeoutHandler: number | undefined = undefined;
 
 
     onOf(self: this){

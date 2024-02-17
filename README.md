@@ -116,6 +116,12 @@ Please expand below to see the "code".
 
 </details>
 
+## Value-add of be-inclusive 
+
+The built-in inclusiveness that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- the residue of slots vanishes so as not to conflict in any way with the ShadowDOM support that slots provide.
+
+And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature.
+
 be-inclusive is a useful syntax for two fundamental in-browser scenarios:
 
 1.  In the live DOM tree

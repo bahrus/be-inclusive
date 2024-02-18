@@ -163,13 +163,15 @@ And more significantly, the mechanism for updating the slots and having them be 
         "of": "#love"
     }'
 >
-    <span slot=day1>Monday</span>
-    <span slot=day2>Tuesday</span>
-    <span slot=day3>Wednesday</span>
-    <span slot=day4>Thursday</span>
-    <span slot=day5>Friday</span>
-    <span slot=day6>Saturday</span>
-    <span slot=day7>Sunday</span>
+    <b-i slotmap='{"span": "|"}'>
+        <span slot=day1>Monday</span>
+        <span slot=day2>Tuesday</span>
+        <span slot=day3>Wednesday</span>
+        <span slot=day4>Thursday</span>
+        <span slot=day5>Friday</span>
+        <span slot=day6>Saturday</span>
+        <span slot=day7>Sunday</span>
+    </b-i>
 </my-kinda-sorta-custom-element-without-shadow-dom>
 ```
 
@@ -177,9 +179,19 @@ This is shorthand for some (context-sensitive) default values:
 
 ```html
 <my-kinda-sorta-slotted-custom-element-without-shadow-dom 
-    be-inclusive='{
+    
+>
+    <b-i slotmap='{"span": "|"}'>
+        <span slot=day1>Monday</span>
+        <span slot=day2>Tuesday</span>
+        <span slot=day3>Wednesday</span>
+        <span slot=day4>Thursday</span>
+        <span slot=day5>Friday</span>
+        <span slot=day6>Saturday</span>
+        <span slot=day7>Sunday</span>
+    </b-i>
+    <template be-inclusive='{
         "of": "#love",
-        "slotmap": "|",
         "xform": {
             "| day1": 0,
             "| day2": 0,
@@ -190,15 +202,8 @@ This is shorthand for some (context-sensitive) default values:
             "| day7": 0
         },
         "modelPath": "."
-    }'
->
-    <span slot=day1>Monday</span>
-    <span slot=day2>Tuesday</span>
-    <span slot=day3>Wednesday</span>
-    <span slot=day4>Thursday</span>
-    <span slot=day5>Friday</span>
-    <span slot=day6>Saturday</span>
-    <span slot=day7>Sunday</span>
+    }'>
+    </template>
 </my-kinda-sorta-slotted-custom-element-without-shadow-dom>
 ```
 
@@ -206,14 +211,13 @@ This is shorthand for some (context-sensitive) default values:
 
 What this does:
 
-1.  Creates an element, b-i, with href matching the "of" parameter
-2.  Creates a JavaScript "model" by taking the "standard values" of each of the elements adorned with the slot attribute.
+
+1.  Attaches event listener to b-i -- "load" which the mount observer dispatches when it has finished weaving all the slots into the cloned templates.
+2.  sets the child b-i's href attribute to "of" parameter
+3.  Creates a JavaScript "model" by taking the "standard values" of each of the elements adorned with the slot attribute.
 The key of each field of the model is the name of the slot.
-3.  Does an Object.assign of this model on the element adorned by be-inclusive.
-3.  Moves all the slotted children inside the custom element into the programmatically created b-i element.
-4.  Attaches event listener to b-i -- "load" which the mount observer dispatches when it has finished weaving all the slots into the cloned templates.
-5.  Copies the slot attribute to the attribute specified by the bindWith parameter (itemprop in this case).
-6.  Formulates a trans-render transform so that 
+4.  Does an Object.assign of this model on the element adorned by be-inclusive.
+
 
 
 

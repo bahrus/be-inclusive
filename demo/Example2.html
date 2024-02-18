@@ -122,35 +122,23 @@
         <span slot=day6>Saturday</span>
         <span slot=day7>Sunday</span>
     </b-i>
-    <!-- <div id=target be-inclusivex='{
-        "of": "#love",
-        "model": {
-            "day1": "Monday",
-            "day2": "Tuesday",
-            "day3": "Wednesday",
-            "day4": "Thursday",
-            "day5": "Friday",
-            "day6": "Saturday",
-            "day7": "Sunday"
-        },
-        "transform":{
-            ".day1": "day1",
-            ".day2": "day2",
-            ".day3": "day3",
-            ".day4": "day4",
-            ".day5": "day5",
-            ".day6": "day6",
-            ".day7": "day7"
-            
-        }
-    }'></div> -->
+
+    <template id=temp>
+        <tr>
+            <td>hello</td>
+        </tr>
+    </template>
+
+    <table>
+        <b-i href=#temp></b-i>
+    </table>
 
     <script type=importmap>
         {
             "imports": {
                 "be-enhanced/": "../node_modules/be-enhanced/",
                 "be-hive/": "../node_modules/be-hive/",
-                "mount-observer/": "../mount-observer/",
+                "mount-observer/": "../node_modules/mount-observer/",
                 "trans-render/": "../node_modules/trans-render/",
                 "xtal-element/": "../node_modules/xtal-element/"
             }

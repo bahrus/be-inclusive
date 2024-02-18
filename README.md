@@ -155,44 +155,29 @@ And more significantly, the mechanism for updating the slots and having them be 
 <template  
     be-inclusive='{
         "of": "#love",
-        "slotmap": {"span": "|"},
-    }'
->
-    <span slot=day1>Monday</span>
-    <span slot=day2>Tuesday</span>
-    <span slot=day3>Wednesday</span>
-    <span slot=day4>Thursday</span>
-    <span slot=day5>Friday</span>
-    <span slot=day6>Saturday</span>
-    <span slot=day7>Sunday</span>
-</template>
-```
-
-This is shorthand for some (context-sensitive) default values:
-
-```html
-<template  
-    be-inclusive='{
-        "of": "#love",
         "slotMap": {"span": "|"},
-
         "xform": {
-
+            "| day1": 0,
+            "| day2": 0,
+            "| day3": 0,
+            "| day4": 0,
+            "| day5": 0,
+            "| day6": 0,
+            "| day7": 0
         }
     }'
 >
-    <span slot=day1 init-val-from="textContent" map->Monday</span>
+    <span slot=day1 init-val-from="textContent">Monday</span>
     <span slot=day2 init-val-from="textContent">Tuesday</span>
     <span slot=day3 init-val-from="textContent">Wednesday</span>
     <span slot=day4 init-val-from="textContent">Thursday</span>
     <span slot=day5 init-val-from="textContent">Friday</span>
     <span slot=day6 init-val-from="textContent">Saturday</span>
     <span slot=day7 init-val-from="textContent">Sunday</span>
-    <script initial-model>
-        el => model[slot.slot] = el.textContent
-    </script>
 </template>
 ```
+
+
 
 
 

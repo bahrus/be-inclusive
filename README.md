@@ -20,9 +20,9 @@ Namely, without any help from this particular package, we can already do:
 <div>I don't care if <slot name=day1></slot>'s blue</div>
 <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
 <div><slot name=day4></slot> I don't care about you</div>
-<b-i href=#Friday>
+<template href=#Friday>
     <span slot=day5>Friday</span>
-</b-i>
+</template>
 ```
 
 ... and the last element (*b-i*) will be replaced with the template content.
@@ -114,7 +114,7 @@ Please expand below to see the "code".
 
 The built-in inclusiveness that "birtual inclusions" that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- with the birtual inclusions, all traces of  "slots" vanish so as not to conflict in any way with the ShadowDOM support that slots provide.
 
-And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature.
+And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature (if you squint your eyes enough).  Basically, we turn the information contained in the slots into a "model", which we can then update via JavaScript (or declarative binding).
 
 ## be-inclusive in a nutshell [TODO]
 
@@ -127,27 +127,27 @@ And more significantly, the mechanism for updating the slots and having them be 
         <div>I don't care if <slot name=day1></slot>'s blue</div>
         <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
         <div><slot name=day4></slot> I don't care about you</div>
-        <b-i href=#Friday>
+        <template href=#Friday>
             <slot slot=day5 name=day5></slot>
-        </b-i>
+        </template>
     </div>
 </template>
 
 <template id="love">
-    <b-i href=#Opening>
+    <template href=#Opening>
         <slot slot=day1 name=day1></slot>
         <slot slot=day2 name=day2></slot>
         <slot slot=day3 name=day3></slot>
         <slot slot=day4 name=day4></slot>
         <slot slot=day5 name=day5></slot>
-    </b-i>
+    </template>
     <div class="stanza">
         <div><slot name=day1></slot> you can fall apart</div>
         <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
         <div>Oh, <slot name=day4></slot> doesn't even start</div>
-        <b-i href=#Friday>
+        <template href=#Friday>
             <slot slot=day5 name=day5></slot>
-        </b-i>
+        </template>
     </div>
     ...
 </template>
@@ -157,7 +157,7 @@ And more significantly, the mechanism for updating the slots and having them be 
         "of": "#love"
     }'
 >
-    <b-i slotmap='{"span": "|"}'>
+    <template slotmap='{"span": "|"}'>
         <span slot=day1>Monday</span>
         <span slot=day2>Tuesday</span>
         <span slot=day3>Wednesday</span>
@@ -165,7 +165,7 @@ And more significantly, the mechanism for updating the slots and having them be 
         <span slot=day5>Friday</span>
         <span slot=day6>Saturday</span>
         <span slot=day7>Sunday</span>
-    </b-i>
+    </template>
 </my-kinda-sorta-custom-element-without-shadow-dom>
 ```
 
@@ -175,7 +175,7 @@ This is shorthand for some (context-sensitive) default values:
 <my-kinda-sorta-slotted-custom-element-without-shadow-dom 
     
 >
-    <b-i slotmap='{"span": "|"}'>
+    <template slotmap='{"span": "|"}'>
         <span slot=day1>Monday</span>
         <span slot=day2>Tuesday</span>
         <span slot=day3>Wednesday</span>
@@ -183,7 +183,7 @@ This is shorthand for some (context-sensitive) default values:
         <span slot=day5>Friday</span>
         <span slot=day6>Saturday</span>
         <span slot=day7>Sunday</span>
-    </b-i>
+    </template>
     <template be-inclusive='{
         "of": "#love",
         "xform": {
@@ -253,22 +253,22 @@ The key of each field of the model is the name of the slot.
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <b-i href=#beautiful>
+        <template href=#beautiful>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
-        </b-i>
+        </template>
 
         <div>No matter what they say</div>
         <div prop-pronoun>Words
             <slot name=verb1></slot> bring
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <b-i href=#beautiful>
+        <template href=#beautiful>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
-        </b-i>
+        </template>
         <div>In every single way</div>
         <div>Yes words
             <slot name=verb2></slot> bring
@@ -276,7 +276,7 @@ The key of each field of the model is the name of the slot.
         </div>
         <div>Oh no</div>
 
-        <b-i href=#down></b-i>
+        <template href=#down></template>
     </template>
 
     <div be-inclusive=chorus>
@@ -394,22 +394,22 @@ The example above used tags and attributes with the name "slot" but they are onl
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <b-i href=#beautiful shadowrootmode=open>
+        <template href=#beautiful shadowrootmode=open>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
-        </b-i>
+        </template>
 
         <div>No matter what they say</div>
         <div prop-pronoun>Words
             <slot name=verb1></slot> bring
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <b-i href=#beautiful shadowrootmode=open>
+        <template href=#beautiful shadowrootmode=open>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
-        </b-i>
+        </template>
         <div>In every single way</div>
         <div>Yes words
             <slot name=verb2></slot> bring
@@ -550,17 +550,17 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         <div>I don't care if <span class=day1></span>'s blue</div>
         <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
         <div><span class=day4></span> I don't care about you</div>
-        <b-i href=#Friday></b-i>
+        <template href=#Friday></template>
     </div>
 </template>
 
 <template id="love">
-    <b-i href=#Opening></b-i>
+    <template href=#Opening></template>
     <div class="stanza">
         <div><span class=day1></span> you can fall apart</div>
         <div><span class=day2></span> <span class=day3></span> break my heart</div>
         <div>Oh, <span class=day4></span> doesn't even start</div>
-        <b-i href=#Friday></b-i>
+        <template href=#Friday></template>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -572,13 +572,13 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         <div>I don't care if <span class=day1></span>'s black</div>
         <div><span class=day2></span>, <span class=day3></span> heart attack</div>
         <div><span class=day4></span> never looking back</div>
-        <b-i href=#Friday></b-i>
+        <template href=#Friday></template>
     </div>
     <div class="stanza">
         <div><span class=day1></span> you can hold your head</div>
         <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
         <div>Or <span class=day4></span> watch the walls instead</div>
-        <b-i href=#Friday></b-i>
+        <template href=#Friday></template>
     </div>
     <div class="stanza">
         <div><span class=day6></span> wait</div>
@@ -606,7 +606,7 @@ We can use [trans-render](https://github.com/bahrus/trans-render) syntax in orde
         <div><span class=day1></span> you can fall apart</div>
         <div><span class=day2></span>, <span class=day3></span> break my heart</div>
         <div><span class=day4></span> doesn't even start</div>
-        <b-i href=#Friday></b-i>
+        <template href=#Friday></template>
     </div>
     <style>
         .stanza{

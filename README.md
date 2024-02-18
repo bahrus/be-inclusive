@@ -164,7 +164,8 @@ And more significantly, the mechanism for updating the slots and having them be 
             "| day5": 0,
             "| day6": 0,
             "| day7": 0
-        }
+        },
+        "initModel": {}
     }'
 >
     <span slot=day1 init-val-from="textContent">Monday</span>
@@ -178,17 +179,13 @@ And more significantly, the mechanism for updating the slots and having them be 
 ```
 
 
-
-
-
 What this does:
 
 
-1.  Attaches event listener to b-i -- "load" which the mount observer dispatches when it has finished weaving all the slots into the cloned templates.
-2.  sets the child b-i's href attribute to "of" parameter
-3.  Creates a JavaScript "model" by taking the "standard values" of each of the elements adorned with the slot attribute.
-The key of each field of the model is the name of the slot.
-4.  Does an Object.assign of this model on the element adorned by be-inclusive.
+1.  Updates the initModel via the slots:  querySelectorAll('[slot][init-val-from]').forEach(el => model[el.slot] = getVal(el, el.getAttribute('init-val-from')))
+2.  Adds event listener of adorned element for event "load", which MountObserver dispatches after it is done template weaving.
+2.  Sets the adorned element's b-i's href attribute to "of" parameter
+3.  Applies the xform via trans-render's Transform api.
 
 
 

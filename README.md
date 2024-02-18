@@ -25,15 +25,15 @@ Namely, without any help from this particular package, we can already do:
 </template>
 ```
 
-... and the last element (*b-i*) will be replaced with the template content.
+... and the last element (*template*) will be replaced with the template content.
 
 This syntax allows IDE's like VS Code to be able to jump to the source without the need for extensions being installed.
 
-The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1217#issuecomment-1694483432).  If used with server-side rendering, the resulting HTML could be significantly larger, so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  
+The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1217#issuecomment-1694483432).  If used with server-side rendering, the resulting HTML could be significantly heavier (even after factoring in gzip), so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  
 
 ## Example 1 - Simplest example with no value added from this package, no slots
 
-Song lyrics can be "deconstructed" and repetitive sections (like the chorus) shared, without a single line of JavaScript (once the be-inclusive library is loaded).
+Song lyrics can be "deconstructed" and repetitive sections (like the chorus) shared, without a single line of JavaScript (once the MountObserver API is loaded).
 
 Please expand below to see the "code".
 
@@ -112,7 +112,7 @@ Please expand below to see the "code".
 
 ## Value-add of be-inclusive 
 
-The built-in inclusiveness that "birtual inclusions" that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- with the birtual inclusions, all traces of  "slots" vanish so as not to conflict in any way with the ShadowDOM support that slots provide.
+The built-in inclusiveness that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- with these "birtual inclusions", all traces of  "slots" vanish so as not to conflict in any way with the ShadowDOM support that slots provide.
 
 And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature (if you squint your eyes enough).  Basically, we turn the information contained in the slots into a "model", which we can then update via JavaScript (or declarative binding).
 
@@ -152,7 +152,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     ...
 </template>
 
-<template  
+<template id=song 
     be-inclusive='{
         "of": "#love",
         "slotMap": {"span": "|"},
@@ -176,6 +176,17 @@ And more significantly, the mechanism for updating the slots and having them be 
     <span slot=day6 init-val-from="textContent">Saturday</span>
     <span slot=day7 init-val-from="textContent">Sunday</span>
 </template>
+<button onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
+<script>
+    function updateModel(){
+        const model = {
+            day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
+            day6: 'lördag', day7: 'söndag',
+        };
+        Object.assign(song.beEnhanced.beInclusive.model, model);
+        //target.setAttribute('be-inclusive', JSON.stringify({model}));
+    }
+</script>
 ```
 
 
@@ -187,13 +198,7 @@ What this does:
 2.  Sets the adorned element's b-i's href attribute to "of" parameter
 3.  Applies the xform via trans-render's Transform api.
 
-
-
-
-
 ## Example 1 -- slotted content without Shadow DOM
-
-
 
 <details>
 <summary>Sample Markup</summary>

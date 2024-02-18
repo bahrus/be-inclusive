@@ -48,15 +48,15 @@ Please expand below to see the "code".
     <template id="again2">And again, and again, again and something's gone wrong again</template>
     <template id="again3">And again, and again, again and something goes wrong again</template>
     <template id="agains">
-        <b-i href=#again></b-i><br>
-        <b-i href=#again2></b-i><br>
-        <b-i href=#title></b-i>
+        <template href=#again></template> <br>
+        <template href=#again2></template> <br>
+        <template href=#title></template> 
     </template>
     <template id="agains2">
-        <b-i href=#title2></b-i><br>
-        <b-i href=#again></b-i><br>
-        <b-i href=#again3></b-i><br>
-        <b-i href=#title2></b-i>
+        <template href=#title2></template> <br>
+        <template href=#again></template> <br>
+        <template href=#again3></template> <br>
+        <template href=#title2></template> 
     </template>
     <template id="bus">
         <span>Nothing ever happens to people like us</span><br>
@@ -68,26 +68,26 @@ Please expand below to see the "code".
         <div>
             <span>Tried to find my sock</span><br>
             <span>No good, it's lost</span><br>
-            <b-i href=#title></b-i><br>
+            <template href=#title></template> <br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <b-i href=#title></b-i>
+            <template href=#title></template> 
         </div>
-        <b-i href=#agains></b-i>
+        <template href=#agains></template> 
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
-            <b-i href=#title></b-i><br>
+            <template href=#title></template> <br>
             <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <b-i href=#title></b-i><br>
-            <b-i href=#title></b-i>
+            <template href=#title></template> <br>
+            <template href=#title></template> 
         </div>
-        <b-i href=#agains></b-i>
-        <b-i href=#bus></b-i>
-        <b-i href=#agains></b-i>
-        <b-i href=#agains></b-i>
-        <b-i href=#bus></b-i>
-        <b-i href=#agains></b-i>
+        <template href=#agains></template> 
+        <template href=#bus></template> 
+        <template href=#agains></template> 
+        <template href=#agains></template> 
+        <template href=#bus></template> 
+        <template href=#agains></template> 
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
@@ -95,23 +95,17 @@ Please expand below to see the "code".
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
         <div>
-            <b-i href=#title2></b-i><br>
-            <b-i href=#again></b-i><br>
-            <b-i href=#again3></b-i>
+            <template href=#title2></template> <br>
+            <template href=#again></template> <br>
+            <template href=#again3></template> 
             <span>Ah, something goes wrong again</span><br>
-            <b-i href=#title2></b-i><br>
-            <b-i href=#title2></b-i>
+            <template href=#title2></template> <br>
+            <template href=#title2></template> 
         </div>
     </template>
 
-    <b-i href="#main"></b-i>
+    <template href="#main"></template> 
 
-    <style>
-        div{
-            padding-top:20px;
-            padding-bottom: 20px;
-        }
-    </style>
 ```
 
 </details>

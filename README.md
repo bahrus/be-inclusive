@@ -189,6 +189,7 @@ This is shorthand for some (context-sensitive) default values:
             "| day6": 0,
             "| day7": 0
         },
+        "modelPath": "."
     }'
 >
     <span slot=day1>Monday</span>

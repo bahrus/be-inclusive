@@ -17,7 +17,20 @@ export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions
     async onInitModel(self: this){
         const {enhancedElement, initModel} = self;
         const {content} = enhancedElement;
-        const slots = content.querySelectorAll('[slot][init-val-from]');
+        const slots = Array.from(content.querySelectorAll('[slot][init-val-from]'));
+        
+        for(const slot of slots){
+            const initValFrom = slot.getAttribute('init-val-from')!;
+            const slotName = slot.slot;
+            let val: any;
+            if(initValFrom[0] === '.'){
+                const {getVal} = await import('trans-render/lib/getVal.js');
+                val = getVal({host: slot}, initValFrom);
+            }else{
+                val = (<any>slot)[initValFrom];
+            }
+            (<any>initModel)[slotName] = val;
+        }
     }
 }
 

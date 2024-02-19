@@ -6,10 +6,12 @@ export interface EndUserProps<TProps, TMethods, TElement = {}> extends IBE<HTMLT
     of: string,
     xform?: XForm<TProps, TMethods, TElement>,
     initModel?: TProps & TMethods,
+    slotMap?: any,
 }
 
 export interface AllProps<TProps, TMethods, TElement = {}> extends EndUserProps<TProps, TMethods, TElement>{
     isParsed?: boolean,
+    model?: TProps & TMethods,
 }
 
 export type AP = AllProps<any, any, any>;
@@ -21,5 +23,6 @@ export type ProPAP = Promise<PAP>;
 export type POA = [PAP | undefined, ActionOnEventConfigs<PAP, Actions>]
 
 export interface Actions{
-    onInitModel(self: this): Promise<void>;
+    onInitModel(self: this): ProPAP;
+    startWeaving(self: this): ProPAP;
 }

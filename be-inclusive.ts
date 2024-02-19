@@ -3,6 +3,7 @@ import {BEConfig} from 'be-enhanced/types';
 import {XE} from 'xtal-element/XE.js';
 import {Actions, AllProps, AP, PAP, ProPAP, POA} from './types';
 import {register} from 'be-hive/register.js';
+import {LoadEvent} from 'mount-observer/MountObserver.js';
 
 export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions, HTMLTemplateElement> implements Actions{
     static override get beConfig(){
@@ -31,12 +32,28 @@ export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions
             }
             (<any>initModel)[slotName] = val;
         }
+        return {
+            model: Object.assign({}, initModel),
+        }
+    }
+
+    async startWeaving(self: this){
+        const {of, model, xform, enhancedElement, slotMap} = self;
+        enhancedElement.addEventListener<'load'>('load', e => {
+            const le = e as LoadEvent;
+            console.log({le});
+        }, {once: true});
+        enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));
+        enhancedElement.setAttribute('href', of);
+        return {
+            resolved: true,
+        }
     }
 }
 
 export interface BeInclusive<TProps, TMethods, TElement = {}> extends AllProps<TProps, TMethods, TElement>{}
 
-const tagName = 'be-inclusive';
+export const tagName = 'be-inclusive';
 
 const xe = new XE<AP, Actions>({
     config:{
@@ -53,7 +70,10 @@ const xe = new XE<AP, Actions>({
             //     ifAllOf:['of', 'isC']
             // },
             onInitModel:{
-                ifAllOf:['isParsed', 'initModel', ]
+                ifAllOf: ['isParsed', 'initModel']
+            },
+            startWeaving:{
+                ifAllOf: ['isParsed', 'model', 'slotMap', 'of', 'xform'],
             }
         }
     },

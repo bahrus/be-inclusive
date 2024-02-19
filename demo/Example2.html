@@ -27,27 +27,27 @@
             <div>I don't care if <slot name=day1></slot>'s blue</div>
             <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
             <div><slot name=day4></slot> I don't care about you</div>
-            <b-i href=#Friday>
+            <template href=#Friday>
                 <slot slot=day5 name=day5></slot>
-            </b-i>
+            </template> 
         </div>
     </template>
 
     <template id="love">
-        <b-i href=#Opening>
+        <template href=#Opening>
             <slot slot=day1 name=day1></slot>
             <slot slot=day2 name=day2></slot>
             <slot slot=day3 name=day3></slot>
             <slot slot=day4 name=day4></slot>
             <slot slot=day5 name=day5></slot>
-        </b-i>
+        </template> 
         <div class="stanza">
             <div><slot name=day1></slot> you can fall apart</div>
             <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
             <div>Oh, <slot name=day4></slot> doesn't even start</div>
-            <b-i href=#Friday>
+            <template href=#Friday>
                 <slot slot=day5 name=day5></slot>
-            </b-i>
+            </template> 
         </div>
         <div class="stanza">
             <div><slot name=day6></slot> wait</div>
@@ -59,17 +59,17 @@
             <div>I don't care if <slot name=day1></slot>'s black</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
             <div><slot name=day4></slot> never looking back</div>
-            <b-i href=#Friday>
+            <template href=#Friday>
                 <slot slot=day5 name=day5></slot>
-            </b-i>
+            </template> 
         </div>
         <div class="stanza">
             <div><slot name=day1></slot> you can hold your head</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
             <div>Or <slot name=day4></slot> watch the walls instead</div>
-            <b-i href=#Friday>
+            <template href=#Friday>
                 <slot slot=day5 name=day5></slot>
-            </b-i>
+            </template> 
         </div>
         <div class="stanza">
             <div><slot name=day6></slot> wait</div>
@@ -92,20 +92,20 @@
             <div>It's <slot name=day5></slot></div>
             <div>I'm in love</div>
         </div>
-        <b-i href=#Opening>
+        <template href=#Opening>
             <slot slot=day1 name=day1></slot>
             <slot slot=day2 name=day2></slot>
             <slot slot=day3 name=day3></slot>
             <slot slot=day4 name=day4></slot>
             <slot slot=day5 name=day5></slot>
-        </b-i>
+        </template> 
         <div class="stanza">
             <div><slot name=day1></slot> you can fall apart</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
             <div><slot name=day4></slot> doesn't even start</div>
-            <b-i href=#Friday>
+            <template href=#Friday>
                 <slot slot=day5 name=day5></slot>
-            </b-i>
+            </template> 
         </div>
         <style>
             .stanza{
@@ -113,25 +113,31 @@
         }
     </style>
     </template>
-    <b-i href=#love slotmap='{"span": "$%#@."}'>
-        <span slot=day1>Monday</span>
-        <span slot=day2>Tuesday</span>
-        <span slot=day3>Wednesday</span>
-        <span slot=day4>Thursday</span>
-        <span slot=day5>Friday</span>
-        <span slot=day6>Saturday</span>
-        <span slot=day7>Sunday</span>
-    </b-i>
 
-    <template id=temp>
-        <tr>
-            <td>hello</td>
-        </tr>
+    <template id=song 
+        be-inclusive='{
+            "of": "#love",
+            "slotMap": {"span": "|"},
+            "xform": {
+                "| day1": 0,
+                "| day2": 0,
+                "| day3": 0,
+                "| day4": 0,
+                "| day5": 0,
+                "| day6": 0,
+                "| day7": 0
+            },
+            "initModel": {}
+        }'
+    >
+        <span slot=day1 init-val-from="textContent">Monday</span>
+        <span slot=day2 init-val-from="textContent">Tuesday</span>
+        <span slot=day3 init-val-from="textContent">Wednesday</span>
+        <span slot=day4 init-val-from="textContent">Thursday</span>
+        <span slot=day5 init-val-from="textContent">Friday</span>
+        <span slot=day6 init-val-from="textContent">Saturday</span>
+        <span slot=day7 init-val-from="textContent">Sunday</span>
     </template>
-
-    <table>
-        <b-i href=#temp></b-i>
-    </table>
 
     <script type=importmap>
         {
@@ -145,7 +151,7 @@
         }
     </script>
     <script type=module>
-        import '../be-inclusive.js';
+        import '../behivior.js';
         
     </script>
 </body>

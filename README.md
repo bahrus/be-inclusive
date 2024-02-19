@@ -198,6 +198,148 @@ What this does:
 2.  Sets the adorned element's href attribute to "of" parameter
 3.  Applies the xform via trans-render's Transform api.
 
+## Example 2 in detail
+
+To see the full example described above in detail, please expand below
+
+<details>
+    <summary>Tränslåtyng pøst pünk lyriks tø Sweedisλ</summary>
+
+```html
+<a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
+<button id="changeDays" onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
+<script>
+    function updateModel(){
+        const model = {
+            day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
+            day6: 'lördag', day7: 'söndag',
+        };
+        Object.assign(song.beEnhanced.beInclusive.model, model);
+    }
+</script>
+<template id="Friday">
+    <div>It's <slot name=day5></slot> I'm in love</div>
+</template>
+<template id="Opening">
+    <div class=stanza>
+        <div>I don't care if <slot name=day1></slot>'s blue</div>
+        <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
+        <div><slot name=day4></slot> I don't care about you</div>
+        <template href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+    </div>
+</template>
+
+<template id="love">
+    <template href=#Opening>
+        <slot slot=day1 name=day1></slot>
+        <slot slot=day2 name=day2></slot>
+        <slot slot=day3 name=day3></slot>
+        <slot slot=day4 name=day4></slot>
+        <slot slot=day5 name=day5></slot>
+    </template> 
+    <div class="stanza">
+        <div><slot name=day1></slot> you can fall apart</div>
+        <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
+        <div>Oh, <slot name=day4></slot> doesn't even start</div>
+        <template href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+    </div>
+    <div class="stanza">
+        <div><slot name=day6></slot> wait</div>
+        <div>And <slot name=day7></slot> always comes too late</div>
+        <div>But <slot name=day5></slot> never hesitate</div>
+    </div>
+
+    <div class="stanza">
+        <div>I don't care if <slot name=day1></slot>'s black</div>
+        <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
+        <div><slot name=day4></slot> never looking back</div>
+        <template href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+    </div>
+    <div class="stanza">
+        <div><slot name=day1></slot> you can hold your head</div>
+        <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
+        <div>Or <slot name=day4></slot> watch the walls instead</div>
+        <template href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+    </div>
+    <div class="stanza">
+        <div><slot name=day6></slot> wait</div>
+        <div>And <slot name=day7></slot> always comes too late</div>
+        <div>But <slot name=day5></slot> never hesitate</div>
+    </div>
+    <div class="stanza">
+        <div>Dressed up to the eyes</div>
+        <div>It's a wonderful surprise</div>
+        <div>To see your shoes and your spirits rise</div>
+        <div>Throwing out your frown</div>
+        <div>And just smiling at the sound</div>
+        <div>And as sleek as a shriek</div>
+        <div>Spinning round and round</div>
+        <div>Always take a big bite</div>
+        <div>It's such a gorgeous sight</div>
+        <div>To see you in the middle of the night</div>
+        <div>You can never get enough</div>
+        <div>Enough of this stuff</div>
+        <div>It's <slot name=day5></slot></div>
+        <div>I'm in love</div>
+    </div>
+    <template href=#Opening>
+        <slot slot=day1 name=day1></slot>
+        <slot slot=day2 name=day2></slot>
+        <slot slot=day3 name=day3></slot>
+        <slot slot=day4 name=day4></slot>
+        <slot slot=day5 name=day5></slot>
+    </template> 
+    <div class="stanza">
+        <div><slot name=day1></slot> you can fall apart</div>
+        <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
+        <div><slot name=day4></slot> doesn't even start</div>
+        <template href=#Friday>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+    </div>
+    <style>
+        .stanza{
+        padding-top: 20px;
+    }
+</style>
+</template>
+
+<template id=song 
+    be-inclusive='{
+        "of": "#love",
+        "slotMap": {"span": "|"},
+        "xform": {
+            "| day1": 0,
+            "| day2": 0,
+            "| day3": 0,
+            "| day4": 0,
+            "| day5": 0,
+            "| day6": 0,
+            "| day7": 0
+        },
+        "initModel": {}
+    }'
+>
+    <span slot=day1 init-val-from="textContent">Monday</span>
+    <span slot=day2 init-val-from="textContent">Tuesday</span>
+    <span slot=day3 init-val-from="textContent">Wednesday</span>
+    <span slot=day4 init-val-from="textContent">Thursday</span>
+    <span slot=day5 init-val-from="textContent">Friday</span>
+    <span slot=day6 init-val-from="textContent">Saturday</span>
+    <span slot=day7 init-val-from="textContent">Sunday</span>
+</template>
+```
+
+</detail>
+
 ## Example 1 -- slotted content without Shadow DOM
 
 <details>

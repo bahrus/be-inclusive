@@ -338,7 +338,7 @@ To see the full example described above in detail, please expand below
 </template>
 ```
 
-</detail>
+</details>
 
 ## Example 1 -- slotted content without Shadow DOM
 

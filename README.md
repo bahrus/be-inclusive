@@ -116,7 +116,7 @@ The built-in inclusiveness that the mount-observer api supports has a fundamenta
 
 And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature (if you squint your eyes enough).  Basically, we turn the information contained in the slots into a "model", which we can then update via JavaScript (or declarative binding).
 
-## be-inclusive in a nutshell [TODO]
+## be-inclusive in a nutshell
 
 ```html
 <template id="Friday">
@@ -195,7 +195,7 @@ What this does:
 
 1.  Updates the initModel via the slots:  querySelectorAll('[slot][init-val-from]').forEach(el => model[el.slot] = getVal(el, el.getAttribute('init-val-from')))
 2.  Adds event listener of adorned element for event "load", which MountObserver dispatches after it is done template weaving.
-2.  Sets the adorned element's b-i's href attribute to "of" parameter
+2.  Sets the adorned element's href attribute to "of" parameter
 3.  Applies the xform via trans-render's Transform api.
 
 ## Example 1 -- slotted content without Shadow DOM

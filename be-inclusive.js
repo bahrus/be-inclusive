@@ -37,7 +37,10 @@ export class BeInclusive extends BE {
         enhancedElement.addEventListener('load', async (e) => {
             const le = e;
             const { clone } = le;
-            Transform(clone, model, xform);
+            const { children } = clone;
+            for (const child of children) {
+                Transform(child, model, xform);
+            }
             console.log({ le });
         }, { once: true });
         enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));

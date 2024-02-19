@@ -44,7 +44,11 @@ export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions
         enhancedElement.addEventListener<'load'>('load', async e => {
             const le = e as LoadEvent;
             const {clone} = le;
-            Transform<any, any, any>(clone, model, xform!);
+            const {children} = clone;
+            for(const child of children){
+                Transform<any, any, any>(child, model, xform!);
+            }
+            
             console.log({le});
         }, {once: true});
         enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));

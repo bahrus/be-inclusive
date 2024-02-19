@@ -1,5 +1,6 @@
 import { BE, propDefaults, propInfo } from 'be-enhanced/BE.js';
 import { XE } from 'xtal-element/XE.js';
+import { Transform } from 'trans-render/Transform.js';
 export class BeInclusive extends BE {
     static get beConfig() {
         return {
@@ -15,6 +16,7 @@ export class BeInclusive extends BE {
         const slots = Array.from(content.querySelectorAll('[slot][init-val-from]'));
         for (const slot of slots) {
             const initValFrom = slot.getAttribute('init-val-from');
+            slot.removeAttribute('init-val-from');
             const slotName = slot.slot;
             let val;
             if (initValFrom[0] === '.') {
@@ -32,8 +34,10 @@ export class BeInclusive extends BE {
     }
     async startWeaving(self) {
         const { of, model, xform, enhancedElement, slotMap } = self;
-        enhancedElement.addEventListener('load', e => {
+        enhancedElement.addEventListener('load', async (e) => {
             const le = e;
+            const { clone } = le;
+            Transform(clone, model, xform);
             console.log({ le });
         }, { once: true });
         enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));

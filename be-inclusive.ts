@@ -4,6 +4,7 @@ import {XE} from 'xtal-element/XE.js';
 import {Actions, AllProps, AP, PAP, ProPAP, POA} from './types';
 import {register} from 'be-hive/register.js';
 import {LoadEvent} from 'mount-observer/MountObserver.js';
+import {Transform} from 'trans-render/Transform.js';
 
 export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions, HTMLTemplateElement> implements Actions{
     static override get beConfig(){
@@ -22,6 +23,7 @@ export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions
         
         for(const slot of slots){
             const initValFrom = slot.getAttribute('init-val-from')!;
+            slot.removeAttribute('init-val-from');
             const slotName = slot.slot;
             let val: any;
             if(initValFrom[0] === '.'){
@@ -39,8 +41,10 @@ export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions
 
     async startWeaving(self: this){
         const {of, model, xform, enhancedElement, slotMap} = self;
-        enhancedElement.addEventListener<'load'>('load', e => {
+        enhancedElement.addEventListener<'load'>('load', async e => {
             const le = e as LoadEvent;
+            const {clone} = le;
+            Transform<any, any, any>(clone, model, xform!);
             console.log({le});
         }, {once: true});
         enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));

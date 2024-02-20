@@ -73,6 +73,70 @@
         <span slot=subjectIs1>I am</span>
         <span slot=subjectIs2>I am</span>
      </div>
+
+     <p>
+        <div>To all your friends you're delirious</div>
+        <div>So consumed</div>
+        <div>In all your doom, ooh</div>
+        <div>Trying hard to fill the emptiness</div>
+        <div>The pieces gone</div>
+        <div>Left the puzzle undone</div>
+        <div>Ain't that the way it is</div>
+    </p>
+
+    <p>
+        <div class=chorus>
+            <template href=#chorus shadowRootModeOnLoad=open></template>
+            <span slot=verb1>can't</span>
+            <span slot=verb2>can't</span>
+            <span slot=pronoun1>you</span>
+            <span slot=pronoun2>you</span>
+            <span slot=subjectIs1>You are</span>
+            <span slot=subjectIs2>You are</span>
+        </div>
+    </p>
+    <br>
+    <template id=no-matter>
+        No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
+    </template>
+    <div>
+        <template href=#no-matter shadowRootModeOnLoad=open></template>
+        <span slot=verb1>do</span>
+        <span slot=verb2>do</span>
+    </div>
+    <div>
+        <template href=#no-matter shadowRootModeOnLoad=open></template>
+        <span slot=verb1>say</span>
+        <span slot=verb2>say</span>
+    </div>
+
+    <div>We're the song inside the tune (yeah, oh yeah)</div>
+    <div>Full of beautiful mistakes</div>
+    <p>
+        <div>And everywhere we go (and everywhere we go)</div>
+        <div>The sun will always shine (the sun will always, always, shine)</div>
+        <div>And tomorrow we might awake</div>
+        <div>On the other side</div>
+    </p>
+
+    <p>
+        <div class=chorus>
+            <template href=#chorus shadowRootModeOnLoad=open></template>
+            <span slot=verb1>won't</span>
+            <span slot=verb2>can't</span>
+            <span slot=pronoun1>us</span>
+            <span slot=pronoun2>us</span>
+            <span slot=subjectIs1>We are</span>
+            <span slot=subjectIs2>We are</span>
+        </div>
+    </p>
+
+    <p>
+        <div>Oh, oh</div>
+        <div>Don't you bring me down today</div>
+        <div>Don't you bring me down, ooh</div>
+        <div>Today</div>
+    </p>
     <script type=importmap>
         {
             "imports": {

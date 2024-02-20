@@ -340,429 +340,150 @@ To see the full example described above in detail, please expand below
 
 </details>
 
-## Example 1 -- slotted content without Shadow DOM
+## Example 3 - Adventures with the Shadow DOM
+
+In the example below, this package again provides nothing beyond what is supported in the underlying libary on which *be-inclusive* rests -- the MountObserver.  Here we use slots / Shadow DOM in all its glory, using the platform's ability to update slots as needed, combined with the MountObserver's support for template importing (with ShadowDOM open/closed mode).
 
 <details>
 <summary>Sample Markup</summary>
 
 ```html
-    <style>
-        div {
+<style>
+    div {
         background-color: cornsilk;
-        }
-    </style>
-        
-    <h3><a href="https://www.youtube.com/watch?v=eAfyFTzZDMM" target="_blank">Beautiful</a></h3>
-    <h4>Christina Aguilera</h4>
-    
-    <p>Don't look at me</p>
-    <p>
-        <div>Everyday is so wonderful</div>
-        <div>Then suddenly</div>
-        <div>It's hard to breathe</div>
-        <div>Now and then I get insecure</div>
-        <div>From all the pain</div>
-        <div>I'm so ashamed</div>
-    </p>
-
-
-    <template id=beautiful>
-        <div>
-            <slot name=subjectIs></slot> beautiful
-        </div>
-    </template>
-    <template id=down>
-        <div>So don't you bring me down today</div>
-    </template>
-    <template id=chorus>
-        <template href=#beautiful>
-            <span slot=subjectIs>
-                <slot name=subjectIs1></slot>
-            </span>
-        </template>
-
-        <div>No matter what they say</div>
-        <div prop-pronoun>Words
-            <slot name=verb1></slot> bring
-            <slot name=pronoun1></slot> down</div>
-        <div>Oh no</div>
-        <template href=#beautiful>
-            <span slot=subjectIs>
-                <slot name=subjectIs2></slot>
-            </span>
-        </template>
-        <div>In every single way</div>
-        <div>Yes words
-            <slot name=verb2></slot> bring
-            <slot name=pronoun2></slot> down
-        </div>
-        <div>Oh no</div>
-
-        <template href=#down></template>
-    </template>
-
-    <div be-inclusive=chorus>
-        <span slot=verb1>can't</span>
-        <span slot=verb2>can't</span>
-        <span slot=pronoun1>me</span>
-        <span slot=pronoun2>me</span>
-        <span slot=subjectIs1>I am</span>
-        <span slot=subjectIs2>I am</span>
-    </div>
-
-
-
-    <p>
-        <div>To all your friends you're delirious</div>
-        <div>So consumed</div>
-        <div>In all your doom, ooh</div>
-        <div>Trying hard to fill the emptiness</div>
-        <div>The pieces gone</div>
-        <div>Left the puzzle undone</div>
-        <div>Ain't that the way it is</div>
-    </p>
-    <p>
-        <div be-inclusive=chorus>
-            <span slot=verb1>can't</span>
-            <span slot=verb2>can't</span>
-            <span slot=pronoun1>you</span>
-            <span slot=pronoun2>you</span>
-            <span slot=subjectIs1>You are</span>
-            <span slot=subjectIs2>You are</span>
-        </div>
-    </p>
-    <br>
-    <template id=no-matter>
-        No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
-    </template>
-    <div be-inclusive=no-matter>
-        <span slot=verb1>do</span>
-        <span slot=verb2>do</span>
-    </div>
-    <br>
-    <div be-inclusive=no-matter>
-        <span slot=verb1>say</span>
-        <span slot=verb2>say</span>
-    </div>
-
-    <div>We're the song inside the tune (yeah, oh yeah)</div>
-    <div>Full of beautiful mistakes</div>
-    <p>
-        <div>And everywhere we go (and everywhere we go)</div>
-        <div>The sun will always shine (the sun will always, always, shine)</div>
-        <div>And tomorrow we might awake</div>
-        <div>On the other side</div>
-    </p>
-    <p>
-        <div be-inclusive=chorus>
-            <span slot=verb1>won't</span>
-            <span slot=verb2>can't</span>
-            <span slot=pronoun1>us</span>
-            <span slot=pronoun2>us</span>
-            <span slot=subjectIs1>We are</span>
-            <span slot=subjectIs2>We are</span>
-        </div>
-    </p>
-    <p>
-        <div>Oh, oh</div>
-        <div>Don't you bring me down today</div>
-        <div>Don't you bring me down, ooh</div>
-        <div>Today</div>
-    </p>
-
-```
-</details>
-
-## Example 1b -- same example with shadow DOM
-
-The example above used tags and attributes with the name "slot" but they are only "birtual" -- there is no ability to update the slotted content once the instantiation has taken place.  If we need that, we can use shadow DOM, but we need to specify that via shadowrootmode attribute.  Expand the section below to see what that looks like:
-
-<details>
-<summary>Sample Markup</summary>
-
-```html
-    <style>
-        div {
-        background-color: cornsilk;
-        }
-    </style>
-        
-    <h3><a href="https://www.youtube.com/watch?v=eAfyFTzZDMM" target="_blank">Beautiful</a></h3>
-    <h4>Christina Aguilera</h4>
-    
-    <p>Don't look at me</p>
-    <p>
-        <div>Everyday is so wonderful</div>
-        <div>Then suddenly</div>
-        <div>It's hard to breathe</div>
-        <div>Now and then I get insecure</div>
-        <div>From all the pain</div>
-        <div>I'm so ashamed</div>
-    </p>
-
-
-    <template id=beautiful>
-        <style>
-            div {
-                background-color: burlywood;
-            }
-        </style>
-    
-        <div>
-            <slot name=subjectIs></slot> beautiful
-        </div>
-    </template>
-    <template id=down>
-        <div>So don't you bring me down today</div>
-    </template>
-    <template id=chorus>
-        <template href=#beautiful shadowrootmode=open>
-            <span slot=subjectIs>
-                <slot name=subjectIs1></slot>
-            </span>
-        </template>
-
-        <div>No matter what they say</div>
-        <div prop-pronoun>Words
-            <slot name=verb1></slot> bring
-            <slot name=pronoun1></slot> down</div>
-        <div>Oh no</div>
-        <template href=#beautiful shadowrootmode=open>
-            <span slot=subjectIs>
-                <slot name=subjectIs2></slot>
-            </span>
-        </template>
-        <div>In every single way</div>
-        <div>Yes words
-            <slot name=verb2></slot> bring
-            <slot name=pronoun2></slot> down
-        </div>
-        <div>Oh no</div>
-
-        <div be-inclusive=down></div>
-    </template>
-
-    <div  be-inclusive='{
-        "of": "chorus",
-        "shadowRootMode": "open"
-    }'>
-        <span slot=verb1>can't</span>
-        <span slot=verb2>can't</span>
-        <span slot=pronoun1>me</span>
-        <span slot=pronoun2>me</span>
-        <span slot=subjectIs1>I am</span>
-        <span slot=subjectIs2>I am</span>
-    </div>
-
-
-
-    <p>
-        <div>To all your friends you're delirious</div>
-        <div>So consumed</div>
-        <div>In all your doom, ooh</div>
-        <div>Trying hard to fill the emptiness</div>
-        <div>The pieces gone</div>
-        <div>Left the puzzle undone</div>
-        <div>Ain't that the way it is</div>
-    </p>
-    <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadowRootMode": "open"
-        }'>
-            <span slot=verb1>can't</span>
-            <span slot=verb2>can't</span>
-            <span slot=pronoun1>you</span>
-            <span slot=pronoun2>you</span>
-            <span slot=subjectIs1>You are</span>
-            <span slot=subjectIs2>You are</span>
-        </div>
-    </p>
-    <br>
-    <template id=no-matter>
-        <style>
-            div {
-                background-color: rgb(221, 255, 205);
-            }
-        </style>
-        <div>
-            No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
-        </div>
-        
-    </template>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadowRootMode": "open"
-    }'>
-        <span slot=verb1>do</span>
-        <span slot=verb2>do</span>
-    </div>
-    <br>
-    <div be-inclusive='{
-        "of": "no-matter",
-        "shadowRootMode": "open"
-    }'>
-        <span slot=verb1>say</span>
-        <span slot=verb2>say</span>
-    </div>
-
-    <div>We're the song inside the tune (yeah, oh yeah)</div>
-    <div>Full of beautiful mistakes</div>
-    <p>
-        <div>And everywhere we go (and everywhere we go)</div>
-        <div>The sun will always shine (the sun will always, always, shine)</div>
-        <div>And tomorrow we might awake</div>
-        <div>On the other side</div>
-    </p>
-    <p>
-        <div be-inclusive='{
-            "of": "chorus",
-            "shadowRootMode": "open"
-        }'>
-            <span slot=verb1>won't</span>
-            <span slot=verb2>can't</span>
-            <span slot=pronoun1>us</span>
-            <span slot=pronoun2>us</span>
-            <span slot=subjectIs1>We are</span>
-            <span slot=subjectIs2>We are</span>
-        </div>
-    </p>
-    <p>
-        <div>Oh, oh</div>
-        <div>Don't you bring me down today</div>
-        <div>Don't you bring me down, ooh</div>
-        <div>Today</div>
-    </p>
-
-```
-</details>
-
-
-To aid with avoiding syntax errors, which can be challenging when editing JSON inside HTML, a [vscode extension is available](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) to help with this.  That extension is compatible with [web-based vscode solutions](https://github.dev/bahrus/be-inclusive).
-
-The [may-it-be compiler](https://github.div/bahrus/may-it-be) also provides TypeScript support for editing such attributes, and compiles the content to HTML files (from a *.mjs/*.mts source).
-
-
-
-## Example 3 - With Transform Support
-
-We can use [trans-render](https://github.com/bahrus/trans-render) syntax in order to "stamp" the template before the template is added to the live DOM.  The same transform can be reapplied when the model changes.
-
-<details>
-    <summary>Tränslåtyng pøst pünk lyriks tø Sweedisλ</summary>
-
-```html
-<a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
-<button id="changeDays" onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
-<script>
-    function updateModel(){
-        const model = {
-            day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
-            day6: 'lördag', day7: 'söndag',
-        };
-        target.beEnhanced.beInclusive.model = model;
-        //target.setAttribute('be-inclusive', JSON.stringify({model}));
-    }
-</script>
-<template id="Friday">
-    <div>It's <span class=day5></span> I'm in love</div>
-</template>
-<template id="Opening">
-    <div class=stanza>
-        <div>I don't care if <span class=day1></span>'s blue</div>
-        <div><span class=day2></span>'s gray and <span class=day3></span> too</div>
-        <div><span class=day4></span> I don't care about you</div>
-        <template href=#Friday></template>
-    </div>
-</template>
-
-<template id="love">
-    <template href=#Opening></template>
-    <div class="stanza">
-        <div><span class=day1></span> you can fall apart</div>
-        <div><span class=day2></span> <span class=day3></span> break my heart</div>
-        <div>Oh, <span class=day4></span> doesn't even start</div>
-        <template href=#Friday></template>
-    </div>
-    <div class="stanza">
-        <div><span class=day6></span> wait</div>
-        <div>And <span class=day7></span> always comes too late</div>
-        <div>But <span class=day5></span> never hesitate</div>
-    </div>
-
-    <div class="stanza">
-        <div>I don't care if <span class=day1></span>'s black</div>
-        <div><span class=day2></span>, <span class=day3></span> heart attack</div>
-        <div><span class=day4></span> never looking back</div>
-        <template href=#Friday></template>
-    </div>
-    <div class="stanza">
-        <div><span class=day1></span> you can hold your head</div>
-        <div><span class=day2></span>, <span class=day3></span> stay in bed</div>
-        <div>Or <span class=day4></span> watch the walls instead</div>
-        <template href=#Friday></template>
-    </div>
-    <div class="stanza">
-        <div><span class=day6></span> wait</div>
-        <div>And <span class=day7></span> always comes too late</div>
-        <div>But <span class=day5></span> never hesitate</div>
-    </div>
-    <div class="stanza">
-        <div>Dressed up to the eyes</div>
-        <div>It's a wonderful surprise</div>
-        <div>To see your shoes and your spirits rise</div>
-        <div>Throwing out your frown</div>
-        <div>And just smiling at the sound</div>
-        <div>And as sleek as a shriek</div>
-        <div>Spinning round and round</div>
-        <div>Always take a big bite</div>
-        <div>It's such a gorgeous sight</div>
-        <div>To see you in the middle of the night</div>
-        <div>You can never get enough</div>
-        <div>Enough of this stuff</div>
-        <div>It's <span class=day5></span></div>
-        <div>I'm in love</div>
-    </div>
-    <div be-inclusive=Opening class="stanza"></div>
-    <div class="stanza">
-        <div><span class=day1></span> you can fall apart</div>
-        <div><span class=day2></span>, <span class=day3></span> break my heart</div>
-        <div><span class=day4></span> doesn't even start</div>
-        <template href=#Friday></template>
-    </div>
-    <style>
-        .stanza{
-        padding-top: 20px;
     }
 </style>
-</template>
-<div id=target be-inclusive='{
-    "of": "love",
-    "model": {
-        "day1": "Monday",
-        "day2": "Tuesday",
-        "day3": "Wednesday",
-        "day4": "Thursday",
-        "day5": "Friday",
-        "day6": "Saturday",
-        "day7": "Sunday"
-    },
-    "transform":{
-        ".day1": "day1",
-        ".day2": "day2",
-        ".day3": "day3",
-        ".day4": "day4",
-        ".day5": "day5",
-        ".day6": "day6",
-        ".day7": "day7"
-        
-    }
-}'></div>
-```
+    
+<h3><a href="https://www.youtube.com/watch?v=eAfyFTzZDMM" target="_blank">Beautiful</a></h3>
+<h4>Christina Aguilera</h4>
 
+<p>Don't look at me</p>
+<p>
+    <div>Everyday is so wonderful</div>
+    <div>Then suddenly</div>
+    <div>It's hard to breathe</div>
+    <div>Now and then I get insecure</div>
+    <div>From all the pain</div>
+    <div>I'm so ashamed</div>
+</p>
+<template id=beautiful>
+    <div>
+        <slot name=subjectIs></slot> beautiful
+    </div>
+</template>
+<template id=down>
+    <div>So don't you bring me down today</div>
+</template>
+<template id=chorus>
+    <div>
+        <template href=#beautiful shadowRootModeOnLoad=open></template>
+        <span slot=subjectIs>
+            <slot name=subjectIs1></slot>
+        </span>
+    </div>
+
+    
+    <div>No matter what they say</div>
+    <div prop-pronoun>Words
+        <slot name=verb1></slot> bring
+        <slot name=pronoun1></slot> down</div>
+    <div>Oh no</div>
+    <div>
+        <template href=#beautiful shadowRootModeOnLoad=open></template>
+        <span slot=subjectIs>
+            <slot name=subjectIs2></slot>
+        </span>
+    </div>
+
+    <div>In every single way</div>
+    <div>Yes words
+        <slot name=verb2></slot> bring
+        <slot name=pronoun2></slot> down
+    </div>
+    <div>Oh no</div>
+    
+    <template href=#down></template>
+    </template>
+    
+    <div class=chorus>
+    <template href=#chorus shadowRootModeOnLoad=open></template>
+    <span slot=verb1>can't</span>
+    <span slot=verb2>can't</span>
+    <span slot=pronoun1>me</span>
+    <span slot=pronoun2>me</span>
+    <span slot=subjectIs1>I am</span>
+    <span slot=subjectIs2>I am</span>
+    </div>
+
+    <p>
+    <div>To all your friends you're delirious</div>
+    <div>So consumed</div>
+    <div>In all your doom, ooh</div>
+    <div>Trying hard to fill the emptiness</div>
+    <div>The pieces gone</div>
+    <div>Left the puzzle undone</div>
+    <div>Ain't that the way it is</div>
+</p>
+
+<p>
+    <div class=chorus>
+        <template href=#chorus shadowRootModeOnLoad=open></template>
+        <span slot=verb1>can't</span>
+        <span slot=verb2>can't</span>
+        <span slot=pronoun1>you</span>
+        <span slot=pronoun2>you</span>
+        <span slot=subjectIs1>You are</span>
+        <span slot=subjectIs2>You are</span>
+    </div>
+</p>
+<br>
+<template id=no-matter>
+    No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
+</template>
+<div>
+    <template href=#no-matter shadowRootModeOnLoad=open></template>
+    <span slot=verb1>do</span>
+    <span slot=verb2>do</span>
+</div>
+<div>
+    <template href=#no-matter shadowRootModeOnLoad=open></template>
+    <span slot=verb1>say</span>
+    <span slot=verb2>say</span>
+</div>
+
+<div>We're the song inside the tune (yeah, oh yeah)</div>
+<div>Full of beautiful mistakes</div>
+<p>
+    <div>And everywhere we go (and everywhere we go)</div>
+    <div>The sun will always shine (the sun will always, always, shine)</div>
+    <div>And tomorrow we might awake</div>
+    <div>On the other side</div>
+</p>
+
+<p>
+    <div class=chorus>
+        <template href=#chorus shadowRootModeOnLoad=open></template>
+        <span slot=verb1>won't</span>
+        <span slot=verb2>can't</span>
+        <span slot=pronoun1>us</span>
+        <span slot=pronoun2>us</span>
+        <span slot=subjectIs1>We are</span>
+        <span slot=subjectIs2>We are</span>
+    </div>
+</p>
+
+<p>
+    <div>Oh, oh</div>
+    <div>Don't you bring me down today</div>
+    <div>Don't you bring me down, ooh</div>
+    <div>Today</div>
+</p>
+```
 </details>
 
-## Example 4 - Applying DRY to the song of the material universe
+
+
+## Example 4 - Applying DRY to the song of the material universe [TODO]
 
 
 The [Periodic Table Codepen](https://codepen.io/mikegolus/pen/OwrPgB) has lots of repetitive, periodic DOM in it.  Performance can actually be improved over server-rendering all ths HTML by utilizing templates for the purpose of reducing repeating HTML (yes, it even improves over HTML with gzip in place).

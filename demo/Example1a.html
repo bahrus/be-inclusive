@@ -36,22 +36,22 @@
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <b-i href=#beautiful>
+        <template href=#beautiful>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
-        </b-i>
+        </template>
 
         <div>No matter what they say</div>
         <div prop-pronoun>Words
             <slot name=verb1></slot> bring
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <b-i href=#beautiful>
+        <template href=#beautiful>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
-        </b-i>
+        </template>
         <div>In every single way</div>
         <div>Yes words
             <slot name=verb2></slot> bring
@@ -59,10 +59,11 @@
         </div>
         <div>Oh no</div>
 
-        <b-i href=#down></b-i>
+        <template href=#down></template>
     </template>
 
-    <div be-inclusive=chorus>
+    <div class=chorus>
+        <template href=#chorus loadedShadowRootMode=open></template>
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>me</span>
@@ -70,6 +71,7 @@
         <span slot=subjectIs1>I am</span>
         <span slot=subjectIs2>I am</span>
     </div>
+
 
 
 

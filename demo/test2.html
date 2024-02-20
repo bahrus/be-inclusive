@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <template shadowrootmode=open>
+        <template id=test href=#test1>
             <slot name=day1></slot>
             hello
             <slot name=day1></slot>
@@ -15,5 +15,11 @@
         <span slot=day1>Monday</span>
         <span slot=day1>Monday</span>
     </div>
+    <button onclick=doTest()>test</button>
+    <script>
+        function doTest(){
+            test.setAttribute('shadowrootmode', 'open');
+        }
+    </script>
 </body>
 </html>

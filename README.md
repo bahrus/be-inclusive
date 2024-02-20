@@ -195,8 +195,9 @@ What this does:
 
 1.  Updates the initModel via the slots:  querySelectorAll('[slot][init-val-from]').forEach(el => model[el.slot] = getVal(el, el.getAttribute('init-val-from')))
 2.  Adds event listener of adorned element for event "load", which MountObserver dispatches after it is done template weaving.
-2.  Sets the adorned element's href attribute to "of" parameter
-3.  Applies the xform via trans-render's Transform api.
+3.  Sets the adorned element's href attribute to "of" parameter, and also sets the slotmap attribute, which the MountObserver api knows what to do with.
+4.  The MountObserver replaces all the slot attributes with the "micro syntax"
+3.  Applies the xform via [trans-render's binding syntax](https://github.com/bahrus/trans-render?tab=readme-ov-file#example-2a-shortcut-with-pass-through-derivation).
 
 ## Example 2 in detail
 
@@ -338,11 +339,32 @@ To see the full example described above in detail, please expand below
 </template>
 ```
 
+
+
 </details>
+
+If you need to pull the value from an element buried deep within the element, specify the path starting with a dot.
+
+For example:
+
+```html
+<div slot=myInput init-val-from=.querySelector|input.value>
+    <label>
+        My Input:
+        <input>
+    </label>
+</div>
+```
+
+The vertical pipe represents an open parenthesis that automatically closes at the end of the expression, or before the next period (".").
+
+Shortcuts [TODO]
+
+1.  Make the init-val-from attribute optional, and use as much inference as possible to derive the initial value from the element -- if the element is a microdata element (as is the case here) apply the same rules -- assume the value from the textContent.  If the element is an input element, get the value based on the type (checkbox, number, etc).
 
 ## Example 3 - Adventures with the Shadow DOM
 
-In the example below, this package again provides nothing beyond what is supported in the underlying libary on which *be-inclusive* rests -- the MountObserver.  Here we use slots / Shadow DOM in all its glory, using the platform's ability to update slots as needed, combined with the MountObserver's support for template importing (with ShadowDOM open/closed mode).
+In the example below, this package again provides nothing beyond what is supported in the underlying library on which *be-inclusive* (and other [be-enhanced](https://github.com/bahrus/be-enhanced) [enhancements](https://github.com/WICG/webcomponents/issues/1000)) rests -- the [MountObserver](https://github.com/WICG/webcomponents/issues/896).  Here we use slots / Shadow DOM in all its glory, using the platform's ability to update slots as needed, combined with the MountObserver's support for template importing (with ShadowDOM open/closed mode).
 
 <details>
 <summary>Sample Markup</summary>

@@ -351,7 +351,7 @@ For example:
 <div slot=myInput init-val-from=.querySelector|input.value>
     <label>
         My Input:
-        <input>
+        <input value=initialVal>
     </label>
 </div>
 ```

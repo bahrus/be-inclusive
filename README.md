@@ -358,9 +358,37 @@ For example:
 
 The vertical pipe represents an open parenthesis that automatically closes at the end of the expression, or before the next period (".").
 
-Shortcuts [TODO]
+The init-val-from attribute is actually optional, and we use as much inference as possible to derive the initial value from the element -- if the element is a microdata element (as is the case here) it applies the same rules -- it assumes the value from the textContent.  If the element is an input element, it gets the value based on the type (checkbox, number, etc).
 
-1.  Make the init-val-from attribute optional, and use as much inference as possible to derive the initial value from the element -- if the element is a microdata element (as is the case here) apply the same rules -- assume the value from the textContent.  If the element is an input element, get the value based on the type (checkbox, number, etc).
+So this works just the same:
+
+```html
+<template id=song 
+    be-inclusive='{
+        "of": "#love",
+        "slotMap": {"span": "|"},
+        "xform": {
+            "| day1": 0,
+            "| day2": 0,
+            "| day3": 0,
+            "| day4": 0,
+            "| day5": 0,
+            "| day6": 0,
+            "| day7": 0
+        },
+        "initModel": {}
+    }'
+>
+    <span slot=day1>Monday</span>
+    <span slot=day2>Tuesday</span>
+    <span slot=day3>Wednesday</span>
+    <span slot=day4>Thursday</span>
+    <span slot=day5>Friday</span>
+    <span slot=day6>Saturday</span>
+    <span slot=day7>Sunday</span>
+</template>
+```
+
 
 ## Example 3 - Adventures with the Shadow DOM
 

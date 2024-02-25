@@ -1,6 +1,6 @@
 {
   "name": "be-inclusive",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "be-inclusive enables merging templates together.",
   "keywords": [
     "web-components",
@@ -32,7 +32,6 @@
     "xtal-element": "0.0.594"
   },
   "devDependencies": {
-    
     "@playwright/test": "1.41.2",
     "may-it-serve": "0.0.6"
   },

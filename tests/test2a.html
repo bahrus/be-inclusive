@@ -137,7 +137,19 @@
         <span slot=day6>Saturday</span>
         <span slot=day7>Sunday</span>
     </template>
-
+    <div id=target></div>
+    <script>
+        //document.querySelectorAll('span[itemprop=day1]')
+        function runTest(){
+            const day1s = document.querySelectorAll('span[itemprop=day1]');
+            if(day1s.length === 6){
+                target.setAttribute('mark', 'good');
+            }
+        }
+        setTimeout(() => {
+            runTest();
+        }, 3000);
+    </script>
     <script type=importmap>
         {
             "imports": {

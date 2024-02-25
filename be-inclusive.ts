@@ -19,20 +19,27 @@ export class BeInclusive<TProps, TMethods, TElement = {}> extends BE<AP, Actions
     async onInitModel(self: this){
         const {enhancedElement, initModel} = self;
         const {content} = enhancedElement;
-        const slots = Array.from(content.querySelectorAll('[slot][init-val-from]'));
+        const slots = Array.from(content.querySelectorAll('[slot]'));
         
         for(const slot of slots){
-            const initValFrom = slot.getAttribute('init-val-from')!;
-            slot.removeAttribute('init-val-from');
+            const initValFrom = slot.getAttribute('init-val-from');
             const slotName = slot.slot;
             let val: any;
-            if(initValFrom[0] === '.'){
-                const {getVal} = await import('trans-render/lib/getVal.js');
-                val = getVal({host: slot}, initValFrom);
+            if(initValFrom === null){
+                const {getSignalVal} = await import('be-linked/getSignalVal.js');
+                val = getSignalVal(slot);
+                console.log({val});
             }else{
-                val = (<any>slot)[initValFrom];
+                slot.removeAttribute('init-val-from');
+                if(initValFrom[0] === '.'){
+                    const {getVal} = await import('trans-render/lib/getVal.js');
+                    val = getVal({host: slot}, initValFrom);
+                }else{
+                    val = (<any>slot)[initValFrom];
+                }
             }
             (<any>initModel)[slotName] = val;
+
         }
         return {
             model: Object.assign({}, initModel),

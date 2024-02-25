@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example 2</title>
+</head>
+<body>
+    <a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
+    <button id="changeDays" onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
+    <script>
+        function updateModel(){
+            const model = {
+                day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
+                day6: 'lördag', day7: 'söndag',
+            };
+            Object.assign(song.beEnhanced.beInclusive.model, model);
+        }
+    </script>
+    <template id="Friday">
+        <div>It's <slot name=day5></slot> I'm in love</div>
+    </template>
+    <template id="Opening">
+        <div class=stanza>
+            <div>I don't care if <slot name=day1></slot>'s blue</div>
+            <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
+            <div><slot name=day4></slot> I don't care about you</div>
+            <template href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </template> 
+        </div>
+    </template>
+
+    <template id="love">
+        <template href=#Opening>
+            <slot slot=day1 name=day1></slot>
+            <slot slot=day2 name=day2></slot>
+            <slot slot=day3 name=day3></slot>
+            <slot slot=day4 name=day4></slot>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+        <div class="stanza">
+            <div><slot name=day1></slot> you can fall apart</div>
+            <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
+            <div>Oh, <slot name=day4></slot> doesn't even start</div>
+            <template href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </template> 
+        </div>
+        <div class="stanza">
+            <div><slot name=day6></slot> wait</div>
+            <div>And <slot name=day7></slot> always comes too late</div>
+            <div>But <slot name=day5></slot> never hesitate</div>
+        </div>
+
+        <div class="stanza">
+            <div>I don't care if <slot name=day1></slot>'s black</div>
+            <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
+            <div><slot name=day4></slot> never looking back</div>
+            <template href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </template> 
+        </div>
+        <div class="stanza">
+            <div><slot name=day1></slot> you can hold your head</div>
+            <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
+            <div>Or <slot name=day4></slot> watch the walls instead</div>
+            <template href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </template> 
+        </div>
+        <div class="stanza">
+            <div><slot name=day6></slot> wait</div>
+            <div>And <slot name=day7></slot> always comes too late</div>
+            <div>But <slot name=day5></slot> never hesitate</div>
+        </div>
+        <div class="stanza">
+            <div>Dressed up to the eyes</div>
+            <div>It's a wonderful surprise</div>
+            <div>To see your shoes and your spirits rise</div>
+            <div>Throwing out your frown</div>
+            <div>And just smiling at the sound</div>
+            <div>And as sleek as a shriek</div>
+            <div>Spinning round and round</div>
+            <div>Always take a big bite</div>
+            <div>It's such a gorgeous sight</div>
+            <div>To see you in the middle of the night</div>
+            <div>You can never get enough</div>
+            <div>Enough of this stuff</div>
+            <div>It's <slot name=day5></slot></div>
+            <div>I'm in love</div>
+        </div>
+        <template href=#Opening>
+            <slot slot=day1 name=day1></slot>
+            <slot slot=day2 name=day2></slot>
+            <slot slot=day3 name=day3></slot>
+            <slot slot=day4 name=day4></slot>
+            <slot slot=day5 name=day5></slot>
+        </template> 
+        <div class="stanza">
+            <div><slot name=day1></slot> you can fall apart</div>
+            <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
+            <div><slot name=day4></slot> doesn't even start</div>
+            <template href=#Friday>
+                <slot slot=day5 name=day5></slot>
+            </template> 
+        </div>
+        <style>
+            .stanza{
+            padding-top: 20px;
+        }
+    </style>
+    </template>
+
+    <template id=song 
+        be-inclusive='{
+            "of": "#love",
+            "slotMap": {"span": "|"},
+            "xform": {
+                "| day1": 0,
+                "| day2": 0,
+                "| day3": 0,
+                "| day4": 0,
+                "| day5": 0,
+                "| day6": 0,
+                "| day7": 0
+            },
+            "initModel": {}
+        }'
+    >
+        <span slot=day1>Monday</span>
+        <span slot=day2>Tuesday</span>
+        <span slot=day3>Wednesday</span>
+        <span slot=day4>Thursday</span>
+        <span slot=day5>Friday</span>
+        <span slot=day6>Saturday</span>
+        <span slot=day7>Sunday</span>
+    </template>
+
+    <script type=importmap>
+        {
+            "imports": {
+                "be-enhanced/": "../node_modules/be-enhanced/",
+                "be-hive/": "../node_modules/be-hive/",
+                "be-linked/": "../node_modules/be-linked/",
+                "mount-observer/": "../node_modules/mount-observer/",
+                "trans-render/": "../node_modules/trans-render/",
+                "xtal-element/": "../node_modules/xtal-element/"
+            }
+        }
+    </script>
+    <script type=module>
+        import '../behivior.js';
+        
+    </script>
+</body>
+</html>

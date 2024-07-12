@@ -1,4 +1,4 @@
-# be-inclusive [WIP]
+# be-inclusive (☯︎) [WIP]
 
 *be-inclusive* enables weaving templates together.  
 

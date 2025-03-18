@@ -32,7 +32,7 @@
     "xtal-element": "0.0.629"
   },
   "devDependencies": {
-    "@playwright/test": "1.51.0",
+    "@playwright/test": "1.51.1",
     "may-it-serve": "0.0.9"
   },
   "scripts": {

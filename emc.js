@@ -8,7 +8,10 @@ import { BeHive, seed, MountObserver} from 'be-hive/be-hive.js';
 export const emc = {
     base: 'be-inclusive',
     map:{
-
+        '0.0': {
+            instanceOf: 'Object',
+            mapsTo: '.',
+        }
     },
     enhPropKey: 'beInclusive',
     importEnh: async () => {

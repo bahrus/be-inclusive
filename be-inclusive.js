@@ -24,6 +24,7 @@ class BeInclusive extends BE {
             xform: {},
             initModel: {},
             slotMap: {},
+            model: {},
         },
         actions: {
             onInitModel: {
@@ -95,7 +96,7 @@ class BeInclusive extends BE {
             console.log({le});
         }, {once: true});
         enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));
-        enhancedElement.setAttribute('href', of);
+        enhancedElement.setAttribute('src', of);
         return /** @type {PAP} */({
             resolved: true,
         })

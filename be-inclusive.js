@@ -26,7 +26,12 @@ class BeInclusive extends BE {
             slotMap: {},
         },
         actions: {
-
+            onInitModel: {
+                ifAllOf: ['initModel'],
+            },
+            startWeaving:{
+                ifAllOf: ['of', 'xform', 'slotMap', 'model'],
+            }
         }
     }
 

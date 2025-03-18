@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Example 1</title>
+    <!-- #include virtual="/imports.html" -->
+     <script type=module>
+        import '/emc.js';
+     </script>
 </head>
 <body>
     <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
@@ -14,15 +18,15 @@
     <template id="again2">And again, and again, again and something's gone wrong again</template>
     <template id="again3">And again, and again, again and something goes wrong again</template>
     <template id="agains">
-        <template href=#again></template> <br>
-        <template href=#again2></template> <br>
-        <template href=#title></template> 
+        <template src=#again></template> <br>
+        <template src=#again2></template> <br>
+        <template src=#title></template> 
     </template>
     <template id="agains2">
-        <template href=#title2></template> <br>
-        <template href=#again></template> <br>
-        <template href=#again3></template> <br>
-        <template href=#title2></template> 
+        <template src=#title2></template> <br>
+        <template src=#again></template> <br>
+        <template src=#again3></template> <br>
+        <template src=#title2></template> 
     </template>
     <template id="bus">
         <span>Nothing ever happens to people like us</span><br>
@@ -34,26 +38,26 @@
         <div>
             <span>Tried to find my sock</span><br>
             <span>No good, it's lost</span><br>
-            <template href=#title></template> <br>
+            <template src=#title></template> <br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <template href=#title></template> 
+            <template src=#title></template> 
         </div>
-        <template href=#agains></template> 
+        <template src=#agains></template> 
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
-            <template href=#title></template> <br>
+            <template src=#title></template> <br>
             <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <template href=#title></template> <br>
-            <template href=#title></template> 
+            <template src=#title></template> <br>
+            <template src=#title></template> 
         </div>
-        <template href=#agains></template> 
-        <template href=#bus></template> 
-        <template href=#agains></template> 
-        <template href=#agains></template> 
-        <template href=#bus></template> 
-        <template href=#agains></template> 
+        <template src=#agains></template> 
+        <template src=#bus></template> 
+        <template src=#agains></template> 
+        <template src=#agains></template> 
+        <template src=#bus></template> 
+        <template src=#agains></template> 
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
@@ -61,16 +65,16 @@
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
         <div>
-            <template href=#title2></template> <br>
-            <template href=#again></template> <br>
-            <template href=#again3></template> 
+            <template src=#title2></template> <br>
+            <template src=#again></template> <br>
+            <template src=#again3></template> 
             <span>Ah, something goes wrong again</span><br>
-            <template href=#title2></template> <br>
-            <template href=#title2></template> 
+            <template src=#title2></template> <br>
+            <template src=#title2></template> 
         </div>
     </template>
 
-    <template href="#main"></template> 
+    <template src="#main"></template> 
 
     <style>
         div{
@@ -80,21 +84,6 @@
     </style>
 
 
-    <script type=importmap>
-        {
-            "imports": {
-                
-                "be-enhanced/": "../node_modules/be-enhanced/",
-                "be-hive/": "../node_modules/be-hive/",
-                "mount-observer/": "../node_modules/mount-observer/",
-                "trans-render/": "../node_modules/trans-render/",
-                "xtal-element/": "../node_modules/xtal-element/"
-            }
-        }
-    </script>
-    <script type=module>
-        import '../behivior.js';
-        
-    </script>
+    
 </body>
 </html>

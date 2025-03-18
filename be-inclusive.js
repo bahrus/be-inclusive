@@ -2,6 +2,8 @@
 import { propInfo, rejected, resolved } from 'be-enhanced/cc.js';
 import { BE } from 'be-enhanced/BE.js';
 import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
+import {Transform} from 'trans-render/Transform.js';
+import {LoadEvent} from 'mount-observer/compose.js';
 /** @import { BEConfig, IEnhancement, BEAllProps } from './ts-refs/be-enhanced/types'; */
 /** @import { AP, Actions, BAP, PAP} from './ts-refs/be-inclusive/types'; */
 
@@ -27,6 +29,8 @@ class BeInclusive extends BE {
 
         }
     }
+
+    de = de;
 
     /**
      * 
@@ -62,6 +66,33 @@ class BeInclusive extends BE {
         }
         return /** @type {PAP} */({
             model: Object.assign({}, initModel),
+        })
+    }
+
+    /**
+     * 
+     * @param {BAP} self 
+     * @returns 
+     */
+    async startWeaving(self){
+        const {of, model, xform, enhancedElement, slotMap} = self;
+        enhancedElement.addEventListener('load', async e => {
+            /**
+             * @type {LoadEvent}
+             */
+            const le = e;
+            const {clone} = le;
+            const {children} = clone;
+            for(const child of children){
+                Transform(child, model, xform);
+            }
+            
+            console.log({le});
+        }, {once: true});
+        enhancedElement.setAttribute('slotmap', JSON.stringify(slotMap));
+        enhancedElement.setAttribute('href', of);
+        return /** @type {PAP} */({
+            resolved: true,
         })
     }
 }

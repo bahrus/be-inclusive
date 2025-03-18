@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1a</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import '/emc.js';
+    </script>
 </head>
 <body>
     <style>
@@ -36,7 +40,7 @@
         <div>So don't you bring me down today</div>
     </template>
     <template id=chorus>
-        <template href=#beautiful>
+        <template src=#beautiful>
             <span slot=subjectIs>
                 <slot name=subjectIs1></slot>
             </span>
@@ -47,7 +51,7 @@
             <slot name=verb1></slot> bring
             <slot name=pronoun1></slot> down</div>
         <div>Oh no</div>
-        <template href=#beautiful>
+        <template src=#beautiful>
             <span slot=subjectIs>
                 <slot name=subjectIs2></slot>
             </span>
@@ -59,11 +63,11 @@
         </div>
         <div>Oh no</div>
 
-        <template href=#down></template>
+        <template src=#down></template>
     </template>
 
     <div class=chorus>
-        <template href=#chorus loadedShadowRootMode=open></template>
+        <template src=#chorus loadedShadowRootMode=open></template>
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>me</span>
@@ -133,18 +137,6 @@
         <div>Today</div>
     </p>
 
-    <script type=importmap>
-        {
-            "imports": {
-                "be-enhanced/": "../node_modules/be-enhanced/",
-                "be-hive/": "../node_modules/be-hive/",
-                "trans-render/": "../node_modules/trans-render/",
-                "xtal-element/": "../node_modules/xtal-element/"
-            }
-        }
-    </script>
-    <script type=module>
-        import '../be-inclusive.js';
-    </script>
+
 </body>
 </html>

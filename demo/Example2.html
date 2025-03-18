@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Example 2</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import '/emc.js';
+    </script>
 </head>
 <body>
     <a href="https://www.youtube.com/watch?v=ucX9hVCQT_U" target="_blank">Friday I'm in Love</a>
@@ -26,14 +30,14 @@
             <div>I don't care if <slot name=day1></slot>'s blue</div>
             <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
             <div><slot name=day4></slot> I don't care about you</div>
-            <template href=#Friday>
+            <template src=#Friday>
                 <slot slot=day5 name=day5></slot>
             </template> 
         </div>
     </template>
 
     <template id="love">
-        <template href=#Opening>
+        <template src=#Opening>
             <slot slot=day1 name=day1></slot>
             <slot slot=day2 name=day2></slot>
             <slot slot=day3 name=day3></slot>
@@ -44,7 +48,7 @@
             <div><slot name=day1></slot> you can fall apart</div>
             <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
             <div>Oh, <slot name=day4></slot> doesn't even start</div>
-            <template href=#Friday>
+            <template src=#Friday>
                 <slot slot=day5 name=day5></slot>
             </template> 
         </div>
@@ -58,7 +62,7 @@
             <div>I don't care if <slot name=day1></slot>'s black</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
             <div><slot name=day4></slot> never looking back</div>
-            <template href=#Friday>
+            <template src=#Friday>
                 <slot slot=day5 name=day5></slot>
             </template> 
         </div>
@@ -66,7 +70,7 @@
             <div><slot name=day1></slot> you can hold your head</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
             <div>Or <slot name=day4></slot> watch the walls instead</div>
-            <template href=#Friday>
+            <template src=#Friday>
                 <slot slot=day5 name=day5></slot>
             </template> 
         </div>
@@ -91,7 +95,7 @@
             <div>It's <slot name=day5></slot></div>
             <div>I'm in love</div>
         </div>
-        <template href=#Opening>
+        <template src=#Opening>
             <slot slot=day1 name=day1></slot>
             <slot slot=day2 name=day2></slot>
             <slot slot=day3 name=day3></slot>
@@ -102,7 +106,7 @@
             <div><slot name=day1></slot> you can fall apart</div>
             <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
             <div><slot name=day4></slot> doesn't even start</div>
-            <template href=#Friday>
+            <template src=#Friday>
                 <slot slot=day5 name=day5></slot>
             </template> 
         </div>

@@ -24,8 +24,8 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.169",
-    "be-hive": "0.0.249",
+    "be-enhanced": "0.0.170",
+    "be-hive": "0.0.250",
     "be-linked": "0.0.111",
     "mount-observer": "0.0.45",
     "trans-render": "0.0.889",

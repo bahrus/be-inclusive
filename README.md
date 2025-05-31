@@ -20,7 +20,7 @@ Namely, without any help from this particular package, we can already do:
 <div>I don't care if <slot name=day1></slot>'s blue</div>
 <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
 <div><slot name=day4></slot> I don't care about you</div>
-<template href=#Friday>
+<template src=#Friday>
     <span slot=day5>Friday</span>
 </template>
 ```
@@ -48,15 +48,15 @@ Please expand below to see the "code".
     <template id="again2">And again, and again, again and something's gone wrong again</template>
     <template id="again3">And again, and again, again and something goes wrong again</template>
     <template id="agains">
-        <template href=#again></template> <br>
-        <template href=#again2></template> <br>
-        <template href=#title></template> 
+        <template src=#again></template> <br>
+        <template src=#again2></template> <br>
+        <template src=#title></template> 
     </template>
     <template id="agains2">
-        <template href=#title2></template> <br>
-        <template href=#again></template> <br>
-        <template href=#again3></template> <br>
-        <template href=#title2></template> 
+        <template src=#title2></template> <br>
+        <template src=#again></template> <br>
+        <template src=#again3></template> <br>
+        <template src=#title2></template> 
     </template>
     <template id="bus">
         <span>Nothing ever happens to people like us</span><br>
@@ -68,26 +68,26 @@ Please expand below to see the "code".
         <div>
             <span>Tried to find my sock</span><br>
             <span>No good, it's lost</span><br>
-            <template href=#title></template> <br>
+            <template src=#title></template> <br>
             <span>Need a shave</span><br>
             <span>Cut myself, need a new blade</span><br>
-            <template href=#title></template> 
+            <template src=#title></template> 
         </div>
-        <template href=#agains></template> 
+        <template src=#agains></template> 
         <div>
             <span>Tried to fry an egg</span><br>
             <span>Broke the yolk, no joke</span><br>
-            <template href=#title></template> <br>
+            <template src=#title></template> <br>
             <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <template href=#title></template> <br>
-            <template href=#title></template> 
+            <template src=#title></template> <br>
+            <template src=#title></template> 
         </div>
-        <template href=#agains></template> 
-        <template href=#bus></template> 
-        <template href=#agains></template> 
-        <template href=#agains></template> 
-        <template href=#bus></template> 
-        <template href=#agains></template> 
+        <template src=#agains></template> 
+        <template src=#bus></template> 
+        <template src=#agains></template> 
+        <template src=#agains></template> 
+        <template src=#bus></template> 
+        <template src=#agains></template> 
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
@@ -95,16 +95,16 @@ Please expand below to see the "code".
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
         <div>
-            <template href=#title2></template> <br>
-            <template href=#again></template> <br>
-            <template href=#again3></template> 
+            <template src=#title2></template> <br>
+            <template src=#again></template> <br>
+            <template src=#again3></template> 
             <span>Ah, something goes wrong again</span><br>
-            <template href=#title2></template> <br>
-            <template href=#title2></template> 
+            <template src=#title2></template> <br>
+            <template src=#title2></template> 
         </div>
     </template>
 
-    <template href="#main"></template> 
+    <template src="#main"></template> 
 
 ```
 
@@ -127,14 +127,14 @@ And more significantly, the mechanism for updating the slots and having them be 
         <div>I don't care if <slot name=day1></slot>'s blue</div>
         <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
         <div><slot name=day4></slot> I don't care about you</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template>
     </div>
 </template>
 
 <template id="love">
-    <template href=#Opening>
+    <template src=#Opening>
         <slot slot=day1 name=day1></slot>
         <slot slot=day2 name=day2></slot>
         <slot slot=day3 name=day3></slot>
@@ -145,7 +145,7 @@ And more significantly, the mechanism for updating the slots and having them be 
         <div><slot name=day1></slot> you can fall apart</div>
         <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
         <div>Oh, <slot name=day4></slot> doesn't even start</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template>
     </div>
@@ -195,7 +195,7 @@ What this does:
 
 1.  Updates the initModel via the slots:  querySelectorAll('[slot][init-val-from]').forEach(el => model[el.slot] = getVal(el, el.getAttribute('init-val-from')))
 2.  Adds event listener of adorned element for event "load", which MountObserver dispatches after it is done template weaving.
-3.  Sets the adorned element's href attribute to "of" parameter, and also sets the slotmap attribute, which the MountObserver api knows what to do with.
+3.  Sets the adorned element's src attribute to "of" parameter, and also sets the slotmap attribute, which the MountObserver api knows what to do with.
 4.  The MountObserver replaces all the slot attributes with the "micro syntax"
 3.  Applies the xform via [trans-render's binding syntax](https://github.com/bahrus/trans-render?tab=readme-ov-file#example-2a-shortcut-with-pass-through-derivation).
 
@@ -226,14 +226,14 @@ To see the full example described above in detail, please expand below
         <div>I don't care if <slot name=day1></slot>'s blue</div>
         <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
         <div><slot name=day4></slot> I don't care about you</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template> 
     </div>
 </template>
 
 <template id="love">
-    <template href=#Opening>
+    <template src=#Opening>
         <slot slot=day1 name=day1></slot>
         <slot slot=day2 name=day2></slot>
         <slot slot=day3 name=day3></slot>
@@ -244,7 +244,7 @@ To see the full example described above in detail, please expand below
         <div><slot name=day1></slot> you can fall apart</div>
         <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
         <div>Oh, <slot name=day4></slot> doesn't even start</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template> 
     </div>
@@ -258,7 +258,7 @@ To see the full example described above in detail, please expand below
         <div>I don't care if <slot name=day1></slot>'s black</div>
         <div><slot name=day2></slot>, <slot name=day3></slot> heart attack</div>
         <div><slot name=day4></slot> never looking back</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template> 
     </div>
@@ -266,7 +266,7 @@ To see the full example described above in detail, please expand below
         <div><slot name=day1></slot> you can hold your head</div>
         <div><slot name=day2></slot>, <slot name=day3></slot> stay in bed</div>
         <div>Or <slot name=day4></slot> watch the walls instead</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template> 
     </div>
@@ -291,7 +291,7 @@ To see the full example described above in detail, please expand below
         <div>It's <slot name=day5></slot></div>
         <div>I'm in love</div>
     </div>
-    <template href=#Opening>
+    <template src=#Opening>
         <slot slot=day1 name=day1></slot>
         <slot slot=day2 name=day2></slot>
         <slot slot=day3 name=day3></slot>
@@ -302,7 +302,7 @@ To see the full example described above in detail, please expand below
         <div><slot name=day1></slot> you can fall apart</div>
         <div><slot name=day2></slot>, <slot name=day3></slot> break my heart</div>
         <div><slot name=day4></slot> doesn't even start</div>
-        <template href=#Friday>
+        <template src=#Friday>
             <slot slot=day5 name=day5></slot>
         </template> 
     </div>
@@ -426,7 +426,7 @@ In the example below, this package again provides nothing beyond what is support
 </template>
 <template id=chorus>
     <div>
-        <template href=#beautiful shadowRootModeOnLoad=open></template>
+        <template src=#beautiful shadowRootModeOnLoad=open></template>
         <span slot=subjectIs>
             <slot name=subjectIs1></slot>
         </span>
@@ -439,7 +439,7 @@ In the example below, this package again provides nothing beyond what is support
         <slot name=pronoun1></slot> down</div>
     <div>Oh no</div>
     <div>
-        <template href=#beautiful shadowRootModeOnLoad=open></template>
+        <template src=#beautiful shadowRootModeOnLoad=open></template>
         <span slot=subjectIs>
             <slot name=subjectIs2></slot>
         </span>
@@ -452,11 +452,11 @@ In the example below, this package again provides nothing beyond what is support
     </div>
     <div>Oh no</div>
     
-    <template href=#down></template>
+    <template src=#down></template>
     </template>
     
     <div class=chorus>
-    <template href=#chorus shadowRootModeOnLoad=open></template>
+    <template src=#chorus shadowRootModeOnLoad=open></template>
     <span slot=verb1>can't</span>
     <span slot=verb2>can't</span>
     <span slot=pronoun1>me</span>
@@ -477,7 +477,7 @@ In the example below, this package again provides nothing beyond what is support
 
 <p>
     <div class=chorus>
-        <template href=#chorus shadowRootModeOnLoad=open></template>
+        <template src=#chorus shadowRootModeOnLoad=open></template>
         <span slot=verb1>can't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>you</span>
@@ -491,12 +491,12 @@ In the example below, this package again provides nothing beyond what is support
     No matter what we <slot name=verb1></slot> (no matter what we <slot name=verb2></slot>)
 </template>
 <div>
-    <template href=#no-matter shadowRootModeOnLoad=open></template>
+    <template src=#no-matter shadowRootModeOnLoad=open></template>
     <span slot=verb1>do</span>
     <span slot=verb2>do</span>
 </div>
 <div>
-    <template href=#no-matter shadowRootModeOnLoad=open></template>
+    <template src=#no-matter shadowRootModeOnLoad=open></template>
     <span slot=verb1>say</span>
     <span slot=verb2>say</span>
 </div>
@@ -512,7 +512,7 @@ In the example below, this package again provides nothing beyond what is support
 
 <p>
     <div class=chorus>
-        <template href=#chorus shadowRootModeOnLoad=open></template>
+        <template src=#chorus shadowRootModeOnLoad=open></template>
         <span slot=verb1>won't</span>
         <span slot=verb2>can't</span>
         <span slot=pronoun1>us</span>

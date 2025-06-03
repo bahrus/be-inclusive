@@ -13,20 +13,23 @@
 <body>
     <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
 
-    <div>
-        <span>Tried to find my sock</span><br>
-        <span>No good, it's lost</span><br>
+    <div class=stanza>
+        <div>Tried to find my sock</div>
+        <div>No good, it's lost</div>
         <div id=title>Something's gone wrong again</div>
         <div>Need a shave</div>
         <div>Cut myself, need a new blade</div>
         <template src=#title></template> 
     </div>
-    <div id=agains>
-        <span id=again>And again</span> <span id=again2>And again, and again, again and something's gone wrong again</span>
-        <template src=#title></template>
+
+    <div class=stanza>
+        <div id=agains>
+            <span id=again>And again</span> <span id=again2>And again, and again, again and something's gone wrong again</span>
+            <template src=#title></template>
+        </div>
     </div>
-    <!-- <template src=#agains></template>  -->
-    <div>
+
+    <div class=stanza>
         <span>Tried to fry an egg</span><br>
         <span>Broke the yolk, no joke</span><br>
         <template src=#title></template> 
@@ -34,41 +37,61 @@
         <template src=#title></template> 
         <template src=#title></template> 
     </div>
+
+    <div class=stanza>
         <template src=#agains></template> 
+
+    </div>
+
+    <div class=stanza>
         <div id="bus">
-            <span>Nothing ever happens to people like us</span><br>
-            <span>'Cept we miss the bus, something goes wrong again</span><br>
-            <span>Need a smoke, use my last fifty P.</span><br>
-            <span>But the machine is broke, something's gone wrong again</span>
+            <div>Nothing ever happens to people like us</div>
+            <div>'Cept we miss the bus, something goes wrong again</div>
+            
         </div> 
+    </div>
+
+    <div class=stanza>
+        <div>Need a smoke, use my last fifty P.</div>
+        <div>But the machine is broke, something's gone wrong again</div>
+    </div>
+
+
+    <div class=stanza>
         <template src=#agains></template> 
         <template src=#agains></template> 
+        
+    </div>
+
+    <div class=stanza>
         <template src=#bus></template> 
         <template src=#agains></template> 
+    </div>
+
+    <div class=stanza>
         <div>
             <span>I turned up early in time for our date</span><br>
             <span>But then you turn up late, something goes wrong again</span><br>
             <span>Need a drink, go to the pub</span><br>
             <span>But the bugger's shut, something goes wrong again</span>
         </div>
+    </div>
+
+    <div class=stanza>
+        <div id=title2>Something goes wrong again</div>
         <div>
-            <div id=title2>Something goes wrong again</div>
-            <!-- <template src=#title2></template> <br> -->
-            <div>
-                <template src=#again></template>
-                <div></div>
-            </div>
-            <div>And again, and again, again and something goes wrong again</div>
-            <!-- <template src=#again3></template>  -->
-            <span>Ah, something goes wrong again</span><br>
-            <template src=#title2></template> <br>
-            <template src=#title2></template> 
+            <template src=#again></template>
+            <div></div>
         </div>
-    </template>
+        <div>And again, and again, again and something goes wrong again</div>
+        <div>Ah, something goes wrong again</div>
+        <template src=#title2></template>
+        <template src=#title2></template> 
+    </div>
 
 
     <style>
-        div{
+        .stanza{
             padding-top:20px;
             padding-bottom: 20px;
         }

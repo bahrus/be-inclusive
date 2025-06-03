@@ -24,15 +24,15 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.170",
-    "be-hive": "0.0.250",
+    "be-enhanced": "0.0.179",
+    "be-hive": "0.0.260",
     "be-linked": "0.0.111",
-    "mount-observer": "0.0.45",
-    "trans-render": "0.0.889",
+    "mount-observer": "0.0.68",
+    "trans-render": "0.0.905",
     "xtal-element": "0.0.629"
   },
   "devDependencies": {
-    "@playwright/test": "1.51.1",
+    "@playwright/test": "1.52.0",
     "ssi-server": "0.0.1"
   },
   "scripts": {

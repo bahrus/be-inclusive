@@ -218,6 +218,22 @@ In some cases, we want to "ignore" certain attributes in our match, and "insert"
 
 The "be-inclusive-vigilantly" means to add a mutation observe to the element with id "love" and watch for any new elements that get added that match the child "selector".
 
+Since "be-inclusive" is a rather lengthy attribute to use as a "stem", a shorter name can be used in less formal environments, where conflicts between different libraries are easy to avoid.  Tis package contains a reference that can be used for brevity:  🥰.
+
+```html
+<div itemscope id=love>
+    ...
+    <data value=false itemprop=todayIsFriday>It's Thursday</data>
+</div>
+
+...
+
+<template 🥰="in love" 🥰-vigilantly>
+    <data value=true itemprop=todayIsFriday -i="value ">It's Friday</data>
+</template>
+
+```
+
 ## Example 2 in detail
 
 To see the full example described above in detail, please expand below

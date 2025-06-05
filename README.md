@@ -196,6 +196,26 @@ What this does:
 1.  Searches within the DOM element with id "love" for examples whose attributes match the attributes of the child elements of the template element.
 2.  When a match is found, replaces/inserts the children of the target match with the children of the template child.
 
+Finessing the merge
+
+In some cases, we want to "ignore" certain attributes in our match, and "insert" said attribute(s) into matching elements, in addition to weaving in the children.  This is done as follows:
+
+```html
+<div itemscope id=love>
+    ...
+    <data value=false itemprop=todayIsFriday>It's Thursday</data>
+</div>
+
+...
+
+<template be-inclusive="in love">
+    <data value=true itemprop=todayIsFriday -i="value ">It's Friday</data>
+</template>
+
+```
+
+-i can be space delimited list of attributes to ignore during the query / insert during the merge.
+
 ## Example 2 in detail
 
 To see the full example described above in detail, please expand below

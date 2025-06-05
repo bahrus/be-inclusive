@@ -161,74 +161,34 @@ And more significantly, the mechanism for updating the slots and having them be 
 ## be-inclusive in a nutshell
 
 ```html
-<template id="Friday">
-    <div>It's <slot name=day5></slot> I'm in love</div>
-</template>
-<template id="Opening">
-    <div class=stanza>
-        <div>I don't care if <slot name=day1></slot>'s blue</div>
-        <div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
-        <div><slot name=day4></slot> I don't care about you</div>
-        <template src=#Friday>
-            <slot slot=day5 name=day5></slot>
-        </template>
+<div itemscope id=love>
+    <div class=stanza id=Opening>
+        <div>I don't care if <span itemprop=day1></span>'s blue</div>
+        <div><span itemprop=day2></slot>'s gray and <span itemprop=day3></span> too</div>
+        <div><span itemprop=day4></span> I don't care about you</div>
+        <div id=Friday>
+            <div>It's <span itemprop=day5></span> I'm in love</div>
+        </div>
     </div>
-</template>
 
-<template id="love">
-    <template src=#Opening>
-        <slot slot=day1 name=day1></slot>
-        <slot slot=day2 name=day2></slot>
-        <slot slot=day3 name=day3></slot>
-        <slot slot=day4 name=day4></slot>
-        <slot slot=day5 name=day5></slot>
-    </template>
-    <div class="stanza">
-        <div><slot name=day1></slot> you can fall apart</div>
-        <div><slot name=day2></slot> <slot name=day3></slot> break my heart</div>
-        <div>Oh, <slot name=day4></slot> doesn't even start</div>
-        <template src=#Friday>
-            <slot slot=day5 name=day5></slot>
-        </template>
+    <div class=stanza id=art>
+        <div><span itemprop=day1></span> you can fall apart</div>
+        <div><span itemprop=day2></span> <span itemprop=day3></span> break my heart</div>
+        <div>Oh, <span itemprop=day4></span> doesn't even start</div>
+        <template src=#Friday></template>
     </div>
     ...
-</template>
+</div>
 
-<template id=song 
-    be-inclusive='{
-        "of": "#love",
-        "slotMap": {"span": "|"},
-        "xform": {
-            "| day1": 0,
-            "| day2": 0,
-            "| day3": 0,
-            "| day4": 0,
-            "| day5": 0,
-            "| day6": 0,
-            "| day7": 0
-        },
-        "initModel": {}
-    }'
->
-    <span slot=day1 init-val-from="textContent">Monday</span>
-    <span slot=day2 init-val-from="textContent">Tuesday</span>
-    <span slot=day3 init-val-from="textContent">Wednesday</span>
-    <span slot=day4 init-val-from="textContent">Thursday</span>
-    <span slot=day5 init-val-from="textContent">Friday</span>
-    <span slot=day6 init-val-from="textContent">Saturday</span>
-    <span slot=day7 init-val-from="textContent">Sunday</span>
+<template  be-inclusive="of love">
+    <span itemprop=day1>Monday</span>
+    <span itemprop=day2>Tuesday</span>
+    <span itemprop=day3>Wednesday</span>
+    <span itemprop=day4>Thursday</span>
+    <span itemprop=day5>Friday</span>
+    <span itemprop=day6>Saturday</span>
+    <span itemprop=day7>Sunday</span>
 </template>
-<button onclick="updateModel()">Wi not trei a holiday in Sweeden this yer</button>
-<script>
-    function updateModel(){
-        const model = {
-            day1: 'måndag', day2: 'tisdag', day3: 'onsdag', day4: 'torsdag', day5: 'fredag',
-            day6: 'lördag', day7: 'söndag',
-        };
-        Object.assign(song.beEnhanced.beInclusive.model, model);
-        //target.setAttribute('be-inclusive', JSON.stringify({model}));
-    }
-</script>
 ```
 
 

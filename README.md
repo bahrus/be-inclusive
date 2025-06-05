@@ -179,7 +179,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     ...
 </div>
 
-<template  be-inclusive="of love">
+<template  be-inclusive="in love">
     <span itemprop=day1>Monday</span>
     <span itemprop=day2>Tuesday</span>
     <span itemprop=day3>Wednesday</span>

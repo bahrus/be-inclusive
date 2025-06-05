@@ -8,28 +8,48 @@
 
 Like other [be-enhanced](https://github.com/bahrus/be-enhanced) based [custom enhancements](https://github.com/WICG/webcomponents/issues/1000), be-inclusive can use attributes to enhance the functionality of the element it adorns.  
 
-However, the core functionality be-inclusive addresses seems [so fundamental and important](https://github.com/bahrus/mount-observer?tab=readme-ov-file#birtual-inclusions), that its functionality is already built into the underlying infrastructure supporting custom enhancements and binding from a distance (like [trans-rendering](https://github.com/bahrus/trans-render) supports).
+However, the core functionality be-inclusive addresses seems [so fundamental and important](https://github.com/bahrus/mount-observer?tab=readme-ov-file#birtual-inclusions), that its functionality is already built into the underlying infrastructure supporting custom enhancements and binding from a distance (like [trans-rendering](https://github.com/bahrus/trans-render/wiki/V.--Mount%E2%80%90observing-transforms) supports).
 
 Namely, without any help from this particular package, we can already do:
 
 ```html
-<template id="Friday">
-    <div>It's <slot name=day5></slot> I'm in love</div>
-</template>
+<div class=stanza id=Opening>
+        <div>I don't care if <span itemprop=day1>Monday</span>'s blue</div>
+        <div><span itemprop=day2>Tuesday</slot>'s gray and <span itemprop=day3>Wednesday</span> too</div>
+        <div><span itemprop=day4>Thursday</span> I don't care about you</div>
+        <div id=Friday>
+            <div>It's <span itemprop=day5></span> I'm in love</div>
+        </div>
+    </div>
 
-<div>I don't care if <slot name=day1></slot>'s blue</div>
-<div><slot name=day2></slot>'s gray and <slot name=day3></slot> too</div>
-<div><slot name=day4></slot> I don't care about you</div>
-<template src=#Friday>
-    <span slot=day5>Friday</span>
-</template>
+    <div class=stanza id=art>
+        <div><span itemprop=day1>Monday</span> you can fall apart</div>
+        <div><span itemprop=day2>Tuesday</span> <span itemprop=day3>Wednesday</span> break my heart</div>
+        <div>Oh, <span itemprop=day4>Thursday</span> doesn't even start</div>
+        <template src=#Friday></template>
+    </div>
+    ...
+</div>
 ```
 
-... and the last element (*template*) will be replaced with the template content.
+... which allows us to reuse the HTML snippet:
+
+```html
+<div id=Friday>
+    <div>It's <span itemprop=day5></span> I'm in love</div>
+</div>
+```
+
+via:
+
+```html
+<template src=#Friday></template>
+```
+
 
 This syntax allows IDE's like VS Code to be able to jump to the source without the need for extensions being installed.
 
-The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1217#issuecomment-1694483432).  If used with server-side rendering, the resulting HTML could be significantly heavier (even after factoring in gzip), so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  
+The syntax could also be used to good effect during a build process (SSG) or while server-side rendering, or in a service worker, [w3c willing](https://github.com/whatwg/dom/issues/1222).  If used with server-side rendering, the resulting HTML could be significantly heavier (even after factoring in gzip), so it could often be a net loss to do so on the server, rather than on the client.  This package contains no such support currently for server-side rendering.  
 
 ## Example 1 - Simplest example with no value added from this package, no slots
 
@@ -41,71 +61,93 @@ Please expand below to see the "code".
 <summary>Applying DRY to punk lyrics</summary>
 
 ```html
-    <a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
-    <template id="title">Something's gone wrong again</template>
-    <template id="title2">Something goes wrong again</template>
-    <template id="again">And again</template>
-    <template id="again2">And again, and again, again and something's gone wrong again</template>
-    <template id="again3">And again, and again, again and something goes wrong again</template>
-    <template id="agains">
-        <template src=#again></template> <br>
-        <template src=#again2></template> <br>
-        <template src=#title></template> 
-    </template>
-    <template id="agains2">
-        <template src=#title2></template> <br>
-        <template src=#again></template> <br>
-        <template src=#again3></template> <br>
-        <template src=#title2></template> 
-    </template>
-    <template id="bus">
-        <span>Nothing ever happens to people like us</span><br>
-        <span>'Cept we miss the bus, something goes wrong again</span><br>
-        <span>Need a smoke, use my last fifty P.</span><br>
-        <span>But the machine is broke, something's gone wrong again</span>
-    </template>
-    <template id=main>
-        <div>
-            <span>Tried to find my sock</span><br>
-            <span>No good, it's lost</span><br>
-            <template src=#title></template> <br>
-            <span>Need a shave</span><br>
-            <span>Cut myself, need a new blade</span><br>
-            <template src=#title></template> 
-        </div>
-        <template src=#agains></template> 
-        <div>
-            <span>Tried to fry an egg</span><br>
-            <span>Broke the yolk, no joke</span><br>
-            <template src=#title></template> <br>
-            <span>Look at my watch, just to tell the time but the hand's come off mine</span><br>
-            <template src=#title></template> <br>
-            <template src=#title></template> 
-        </div>
-        <template src=#agains></template> 
-        <template src=#bus></template> 
-        <template src=#agains></template> 
-        <template src=#agains></template> 
-        <template src=#bus></template> 
-        <template src=#agains></template> 
-        <div>
-            <span>I turned up early in time for our date</span><br>
-            <span>But then you turn up late, something goes wrong again</span><br>
-            <span>Need a drink, go to the pub</span><br>
-            <span>But the bugger's shut, something goes wrong again</span>
-        </div>
-        <div>
-            <template src=#title2></template> <br>
-            <template src=#again></template> <br>
-            <template src=#again3></template> 
-            <span>Ah, something goes wrong again</span><br>
-            <template src=#title2></template> <br>
-            <template src=#title2></template> 
-        </div>
-    </template>
+<a rel=noopener href="https://www.youtube.com/watch?v=tWbrAWmhDwY" target="_blank">Something's gone wrong again</a>
 
-    <template src="#main"></template> 
+<div class=stanza>
+    <div>Tried to find my sock</div>
+    <div>No good, it's lost</div>
+    <div id=title>Something's gone wrong again</div>
+    <div>Need a shave</div>
+    <div>Cut myself, need a new blade</div>
+    
+</div>
 
+<div class=stanza>
+    <template src=#title></template> 
+    <div id=agains>
+        <span id=again>And again</span> <span id=again2>And again, and again, again and something's gone wrong again</span>
+        <template src=#title></template>
+    </div>
+</div>
+
+<div class=stanza>
+    <span>Tried to fry an egg</span><br>
+    <span>Broke the yolk, no joke</span><br>
+    <template src=#title></template> 
+    <div>Look at my watch, just to tell the time but the hand's come off mine</div>
+    <template src=#title></template> 
+    
+</div>
+
+<div class=stanza>
+    <template src=#title></template> 
+    <template src=#agains></template> 
+
+</div>
+
+<div class=stanza>
+    <div id="bus">
+        <div>Nothing ever happens to people like us</div>
+        <div>'Cept we miss the bus, something goes wrong again</div>
+        
+    </div> 
+</div>
+
+<div class=stanza>
+    <div>Need a smoke, use my last fifty P.</div>
+    <div>But the machine is broke, something's gone wrong again</div>
+</div>
+
+
+<div class=stanza>
+    <template src=#agains></template> 
+    <template src=#agains></template> 
+    
+</div>
+
+<div class=stanza>
+    <template src=#bus></template> 
+    <template src=#agains></template> 
+</div>
+
+<div class=stanza>
+    <div>
+        <span>I turned up early in time for our date</span><br>
+        <span>But then you turn up late, something goes wrong again</span><br>
+        <span>Need a drink, go to the pub</span><br>
+        <span>But the bugger's shut, something goes wrong again</span>
+    </div>
+</div>
+
+<div class=stanza>
+    <div id=title2>Something goes wrong again</div>
+    <div>
+        <template src=#again></template>
+        <div></div>
+    </div>
+    <div>And again, and again, again and something goes wrong again</div>
+    <div>Ah, something goes wrong again</div>
+    <template src=#title2></template>
+    <template src=#title2></template> 
+</div>
+
+
+<style>
+    .stanza{
+        padding-top:20px;
+        padding-bottom: 20px;
+    }
+</style>
 ```
 
 </details>

@@ -193,7 +193,8 @@ And more significantly, the mechanism for updating the slots and having them be 
 
 What this does:
 
-
+1.  Searches within the DOM element with id "love" for examples whose attributes match the attributes of the child elements of the template element.
+2.  When a match is found, replaces/inserts the children of the target match with the children of the template child.
 
 ## Example 2 in detail
 

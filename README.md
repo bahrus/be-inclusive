@@ -208,13 +208,15 @@ In some cases, we want to "ignore" certain attributes in our match, and "insert"
 
 ...
 
-<template be-inclusive="in love">
+<template be-inclusive="in love" be-inclusive-vigilantly>
     <data value=true itemprop=todayIsFriday -i="value ">It's Friday</data>
 </template>
 
 ```
 
--i can be space delimited list of attributes to ignore during the query / insert during the merge.
+-i can be a space delimited list of attributes to ignore during the query / insert during the merge.
+
+The "be-inclusive-vigilantly" means to add a mutation observe to the element with id "love" and watch for any new elements that get added that match the child "selector".
 
 ## Example 2 in detail
 

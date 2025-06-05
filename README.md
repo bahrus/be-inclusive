@@ -194,11 +194,6 @@ And more significantly, the mechanism for updating the slots and having them be 
 What this does:
 
 
-1.  Updates the initModel via the slots:  querySelectorAll('[slot][init-val-from]').forEach(el => model[el.slot] = getVal(el, el.getAttribute('init-val-from')))
-2.  Adds event listener of adorned element for event "load", which MountObserver dispatches after it is done template weaving.
-3.  Sets the adorned element's src attribute to "of" parameter, and also sets the slotmap attribute, which the MountObserver api knows what to do with.
-4.  The MountObserver replaces all the slot attributes with the "micro syntax"
-3.  Applies the xform via [trans-render's binding syntax](https://github.com/bahrus/trans-render?tab=readme-ov-file#example-2a-shortcut-with-pass-through-derivation).
 
 ## Example 2 in detail
 

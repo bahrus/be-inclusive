@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id=template>
+
+    </template>
+
+    <div id=div>
+        <div>Content goes here</div>
+        <span>hello</span>
+    </div>
+
+    <script>
+        const content = template.content;
+        const config = { attributes: true, childList: true, subtree: true };
+
+        const callback = (mutationList, observer) => {
+            for (const mutation of mutationList) {
+                if (mutation.type === "childList") {
+                console.log("A child node has been added or removed.");
+                } else if (mutation.type === "attributes") {
+                console.log(`The ${mutation.attributeName} attribute was modified.`);
+                }
+            }
+        };
+
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(content, config);
+        setTimeout(() => {
+            for(const child of div.children) {
+                const clone = child.cloneNode(true);
+                template.content.appendChild(clone);
+            }
+        }, 100);
+    </script>
+</body>
+</html>

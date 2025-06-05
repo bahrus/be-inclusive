@@ -156,7 +156,7 @@ Please expand below to see the "code".
 
 The built-in inclusiveness that the mount-observer api supports has a fundamental limitation that Shadow DOM slots don't have -- with these "birtual inclusions", all traces of  "slots" vanish so as not to conflict in any way with the ShadowDOM support that slots provide.
 
-And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature (if you squint your eyes enough).  Basically, we turn the information contained in the slots into a "model", which we can then update via JavaScript (or declarative binding).
+And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature (if you squint your eyes enough).  Basically, we provide for a companion template element to be able to receive children dynamically, and when such children appear, these children get cloned and weaved into the source DOM fragment, based on matching attributes.
 
 ## be-inclusive in a nutshell
 

@@ -179,7 +179,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     ...
 </div>
 
-<template  be-inclusive="in love">
+<template  be-inclusive="in #love">
     <span itemprop=day1>Monday</span>
     <span itemprop=day2>Tuesday</span>
     <span itemprop=day3>Wednesday</span>
@@ -208,15 +208,15 @@ In some cases, we want to "ignore" certain attributes in our match, and "insert"
 
 ...
 
-<template be-inclusive="in love" be-inclusive-vigilantly>
-    <data value=true itemprop=todayIsFriday -i="value ">It's Friday</data>
+<template be-inclusive="in #love" be-inclusive-vigilantly>
+    <data value=true itemprop=todayIsFriday -i="value">It's Friday</data>
 </template>
 
 ```
 
--i can be a space delimited list of attributes to ignore during the query / insert during the merge.
+-i can be a space delimited list of attributes to ignore during the query match / insert during the merge.
 
-The "be-inclusive-vigilantly" means to add a mutation observe to the element with id "love" and watch for any new elements that get added that match the child "selector".
+The "be-inclusive-vigilantly" means to add a mutation observer to the element with id "love" and watch for any new elements that get added that match the child "selector".
 
 Since "be-inclusive" is a rather lengthy attribute to use as a "stem", a shorter name can be used in less formal environments, where conflicts between different libraries are easy to avoid.  Tis package contains a reference that can be used for brevity:  🥰.
 

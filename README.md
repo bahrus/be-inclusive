@@ -1,6 +1,6 @@
 # be-inclusive (🥰) [TODO]
 
-*be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued). *be-imbued* **pushes** DOM elements other DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside, following  similar "syntax".
+*be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued). *be-imbued* *pushes* DOM elements into *other* DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside into the adorned element, following  similar "syntax".
 
 [![Playwright Tests](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml/badge.svg?branch=baseline)](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/be-inclusive)
@@ -157,7 +157,7 @@ The built-in inclusiveness that the mount-observer api supports has a fundamenta
 
 And more significantly, the mechanism for updating the slots and having them be projected into the ShadowDOM is completely non existent with this solution.  That is the primary value-add of this library -- to provide some ability to emulate that feature (if you squint your eyes enough).  Basically, we provide for a companion template element to be able to receive children dynamically, and when such children appear, these children get cloned and weaved into the source DOM fragment, based on matching attributes.
 
-## be-inclusive in a nutshell
+## *be-inclusive* in a nutshell
 
 ```html
 <div itemscope id=love be-inclusive="of #MTWThFSaSu">
@@ -195,6 +195,7 @@ What this does:
 
 1.  Searches within the DOM element with id "love" for elements whose attributes match the attributes of the child elements of the template element.
 2.  When a match is found, replaces/inserts the children of the target match with the children of the template child.
+3.  Monitors for changes to the children of the template with id MTWTFSaSu, and when new children are introduced, merges those into the adorned element.
 
 Finessing the merge
 

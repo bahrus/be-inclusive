@@ -178,7 +178,6 @@ And more significantly, the mechanism for updating the slots and having them be 
     </div>
     ...
 </div>
-
 <template id=MTWThFSaSu>
     <span itemprop=day1>Monday</span>
     <span itemprop=day2>Tuesday</span>

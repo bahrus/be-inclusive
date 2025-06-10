@@ -1,6 +1,6 @@
 // @ts-check
 import { BeHive, seed, MountObserver} from 'be-hive/be-hive.js';
-/** @import {EMC} from './ts-refs/trans-render/be/types' */
+/** @import {EMC} from '../ts-refs/trans-render/be/types.js' */
 
 /**
  * @type {EMC}

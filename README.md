@@ -1,6 +1,6 @@
-# be-inclusive (🥰) [WIP]
+# be-inclusive (🥰) [TODO]
 
-*be-inclusive* enables weaving templates together.  
+*be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued). *be-imbued* **pushes** DOM elements other DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside, following  similar "syntax".
 
 [![Playwright Tests](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml/badge.svg?branch=baseline)](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/be-inclusive)
@@ -160,7 +160,7 @@ And more significantly, the mechanism for updating the slots and having them be 
 ## be-inclusive in a nutshell
 
 ```html
-<div itemscope id=love>
+<div itemscope id=love be-inclusive="of #MTWThFSaSu">
     <div class=stanza id=Opening>
         <div>I don't care if <span itemprop=day1></span>'s blue</div>
         <div><span itemprop=day2></slot>'s gray and <span itemprop=day3></span> too</div>
@@ -179,7 +179,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     ...
 </div>
 
-<template  be-inclusive="in #love">
+<template id=MTWThFSaSu>
     <span itemprop=day1>Monday</span>
     <span itemprop=day2>Tuesday</span>
     <span itemprop=day3>Wednesday</span>
@@ -193,7 +193,7 @@ And more significantly, the mechanism for updating the slots and having them be 
 
 What this does:
 
-1.  Searches within the DOM element with id "love" for examples whose attributes match the attributes of the child elements of the template element.
+1.  Searches within the DOM element with id "love" for elements whose attributes match the attributes of the child elements of the template element.
 2.  When a match is found, replaces/inserts the children of the target match with the children of the template child.
 
 Finessing the merge

@@ -1,4 +1,4 @@
-# be-inclusive (🥰) [TODO]
+# be-inclusive (🥰)
 
 *be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued). *be-imbued* *pushes* DOM elements into *other* DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside into the adorned element, following  similar "syntax".
 

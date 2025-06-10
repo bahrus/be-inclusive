@@ -117,3 +117,6 @@ class BeInclusive extends BE {
         }
     }
 }
+
+await BeInclusive.bootUp();
+export { BeInclusive };

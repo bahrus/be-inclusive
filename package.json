@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.57.0",
-    "ssi-server": "0.0.7"
+    "spa-ssi": "0.0.26"
   },
   "scripts": {
     "serve": "python3 ./node_modules/ssi-server/ssi_server.py",

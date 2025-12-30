@@ -24,16 +24,16 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.179",
-    "be-hive": "0.0.260",
+    "be-enhanced": "0.0.189",
+    "be-hive": "0.0.268",
     "be-linked": "0.0.111",
-    "mount-observer": "0.0.71",
-    "trans-render": "0.0.905",
-    "xtal-element": "0.0.629"
+    "mount-observer": "0.0.112",
+    "trans-render": "0.0.961",
+    "xtal-element": "0.0.637"
   },
   "devDependencies": {
-    "@playwright/test": "1.53.0",
-    "ssi-server": "0.0.1"
+    "@playwright/test": "1.57.0",
+    "ssi-server": "0.0.7"
   },
   "scripts": {
     "serve": "python3 ./node_modules/ssi-server/ssi_server.py",

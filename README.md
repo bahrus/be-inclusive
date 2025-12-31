@@ -170,7 +170,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     <span itemprop=day7>Sunday</span>
 </template>
 
-<div itemscope id=love be-inclusive="of #MTWThFSaSu">
+<div itemscope id=love be-inclusive-of="#MTWThFSaSu">
     <div class=stanza id=Opening>
         <div>I don't care if <span itemprop=day1></span>'s blue</div>
         <div><span itemprop=day2></slot>'s gray and <span itemprop=day3></span> too</div>
@@ -194,9 +194,11 @@ And more significantly, the mechanism for updating the slots and having them be 
 
 What this does:
 
+  
 1.  Searches within the DOM element with id "love" for elements whose attributes match the attributes of the child elements of the template element.
 2.  When a match is found, replaces/inserts the children of the target match with the children of the template child.
 3.  Monitors for changes to the children of the template with id MTWTFSaSu, and when new children are introduced, merges those into the adorned element.
+4.  Intercepts the "birtual inclusion" process mentioned above, an applies the same logic before the cloned template becomes live in the DOM tree [confirm / TODO]
 
 Finessing the merge
 

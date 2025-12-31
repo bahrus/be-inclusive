@@ -1,4 +1,4 @@
-# be-inclusive (🥰)
+# be-inclusive (🥰) [WIP]
 
 *be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued). *be-imbued* *pushes* DOM elements into *other* DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside into the adorned element, following  similar "syntax".
 
@@ -160,6 +160,16 @@ And more significantly, the mechanism for updating the slots and having them be 
 ## *be-inclusive* in a nutshell
 
 ```html
+<template id=MTWThFSaSu>
+    <span itemprop=day1>Monday</span>
+    <span itemprop=day2>Tuesday</span>
+    <span itemprop=day3>Wednesday</span>
+    <span itemprop=day4>Thursday</span>
+    <span itemprop=day5>Friday</span>
+    <span itemprop=day6>Saturday</span>
+    <span itemprop=day7>Sunday</span>
+</template>
+
 <div itemscope id=love be-inclusive="of #MTWThFSaSu">
     <div class=stanza id=Opening>
         <div>I don't care if <span itemprop=day1></span>'s blue</div>
@@ -178,15 +188,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     </div>
     ...
 </div>
-<template id=MTWThFSaSu>
-    <span itemprop=day1>Monday</span>
-    <span itemprop=day2>Tuesday</span>
-    <span itemprop=day3>Wednesday</span>
-    <span itemprop=day4>Thursday</span>
-    <span itemprop=day5>Friday</span>
-    <span itemprop=day6>Saturday</span>
-    <span itemprop=day7>Sunday</span>
-</template>
+
 ```
 
 

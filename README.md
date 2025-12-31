@@ -170,7 +170,7 @@ And more significantly, the mechanism for updating the slots and having them be 
     <span itemprop=day7>Sunday</span>
 </template>
 
-<div itemscope id=love be-inclusive="of #MTWThFSaSu">
+<div itemscope id=love be-inclusive="of MTWThFSaSu">
     <div class=stanza id=Opening>
         <div>I don't care if <span itemprop=day1></span>'s blue</div>
         <div><span itemprop=day2></slot>'s gray and <span itemprop=day3></span> too</div>

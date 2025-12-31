@@ -3,12 +3,7 @@ import { BeHive, seed, MountObserver } from 'be-hive/be-hive.js';
 /** @import {EMC} from './ts-refs/trans-render/be/types' */
 /** @import {Actions, PAP, AllProps, AP} from './ts-refs/be-inclusive/types' */;
 
-const inRemoteSpecifierString = String.raw `^(o|O)f (?<remoteSpecifierString>.*)`;
-
-/**
- * @type {[string, string]}
- */
-const rssTors = ['remoteSpecifierString', 'remoteSpecifier'];
+const ofIDRef = String.raw `^(o|O)f (?<idref>.*)`;
 
 /**
  * @type {EMC<any, AP>}
@@ -22,9 +17,8 @@ export const emc = {
             regExpExts: {
                 includeRules: [
                     {
-                        regExp: inRemoteSpecifierString,
+                        regExp: ofIDRef,
                         defaultVals: {},
-                        dssKeys: [rssTors]
                     }
 
                 ]

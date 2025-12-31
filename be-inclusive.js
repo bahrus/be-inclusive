@@ -51,14 +51,15 @@ class BeInclusive extends BE {
      */
     async hydrate(self){
         const {enhancedElement, includeRules} = self;
-        const {find} = await import('trans-render/dss/find.js');
+        //const {find} = await import('trans-render/dss/find.js');
         /**
          * @type {Array<Element>}
          */
         let nodesToInclude = [];
+        const rn = /** @type {Document | ShadowRoot} */ (enhancedElement.getRootNode());
         for(const includeRule of includeRules){
-            const {remoteSpecifier} = includeRule;
-            const target =  /**  @type {Element} */  (await find(enhancedElement, remoteSpecifier));
+            const {idref} = includeRule;
+            const target =  rn.getElementById(idref);
             if(target === undefined || !(target instanceof HTMLTemplateElement)) continue;
             const {content} = target;
             nodesToInclude = [...nodesToInclude, ...Array.from(content.children)];

@@ -1,0 +1,61 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Friday I'm in Love" [ref=e2] [cursor=pointer]:
+    - /url: https://www.youtube.com/watch?v=ucX9hVCQT_U
+  - button "Wi not trei a holiday in Sweeden this yer" [ref=e3]
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: I don't care if måndag's blue
+      - generic [ref=e7]: tisdag's gray and onsdag too
+      - generic [ref=e8]: torsdag I don't care about you
+      - generic [ref=e10]: It's fredag I'm in love
+    - generic [ref=e11]:
+      - generic [ref=e12]: måndag you can fall apart
+      - generic [ref=e13]: tisdag onsdag break my heart
+      - generic [ref=e14]: Oh, torsdag doesn't even start
+      - generic [ref=e16]: It's fredag I'm in love
+    - generic [ref=e17]:
+      - generic [ref=e18]: lördag wait
+      - generic [ref=e19]: And söndag always comes too late
+      - generic [ref=e20]: But fredag never hesitate
+    - generic [ref=e21]:
+      - generic [ref=e22]: I don't care if måndag's black
+      - generic [ref=e23]: tisdag, onsdag heart attack
+      - generic [ref=e24]: torsdag never looking back
+      - generic [ref=e26]: It's fredag I'm in love
+    - generic [ref=e27]:
+      - generic [ref=e28]: måndag you can hold your head
+      - generic [ref=e29]: tisdag, onsdag stay in bed
+      - generic [ref=e30]: Or torsdag watch the walls instead
+      - generic [ref=e32]: It's fredag I'm in love
+    - generic [ref=e33]:
+      - generic [ref=e34]: lördag wait
+      - generic [ref=e35]: And söndag always comes too late
+      - generic [ref=e36]: But fredag never hesitate
+    - generic [ref=e37]:
+      - generic [ref=e38]: Dressed up to the eyes
+      - generic [ref=e39]: It's a wonderful surprise
+      - generic [ref=e40]: To see your shoes and your spirits rise
+      - generic [ref=e41]: Throwing out your frown
+      - generic [ref=e42]: And just smiling at the sound
+      - generic [ref=e43]: And as sleek as a shriek
+      - generic [ref=e44]: Spinning round and round
+      - generic [ref=e45]: Always take a big bite
+      - generic [ref=e46]: It's such a gorgeous sight
+      - generic [ref=e47]: To see you in the middle of the night
+      - generic [ref=e48]: You can never get enough
+      - generic [ref=e49]: Enough of this stuff
+      - generic [ref=e51]: It's fredag I'm in love
+    - generic [ref=e52]:
+      - generic [ref=e53]: I don't care if måndag's blue
+      - generic [ref=e54]: tisdag's gray and onsdag too
+      - generic [ref=e55]: torsdag I don't care about you
+      - generic [ref=e57]: It's fredag I'm in love
+    - generic [ref=e58]:
+      - generic [ref=e59]: måndag you can fall apart
+      - generic [ref=e60]: tisdag onsdag break my heart
+      - generic [ref=e61]: Oh, torsdag doesn't even start
+      - generic [ref=e63]: It's fredag I'm in love
+```

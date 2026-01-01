@@ -27,10 +27,7 @@ export const emc = {
     },
     enhPropKey: 'beImbued',
     importEnh: async () => {
-        const { BeInclusive } = 
-        /** @type {{new(): IEnhancement<Element>}} */ 
-        /** @type {any} */
-        (await import('./be-inclusive.js'));
+        const { BeInclusive } = await import('./be-inclusive.js');
         return BeInclusive;
     }
 };

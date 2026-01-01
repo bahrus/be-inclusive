@@ -1,6 +1,10 @@
 # be-inclusive (🥰) [WIP]
 
-*be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued). *be-imbued* *pushes* DOM elements into *other* DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside into the adorned element, following  similar "syntax".
+*be-inclusive* enables weaving templates together. It is a close relative to [be-imbued](https://github.com/bahrus/be-imbued) and [be-decked-with](https://github.com/bahrus/be-decked-with). 
+
+*be-imbued* *pushes* DOM elements into *other* DOM fragments.  *be-included*, instead, *pulls* in DOM elements from outside into the adorned element, following  similar "syntax".
+
+*be-decked-with* surrounds a single live DOM element with content coming from a template.
 
 [![Playwright Tests](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml/badge.svg?branch=baseline)](https://github.com/bahrus/be-inclusive/actions/workflows/CI.yml)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/be-inclusive)

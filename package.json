@@ -2,6 +2,7 @@
   "name": "be-inclusive",
   "version": "0.0.15",
   "description": "be-inclusive enables merging templates together.",
+   "type": "module",
   "keywords": [
     "web-components",
     "web-component",
